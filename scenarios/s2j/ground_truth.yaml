@@ -1,0 +1,51 @@
+# Scenario S2J: regular check-ins WITH JITTER (variant of S2). The TRUE STORY, written before
+# the scenario code.
+#
+# Harmless by design: the same program as S2, asking the lab's test server for a small text file
+# 10 times, but each wait is 30 s +-40 % at random (18-42 s), as real "beacons" do to hide their
+# rhythm. A new connection each time; nothing is written or run. Runs ONLY inside the VM and
+# talks ONLY to the lab's test server. Written as patterns, never exact times (DESIGN 7).
+
+scenario: S2J
+title: Regular check-ins with jitter
+runs_in: vm
+test_server: "the lab test server: http://{test_server.ip}:{test_server.port}"   # as seen from the VM (NAT)
+
+programs:
+  checkin: s2_checkin.exe                 # the S2 program, started with -jitter 0.4
+
+steps:
+  - id: 1
+    what: s2_checkin.exe starts
+    evidence: {sysmon_event: 1, Image_endswith: s2_checkin.exe}
+  - id: 2
+    what: s2_checkin.exe contacts the test server 10 times, each over a NEW connection, 18-42 s apart
+    evidence: {sysmon_event: 3, Image_endswith: s2_checkin.exe, DestinationIp: "{test_server.ip}",
+               DestinationPort: "{test_server.port}", count: 10, interval_seconds: {min: 16, max: 44},
+               spread_seconds_min: 10}    # largest gap minus smallest: a plain 30 s rhythm must FAIL here
+  - id: 3
+    what: s2_checkin.exe ends (5 s after its last check-in, so Sysmon can still name it in that last connection)
+    evidence: {sysmon_event: 5, Image_endswith: s2_checkin.exe}
+
+not_expected:
+  - {sysmon_event: 1, why: "the scenario's programs start no other program (review 2026-10-19)"}
+  - {sysmon_event: 22, why: "the server is addressed by IP, so no DNS lookup happens"}
+  - {sysmon_event: 11, why: "the program writes no files (checked where Sysmon records file creation: programs/scripts, Downloads, Startup, the AnalystLab folders)"}
+
+notes:
+  - Same program and evidence as S2; only the spacing differs. The detector (week 3) must still
+    find the rhythm; that it is harder than S2 is the point of this variant.
+
+expected_graph:
+  facts:
+    - {from: checkin, edge: connected_to, to: test_server, count: 10,
+       says: checkin connected to the test server 10 times}
+  gaps: []
+
+alert_expected:
+  rule: periodic check-ins (RITA-style beacon scoring adapted to Sysmon, week 3), lower score than S2 expected
+  min_checkins: 10
+  check:                                     # machine-readable (tools/check_alerts.py), added 2026-10-24
+    - {rule_id: beacon, level: medium, involves: checkin}
+
+checks_assumptions: [A13]

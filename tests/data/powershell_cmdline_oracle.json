@@ -1,0 +1,2025 @@
+{
+ "_about": "Windows PowerShell 5.1 (Windows 11 10.0.26300), 2026-11-16: each command line run for real; powershell_5_1 = the script block text it compiled ($MyInvocation.MyCommand.ScriptBlock), null = it ran no top-level code that printed (refused, error, file, stdin), BLOCKED = Windows refused to start it. Payload only prints its own text. Translator disagreements are listed with their explanation; the test fails on any NEW disagreement.",
+ "parameter_probe": {
+  "_about": "powershell.exe 5.1, 2026-11-16: each prefix of each supported parameter, kinds whose probe printed the payload: switch = `-w -nop <code>` ran the code; command = `-w <code>` ran it and `-w -nop <code>` did not; value = `-w <value> <code>` ran it for one of hidden/bypass/text/5.1. [] = none (-File: the file is missing; -e: not probed here, base64 probes were stopped after Defender flagged them).",
+  "results": {
+   "c": [
+    "command"
+   ],
+   "co": [
+    "command"
+   ],
+   "com": [
+    "command"
+   ],
+   "comm": [
+    "command"
+   ],
+   "comma": [
+    "command"
+   ],
+   "comman": [
+    "command"
+   ],
+   "command": [
+    "command"
+   ],
+   "e": [],
+   "ep": [
+    "switch",
+    "value"
+   ],
+   "ex": [
+    "switch",
+    "value"
+   ],
+   "exe": [
+    "switch",
+    "value"
+   ],
+   "exec": [
+    "switch",
+    "value"
+   ],
+   "execu": [
+    "switch",
+    "value"
+   ],
+   "execut": [
+    "switch",
+    "value"
+   ],
+   "executi": [
+    "switch",
+    "value"
+   ],
+   "executio": [
+    "switch",
+    "value"
+   ],
+   "execution": [
+    "switch",
+    "value"
+   ],
+   "executionp": [
+    "switch",
+    "value"
+   ],
+   "executionpo": [
+    "switch",
+    "value"
+   ],
+   "executionpol": [
+    "switch",
+    "value"
+   ],
+   "executionpoli": [
+    "switch",
+    "value"
+   ],
+   "executionpolic": [
+    "switch",
+    "value"
+   ],
+   "executionpolicy": [
+    "switch",
+    "value"
+   ],
+   "f": [],
+   "fi": [],
+   "fil": [],
+   "file": [],
+   "i": [
+    "value"
+   ],
+   "if": [
+    "value"
+   ],
+   "in": [
+    "value"
+   ],
+   "inp": [
+    "value"
+   ],
+   "inpu": [
+    "value"
+   ],
+   "input": [
+    "value"
+   ],
+   "inputf": [
+    "value"
+   ],
+   "inputfo": [
+    "value"
+   ],
+   "inputfor": [
+    "value"
+   ],
+   "inputform": [
+    "value"
+   ],
+   "inputforma": [
+    "value"
+   ],
+   "inputformat": [
+    "value"
+   ],
+   "m": [],
+   "mt": [],
+   "mta": [
+    "switch"
+   ],
+   "n": [],
+   "no": [],
+   "noe": [
+    "switch"
+   ],
+   "noex": [
+    "switch"
+   ],
+   "noexi": [
+    "switch"
+   ],
+   "noexit": [
+    "switch"
+   ],
+   "nol": [
+    "switch"
+   ],
+   "nolo": [
+    "switch"
+   ],
+   "nolog": [
+    "switch"
+   ],
+   "nologo": [
+    "switch"
+   ],
+   "non": [],
+   "noni": [
+    "switch"
+   ],
+   "nonin": [
+    "switch"
+   ],
+   "nonint": [
+    "switch"
+   ],
+   "noninte": [
+    "switch"
+   ],
+   "noninter": [
+    "switch"
+   ],
+   "nonintera": [
+    "switch"
+   ],
+   "noninterac": [
+    "switch"
+   ],
+   "noninteract": [
+    "switch"
+   ],
+   "noninteracti": [
+    "switch"
+   ],
+   "noninteractiv": [
+    "switch"
+   ],
+   "noninteractive": [
+    "switch"
+   ],
+   "nop": [
+    "switch"
+   ],
+   "nopr": [
+    "switch"
+   ],
+   "nopro": [
+    "switch"
+   ],
+   "noprof": [
+    "switch"
+   ],
+   "noprofi": [
+    "switch"
+   ],
+   "noprofil": [
+    "switch"
+   ],
+   "noprofile": [
+    "switch"
+   ],
+   "o": [
+    "value"
+   ],
+   "of": [
+    "value"
+   ],
+   "ou": [
+    "value"
+   ],
+   "out": [
+    "value"
+   ],
+   "outp": [
+    "value"
+   ],
+   "outpu": [
+    "value"
+   ],
+   "output": [
+    "value"
+   ],
+   "outputf": [
+    "value"
+   ],
+   "outputfo": [
+    "value"
+   ],
+   "outputfor": [
+    "value"
+   ],
+   "outputform": [
+    "value"
+   ],
+   "outputforma": [
+    "value"
+   ],
+   "outputformat": [
+    "value"
+   ],
+   "s": [],
+   "st": [
+    "switch"
+   ],
+   "sta": [
+    "switch"
+   ],
+   "v": [
+    "value"
+   ],
+   "ve": [
+    "value"
+   ],
+   "ver": [
+    "value"
+   ],
+   "vers": [
+    "value"
+   ],
+   "versi": [
+    "value"
+   ],
+   "versio": [
+    "value"
+   ],
+   "version": [
+    "value"
+   ],
+   "w": [
+    "value"
+   ],
+   "wi": [
+    "value"
+   ],
+   "win": [
+    "value"
+   ],
+   "wind": [
+    "value"
+   ],
+   "windo": [
+    "value"
+   ],
+   "window": [
+    "value"
+   ],
+   "windows": [
+    "value"
+   ],
+   "windowst": [
+    "value"
+   ],
+   "windowsty": [
+    "value"
+   ],
+   "windowstyl": [
+    "value"
+   ],
+   "windowstyle": [
+    "value"
+   ]
+  }
+ },
+ "cases": [
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" /nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -of text -nop [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile /Command \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" —nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy Bypass -NoProfile -c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" ―nop -COMMAND [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  $a = \\\"x\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoProfile -NonInteractive ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nop -c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile /c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop -co \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -WindowStyle hidden -nop -COMMAND \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -noni -nologo -Command \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" ―nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  $a = \\\"x\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -of text -nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -noni -nologo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -version 5.1 -nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \\\"\"x\\\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -of text -nop -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # \"q\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # q"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" ―nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = \"C:\\x\\\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = C:\\x\\"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -sta -nop —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -of text -nop -c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe —nop -co [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe —nop /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -WindowStyle hidden -nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy Bypass -NoProfile -com \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -of text -nop -c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = \"C:\\x\\\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = C:\\x\\"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -WindowStyle hidden -nop /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ExecutionPolicy Bypass -NoProfile -com \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" –nop -COMMAND [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" /nop —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = \"C:\\x\\\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = C:\\x\\"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  $a = \\\"x\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop -co [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # \"q\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # q"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -version 5.1 -nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ExecutionPolicy Bypass -NoProfile /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe —nop /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -version 5.1 -nop ―c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" —nop /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \\\"\"x\\\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -InputFormat text -nop \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ep bypass -com \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -InputFormat text -nop /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # \"q\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # q"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -WindowStyle hidden -nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $d = 'C:\\\\x\\\\'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $d = 'C:\\\\x\\\\'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" –nop -COMMAND [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  $a = \\\"x\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -noni -nologo -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -noni -nologo -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # \"q\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # q"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe —nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -of text -nop ―c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -WindowStyle hidden -nop -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \\\"\"x\\\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -sta -nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  $a = \\\"x\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -WindowStyle hidden -nop —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" /nop -co \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -of text -nop –c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ep bypass -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -of text -nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -noni -nologo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = \"C:\\x\\\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = C:\\x\\"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ep bypass –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = \"C:\\x\\\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = C:\\x\\"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -of text -nop —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nop –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -noni -nologo -COMMAND [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy Bypass -NoProfile [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \\\"\"x\\\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoProfile -NonInteractive –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = \"C:\\x\\\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = C:\\x\\"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop -COMMAND [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -WindowStyle hidden -nop -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ExecutionPolicy Bypass -NoProfile /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe /nop -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  $a = \\\"x\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ExecutionPolicy Bypass -NoProfile -com \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" /nop \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ep bypass /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  $a = \\\"x\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe ―nop -com \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \\\"\"x\\\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoP -NonI -W Hidden –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -of text -nop -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = \"C:\\x\\\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = C:\\x\\"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -version 5.1 -nop [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop -co [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -noni -nologo -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -sta -nop -c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -version 5.1 -nop \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe /nop -COMMAND [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # \"q\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # q"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -of text -nop -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -Command \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe /nop -c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -noni -nologo -co [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -WindowStyle hidden -nop -c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -noni -nologo /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -InputFormat text -nop -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \\\"\"x\\\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -sta -nop /c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -WindowStyle hidden -nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # \"q\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # q"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # \"q\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # q"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoProfile -NonInteractive ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" —nop ―c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" –nop -COMMAND [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile –c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" /nop -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -noni -nologo /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'x'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -sta -nop -c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe ―nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoProfile -NonInteractive —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nop -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoP -NonI -W Hidden ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = \"C:\\x\\\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = C:\\x\\"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" —nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -WindowStyle hidden -nop /c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -of text -nop /Command \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" ―nop –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -WindowStyle hidden -nop [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \\\"\"x\\\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -COMMAND [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  $a = \\\"x\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\t$c = 1",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $c = 1"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -InputFormat text -nop -com \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -noni -nologo —command \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoP -NonI -W Hidden -com [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # \"q\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # q"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ep bypass —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $d = 'C:\\\\x\\\\'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $d = 'C:\\\\x\\\\'"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy Bypass -NoProfile -co [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \\\"\"x\\\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -of text -nop –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  $a = \\\"x\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -InputFormat text -nop /Command \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" –nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -noni -nologo /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $d = 'C:\\\\x\\\\'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $d = 'C:\\\\x\\\\'"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ep bypass [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -of text -nop [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  $a = \\\"x\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -WindowStyle hidden -nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -WindowStyle hidden -nop -co [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') ;"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -of text -nop –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" –nop —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ExecutionPolicy Bypass -NoProfile -c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = \"C:\\x\\\\\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $e = C:\\x\\"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -version 5.1 -nop /c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # \"q\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') # q"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nop –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $d = 'C:\\\\x\\\\'",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $d = 'C:\\\\x\\\\'"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \\\"\"x\\\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $a = \"x\""
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy Bypass -NoProfile -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe —nop -COMMAND [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') \"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') "
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -InputFormat text -nop –c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); 'a  b'"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe —nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoP -NonI -W Hidden –c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoP -NonI -W Hidden –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" –nop -co \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"\"y\"\"\"",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); $b = \"y\""
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c -",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c \" \"",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -File x.ps1 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -cmd [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" --command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile: [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -command:[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop \"-c\" [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-nop\" [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \" -nop\" [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -c x",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -w",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop \"\" [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop '[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')'",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" & {[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')}",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c & {[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')}",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c {[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')}",
+   "powershell_5_1": "'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ex bypass -c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -e",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"  \"x\"",
+   "powershell_5_1": null
+  },
+  {
+   "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\" -c x",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>'); -c x"
+  },
+  {
+   "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe  -nop  -c  [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')",
+   "powershell_5_1": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+  }
+ ],
+ "explained_over": {
+  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoProfile -NonInteractive ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -sta -nop —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe —nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -of text -nop /Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -of text -nop —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop -COMMAND [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -WindowStyle hidden -nop -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop -co [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe —command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -WindowStyle hidden -nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop ―c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -NoLogo": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe –nop [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoP -NonI -W Hidden –c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') 'z'\"\"'w'": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>') -c x": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop '[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')'": "the declared text does not parse (MissingFileSpecification): PowerShell compiles nothing",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"  \"x\"": "the declared text does not parse (UnexpectedToken): PowerShell compiles nothing",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -cmd [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": "an unknown dash word starts the CODE in 5.1 (review probes 2026-11-17: -cmd, -foo, -command:, --nop compile as code and then fail with term-not-recognized or a parse error): the text is what was compiled",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" --command [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": "an unknown dash word starts the CODE in 5.1 (review probes 2026-11-17: -cmd, -foo, -command:, --nop compile as code and then fail with term-not-recognized or a parse error): the text is what was compiled",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile: [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": "an unknown dash word starts the CODE in 5.1 (review probes 2026-11-17: -cmd, -foo, -command:, --nop compile as code and then fail with term-not-recognized or a parse error): the text is what was compiled",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -command:[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": "an unknown dash word starts the CODE in 5.1 (review probes 2026-11-17: -cmd, -foo, -command:, --nop compile as code and then fail with term-not-recognized or a parse error): the text is what was compiled"
+ },
+ "explained_wrong": {
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" & {[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')}": "the payload prints the block it runs in: the INNER block of `& {...}`; the top-level text is `& {<inner>}` (declared)",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c & {[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')}": "the payload prints the block it runs in: the INNER block of `& {...}`; the top-level text is `& {<inner>}` (declared)",
+  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -nop -c {[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')}": "a bare `{...}` is OUTPUT, not run: PowerShell printed the block's text, and the payload's markers were cut out of that text"
+ },
+ "explained_refused": {},
+ "review_probes": {
+  "_about": "2026-11-17, after the independent review: real powershell.exe 5.1 per command line (tail after the quoted program path). kind: ran (printed its script block: text), compiled-not-recognized (compiled as code, then a command was not found), parse-error (taken as code, did not parse), other / timeout (refused or another mode: no code compiled).",
+  "program": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "cases": {
+   "-c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-co [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-con [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-conf [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-confi [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-config [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configu [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configur [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configura [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configurat [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configurati [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configuratio [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configuration [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configurationn [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configurationna [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configurationnam [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-configurationname [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-cu [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-cus [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-cust [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-custo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-custom [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-customp [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-custompi [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-custompip [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-custompipe [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-custompipen [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-custompipena [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-custompipenam [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-custompipename [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-e [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedCommand is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-ea [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedArguments is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-en [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedCommand is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-enc [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedCommand is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-enco [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedCommand is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encod [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedCommand is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encode [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedCommand is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encoded [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedCommand is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encodeda [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedArguments is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encodedar [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedArguments is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encodedarg [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedArguments is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encodedargu [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedArguments is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encodedargum [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedArguments is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encodedargume [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedArguments is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encodedargumen [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedArguments is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encodedargument [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedArguments is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-encodedarguments [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because the value specified with -EncodedArguments is not properly encoded. The value must be Base64 encoded.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-f [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Processing -File '[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')' failed: Illegal characters in path. Specify a valid path for t",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-fo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-foo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-h [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-he [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-hel [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-help [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-i [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because of an incorrect parameter value. \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\" is not a va",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-im [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-imp [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-impo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-impor [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-import [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-imports [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsy [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsys [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsyst [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsyste [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsystem [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsystemm [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsystemmo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsystemmod [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsystemmodu [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsystemmodul [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsystemmodule [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-importsystemmodules [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-in [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because of an incorrect parameter value. \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\" is not a va",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-int [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-inte [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-inter [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-intera [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-interac [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-interact [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-interacti [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-interactiv [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-interactive [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-l [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-lo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-log [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-logi [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-login [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-m [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-mt [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-n [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-na [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-nam [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-name [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-named [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedp [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpi [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpip [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipe [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipes [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipese [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipeser [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipeserv [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipeserve [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipeserver [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipeserverm [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipeservermo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipeservermod [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-namedpipeservermode [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "timeout"
+   },
+   "-no [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-non [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-nop [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-nopr [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-nopro [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-noprof [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-noprofi [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-noprofil [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-noprofile [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-noprofilel [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-noprofilelo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-noprofileloa [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-noprofileload [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-noprofileloadt [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-noprofileloadti [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-noprofileloadtim [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-noprofileloadtime [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-p [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-ps [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-psc [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-psco [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-pscon [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-pscons [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-psconso [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-psconsol [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-psconsole [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-psconsolef [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-psconsolefi [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-psconsolefil [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-psconsolefile [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000c\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000 \u0000f\u0000i\u0000l\u0000e\u0000 \u0000\"\u0000[\u0000C\u0000o\u0000n\u0000s\u0000o\u0000l\u0000e\u0000]\u0000:\u0000:\u0000O\u0000u\u0000t\u0000.\u0000W\u0000r\u0000i\u0000t\u0000e\u0000(\u0000'\u0000<\u0000<\u0000'\u0000+\u0000$\u0000M\u0000y\u0000I\u0000n\u0000v\u0000o\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000.\u0000M\u0000y\u0000C\u0000o\u0000m\u0000m\u0000a\u0000",
+    "out": ""
+   },
+   "-s [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u00002\u0000.\u00000\u0000 \u0000h\u0000a\u0000s\u0000 \u0000b\u0000e\u0000e\u0000n\u0000 \u0000d\u0000e\u0000p\u0000r\u0000e\u0000c\u0000a\u0000t\u0000e\u0000d\u0000.\u0000 \u0000U\u0000s\u0000i\u0000n\u0000g\u0000 \u0000d\u0000e\u0000f\u0000a\u0000u\u0000l\u0000t\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000i\u0000n\u0000s\u0000t\u0000e\u0000a\u0000d\u0000.\u0000\n\u0000\n\u0000An unknown element",
+    "out": ""
+   },
+   "-se [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u00002\u0000.\u00000\u0000 \u0000h\u0000a\u0000s\u0000 \u0000b\u0000e\u0000e\u0000n\u0000 \u0000d\u0000e\u0000p\u0000r\u0000e\u0000c\u0000a\u0000t\u0000e\u0000d\u0000.\u0000 \u0000U\u0000s\u0000i\u0000n\u0000g\u0000 \u0000d\u0000e\u0000f\u0000a\u0000u\u0000l\u0000t\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000i\u0000n\u0000s\u0000t\u0000e\u0000a\u0000d\u0000.\u0000\n\u0000\n\u0000An unknown element",
+    "out": ""
+   },
+   "-ser [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u00002\u0000.\u00000\u0000 \u0000h\u0000a\u0000s\u0000 \u0000b\u0000e\u0000e\u0000n\u0000 \u0000d\u0000e\u0000p\u0000r\u0000e\u0000c\u0000a\u0000t\u0000e\u0000d\u0000.\u0000 \u0000U\u0000s\u0000i\u0000n\u0000g\u0000 \u0000d\u0000e\u0000f\u0000a\u0000u\u0000l\u0000t\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000i\u0000n\u0000s\u0000t\u0000e\u0000a\u0000d\u0000.\u0000\n\u0000\n\u0000An unknown element",
+    "out": ""
+   },
+   "-serv [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u00002\u0000.\u00000\u0000 \u0000h\u0000a\u0000s\u0000 \u0000b\u0000e\u0000e\u0000n\u0000 \u0000d\u0000e\u0000p\u0000r\u0000e\u0000c\u0000a\u0000t\u0000e\u0000d\u0000.\u0000 \u0000U\u0000s\u0000i\u0000n\u0000g\u0000 \u0000d\u0000e\u0000f\u0000a\u0000u\u0000l\u0000t\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000i\u0000n\u0000s\u0000t\u0000e\u0000a\u0000d\u0000.\u0000\n\u0000\n\u0000An unknown element",
+    "out": ""
+   },
+   "-serve [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u00002\u0000.\u00000\u0000 \u0000h\u0000a\u0000s\u0000 \u0000b\u0000e\u0000e\u0000n\u0000 \u0000d\u0000e\u0000p\u0000r\u0000e\u0000c\u0000a\u0000t\u0000e\u0000d\u0000.\u0000 \u0000U\u0000s\u0000i\u0000n\u0000g\u0000 \u0000d\u0000e\u0000f\u0000a\u0000u\u0000l\u0000t\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000i\u0000n\u0000s\u0000t\u0000e\u0000a\u0000d\u0000.\u0000\n\u0000\n\u0000An unknown element",
+    "out": ""
+   },
+   "-server [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u00002\u0000.\u00000\u0000 \u0000h\u0000a\u0000s\u0000 \u0000b\u0000e\u0000e\u0000n\u0000 \u0000d\u0000e\u0000p\u0000r\u0000e\u0000c\u0000a\u0000t\u0000e\u0000d\u0000.\u0000 \u0000U\u0000s\u0000i\u0000n\u0000g\u0000 \u0000d\u0000e\u0000f\u0000a\u0000u\u0000l\u0000t\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000i\u0000n\u0000s\u0000t\u0000e\u0000a\u0000d\u0000.\u0000\n\u0000\n\u0000An unknown element",
+    "out": ""
+   },
+   "-serverm [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u00002\u0000.\u00000\u0000 \u0000h\u0000a\u0000s\u0000 \u0000b\u0000e\u0000e\u0000n\u0000 \u0000d\u0000e\u0000p\u0000r\u0000e\u0000c\u0000a\u0000t\u0000e\u0000d\u0000.\u0000 \u0000U\u0000s\u0000i\u0000n\u0000g\u0000 \u0000d\u0000e\u0000f\u0000a\u0000u\u0000l\u0000t\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000i\u0000n\u0000s\u0000t\u0000e\u0000a\u0000d\u0000.\u0000\n\u0000\n\u0000An unknown element",
+    "out": ""
+   },
+   "-servermo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u00002\u0000.\u00000\u0000 \u0000h\u0000a\u0000s\u0000 \u0000b\u0000e\u0000e\u0000n\u0000 \u0000d\u0000e\u0000p\u0000r\u0000e\u0000c\u0000a\u0000t\u0000e\u0000d\u0000.\u0000 \u0000U\u0000s\u0000i\u0000n\u0000g\u0000 \u0000d\u0000e\u0000f\u0000a\u0000u\u0000l\u0000t\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000i\u0000n\u0000s\u0000t\u0000e\u0000a\u0000d\u0000.\u0000\n\u0000\n\u0000An unknown element",
+    "out": ""
+   },
+   "-servermod [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u00002\u0000.\u00000\u0000 \u0000h\u0000a\u0000s\u0000 \u0000b\u0000e\u0000e\u0000n\u0000 \u0000d\u0000e\u0000p\u0000r\u0000e\u0000c\u0000a\u0000t\u0000e\u0000d\u0000.\u0000 \u0000U\u0000s\u0000i\u0000n\u0000g\u0000 \u0000d\u0000e\u0000f\u0000a\u0000u\u0000l\u0000t\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000i\u0000n\u0000s\u0000t\u0000e\u0000a\u0000d\u0000.\u0000\n\u0000\n\u0000An unknown element",
+    "out": ""
+   },
+   "-servermode [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u00002\u0000.\u00000\u0000 \u0000h\u0000a\u0000s\u0000 \u0000b\u0000e\u0000e\u0000n\u0000 \u0000d\u0000e\u0000p\u0000r\u0000e\u0000c\u0000a\u0000t\u0000e\u0000d\u0000.\u0000 \u0000U\u0000s\u0000i\u0000n\u0000g\u0000 \u0000d\u0000e\u0000f\u0000a\u0000u\u0000l\u0000t\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000i\u0000n\u0000s\u0000t\u0000e\u0000a\u0000d\u0000.\u0000\n\u0000\n\u0000An unknown element",
+    "out": ""
+   },
+   "-set [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sett [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-setti [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-settin [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-setting [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-settings [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-settingsf [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-settingsfi [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-settingsfil [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-settingsfile [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sh [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sho [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-show [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-so [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-soc [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-sock [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socke [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socket [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-sockets [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socketse [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socketser [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socketserv [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socketserve [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socketserver [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socketserverm [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socketservermo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socketservermod [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-socketservermode [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "-ss [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-ssh [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sshs [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sshse [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sshser [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sshserv [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sshserve [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sshserver [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sshserverm [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sshservermo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sshservermod [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-sshservermode [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-w [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Processing -WindowStyle '[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')' failed: Cannot convert value \"[Console]::Out.Write('<<'",
+    "out": ""
+   },
+   "-wo [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-wor [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-work [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-worki [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-workin [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-working [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-workingd [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-workingdi [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-workingdir [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-workingdire [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-workingdirec [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-workingdirect [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-workingdirecto [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-workingdirector [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-workingdirectory [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation. All rights reserved."
+   },
+   "-x [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "-? [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "/? [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-1;[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "-1;[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-nop -1;[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "-1;[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-ExecutionPolicy:Bypass -c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "--nop [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "parse-error"
+   },
+   "--c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "parse-error"
+   },
+   "-nop \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');'a\"\"  b'\"": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');'a\" b'"
+   },
+   "-nop -c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');'a\"\"\"\"b  c'\"": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');'a\"b c'"
+   },
+   "-c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  'x\"\"y  z'\"": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');  'x\"y z'"
+   },
+   "-nop -c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');\"\"a  b\"\";'q'\"": {
+    "kind": "parse-error"
+   },
+   "-nop -c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')\"\"\" 'k'": {
+    "kind": "parse-error"
+   },
+   "-c [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');'a\"\"b'": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');'ab'"
+   },
+   "-c \"[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');'u\\\"\"v  w'\"": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>');'u\"v w'"
+   },
+   "-nop -c - [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "'-' was specified with the -Command parameter; no other arguments to -Command are permitted.",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-c - ": {
+    "kind": "other",
+    "err": "",
+    "out": ""
+   },
+   "\"\u001f-c\" [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "\"\u001c-c\" [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "compiled-not-recognized"
+   },
+   "\" -c\" [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "\" -c\" [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "\"-c \" [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-w bogus [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Processing -WindowStyle 'bogus' failed: Cannot convert value \"bogus\" to type \"System.Diagnostics.ProcessWindowStyle\". Error: \"Unable to match the identifier nam",
+    "out": ""
+   },
+   "-w 1 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-w 0 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-w 3 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-w 4 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Processing -WindowStyle '4' failed: Cannot convert value \"4\" to type \"System.Diagnostics.ProcessWindowStyle\" due to enumeration values that are not valid. Speci",
+    "out": ""
+   },
+   "-w Normal [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-w minimized [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-w MAXIMIZED [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-w -1 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Processing -WindowStyle '-1' failed: Cannot convert value \"-1\" to type \"System.Diagnostics.ProcessWindowStyle\" due to enumeration values that are not valid. Spe",
+    "out": ""
+   },
+   "-if bogus [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "Cannot process the command because of an incorrect parameter value. \"bogus\" is not a valid format.  Valid formats are:\nText\nXML\nNone",
+    "out": "PowerShell[.exe] [-PSConsoleFile <file> | -Version <version>]\n    [-NoLogo] [-No"
+   },
+   "-if xml [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-of xml [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-of none [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-v 9 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "C\u0000a\u0000n\u0000n\u0000o\u0000t\u0000 \u0000s\u0000t\u0000a\u0000r\u0000t\u0000 \u0000W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000v\u0000e\u0000r\u0000s\u0000i\u0000o\u0000n\u0000 \u00009\u0000 \u0000b\u0000e\u0000c\u0000a\u0000u\u0000s\u0000e\u0000 \u0000i\u0000t\u0000 \u0000i\u0000s\u0000 \u0000n\u0000o\u0000t\u0000 \u0000i\u0000n\u0000s\u0000t\u0000a\u0000l\u0000l\u0000e\u0000d\u0000.\u0000\n\u0000\n\u0000",
+    "out": ""
+   },
+   "-v 2 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-v 2.0 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-v 3 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-v 5 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-v 5.0 [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-v latest [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "other",
+    "err": "\"\u0000l\u0000a\u0000t\u0000e\u0000s\u0000t\u0000\"\u0000 \u0000i\u0000s\u0000 \u0000n\u0000o\u0000t\u0000 \u0000a\u0000 \u0000v\u0000a\u0000l\u0000i\u0000d\u0000 \u0000W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000e\u0000r\u0000S\u0000h\u0000e\u0000l\u0000l\u0000 \u0000v\u0000e\u0000r\u0000s\u0000i\u0000o\u0000n\u0000.\u0000 \u0000 \u0000S\u0000p\u0000e\u0000c\u0000i\u0000f\u0000y\u0000 \u0000a\u0000 \u0000v\u0000a\u0000l\u0000i\u0000d\u0000 \u0000W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000P\u0000o\u0000w\u0000",
+    "out": ""
+   },
+   "-ep bogus [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   },
+   "-ep RemoteSigned [Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')": {
+    "kind": "ran",
+    "text": "[Console]::Out.Write('<<'+$MyInvocation.MyCommand.ScriptBlock.ToString()+'>>')"
+   }
+  }
+ }
+}

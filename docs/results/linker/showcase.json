@@ -1,0 +1,1709 @@
+{
+ "dataset": {
+  "name": "OTRF Security-Datasets",
+  "commit": "d9d40ef123d2c87d5d3df28c96bcab4f0faccc87",
+  "path": "datasets/atomic/windows/lateral_movement/host/",
+  "url": "https://github.com/OTRF/Security-Datasets",
+  "licence": "unknown",
+  "licence_source": "no LICENSE file in the downloaded folder",
+  "licence_note": "docs/plans/linker-prereg.md says MIT (from GitHub's listing); not checked against a LICENSE file, so not stated here as fact."
+ },
+ "file": "covenant_psremoting_grunt.zip",
+ "file_fingerprint_git_blob_sha1": "30c34ac28439339fd06301cad9817b37075140e7",
+ "choice_rule": "Among the test-set files whose name says psremoting or wsman (PowerShell remoting) and whose wsmprovhost.exe start was linked to a cross-machine fact by a guess (test.json pooled.wsman_files), the one with the most facts; a tie goes to the first name in alphabetical order.",
+ "source_result": "docs/results/linker/test.json",
+ "machines": [
+  {
+   "machine": "ACCT001",
+   "host": "ACCT001.shire.com",
+   "sysmon_events": 440,
+   "in_picture": true
+  },
+  {
+   "machine": "FILE001",
+   "host": "FILE001.shire.com",
+   "sysmon_events": 199,
+   "in_picture": false
+  },
+  {
+   "machine": "HFDC01",
+   "host": "HFDC01.shire.com",
+   "sysmon_events": 259,
+   "in_picture": true
+  },
+  {
+   "machine": "HR001",
+   "host": "HR001.shire.com",
+   "sysmon_events": 1544,
+   "in_picture": true
+  },
+  {
+   "machine": "IT001",
+   "host": "IT001.shire.com",
+   "sysmon_events": 506,
+   "in_picture": true
+  }
+ ],
+ "story": [
+  "IT001's powershell.exe connected 3 times to HR001 on port 5985, and HR001 recorded the same connections, so each one is a fact (recorded on both machines).",
+  "1.1 seconds after HR001 recorded the first of these connections, HR001 started wsmprovhost.exe (the Windows program that runs PowerShell commands sent from another machine). That the connection caused it is only a guess, graded low: HR001 might start it on its own.",
+  "The guess cites the latest connection in its time window, which HR001 recorded 0.8 seconds after the start (the window allows a cause recorded up to 2 seconds late).",
+  "The other 30 facts are connections between system programs (System, lsass.exe, svchost.exe); the picture shows them, but they are not part of this step."
+ ],
+ "counts": {
+  "nodes": 17,
+  "edges": 39,
+  "facts": 33,
+  "guesses": 3,
+  "one_hop_starts": 3,
+  "test_json_row": {
+   "facts": 33,
+   "hypotheses": {
+    "low": 3,
+    "worker: low": 1
+   },
+   "gaps": {},
+   "worker_starts": {
+    "wsmprovhost.exe": 1
+   },
+   "counts": {
+    "cross_machine_outgoing": 33,
+    "matched": 33,
+    "skipped: not TCP between two ordinary addresses": 84
+   }
+  }
+ },
+ "kept": "every cross-machine edge of the file (facts and guesses), the processes / endpoints they touch, and the process starts one hop from each guessed remote start (its parent and children, same machine)",
+ "nodes": [
+  {
+   "id": "proc:ACCT001.shire.com:{A158F72C-4A81-5DE8-0000-0010EB030000}",
+   "kind": "process",
+   "host": "ACCT001.shire.com",
+   "machine": "ACCT001",
+   "label": "System",
+   "image": "System",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": false
+  },
+  {
+   "id": "proc:ACCT001.shire.com:{A158F72C-4A93-5DE8-0000-0010306C0000}",
+   "kind": "process",
+   "host": "ACCT001.shire.com",
+   "machine": "ACCT001",
+   "label": "lsass.exe",
+   "image": "C:\\Windows\\System32\\lsass.exe",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": false
+  },
+  {
+   "id": "proc:ACCT001.shire.com:{A158F72C-633A-5DE8-0000-001034136200}",
+   "kind": "process",
+   "host": "ACCT001.shire.com",
+   "machine": "ACCT001",
+   "label": "svchost.exe",
+   "image": "C:\\Windows\\System32\\svchost.exe",
+   "start": "2019-12-05T01:54:02.092000+00:00",
+   "gaps": [],
+   "focus": false
+  },
+  {
+   "id": "proc:HFDC01.shire.com:{D14E8C55-47AF-5DE8-0000-0010EB030000}",
+   "kind": "process",
+   "host": "HFDC01.shire.com",
+   "machine": "HFDC01",
+   "label": "System",
+   "image": "System",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": false
+  },
+  {
+   "id": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "process",
+   "host": "HFDC01.shire.com",
+   "machine": "HFDC01",
+   "label": "lsass.exe",
+   "image": "C:\\Windows\\System32\\lsass.exe",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": false
+  },
+  {
+   "id": "proc:HFDC01.shire.com:{D14E8C55-47B7-5DE8-0000-001086B40000}",
+   "kind": "process",
+   "host": "HFDC01.shire.com",
+   "machine": "HFDC01",
+   "label": "svchost.exe",
+   "image": "C:\\Windows\\System32\\svchost.exe",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": false
+  },
+  {
+   "id": "proc:HR001.shire.com:{A158F72C-4A89-5DE8-0000-0010EB030000}",
+   "kind": "process",
+   "host": "HR001.shire.com",
+   "machine": "HR001",
+   "label": "System",
+   "image": "System",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": true
+  },
+  {
+   "id": "proc:HR001.shire.com:{A158F72C-4A93-5DE8-0000-0010016E0000}",
+   "kind": "process",
+   "host": "HR001.shire.com",
+   "machine": "HR001",
+   "label": "lsass.exe",
+   "image": "C:\\Windows\\System32\\lsass.exe",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": false
+  },
+  {
+   "id": "proc:HR001.shire.com:{A158F72C-4A94-5DE8-0000-001033890000}",
+   "kind": "process",
+   "host": "HR001.shire.com",
+   "machine": "HR001",
+   "label": "svchost.exe",
+   "image": "C:\\Windows\\System32\\svchost.exe",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": true
+  },
+  {
+   "id": "proc:HR001.shire.com:{A158F72C-6177-5DE8-0000-001070B59200}",
+   "kind": "process",
+   "host": "HR001.shire.com",
+   "machine": "HR001",
+   "label": "svchost.exe",
+   "image": "C:\\Windows\\System32\\svchost.exe",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": false
+  },
+  {
+   "id": "proc:HR001.shire.com:{A158F72C-624D-5DE8-0000-001069929300}",
+   "kind": "process",
+   "host": "HR001.shire.com",
+   "machine": "HR001",
+   "label": "wsmprovhost.exe",
+   "image": "C:\\Windows\\System32\\wsmprovhost.exe",
+   "start": "2019-12-05T01:50:05.654000+00:00",
+   "gaps": [],
+   "focus": true
+  },
+  {
+   "id": "proc:HR001.shire.com:{A158F72C-624F-5DE8-0000-00106CAF9300}",
+   "kind": "process",
+   "host": "HR001.shire.com",
+   "machine": "HR001",
+   "label": "powershell.exe",
+   "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+   "start": "2019-12-05T01:50:07.473000+00:00",
+   "gaps": [],
+   "focus": true
+  },
+  {
+   "id": "proc:HR001.shire.com:{A158F72C-624F-5DE8-0000-001071B19300}",
+   "kind": "process",
+   "host": "HR001.shire.com",
+   "machine": "HR001",
+   "label": "conhost.exe",
+   "image": "C:\\Windows\\System32\\conhost.exe",
+   "start": "2019-12-05T01:50:07.516000+00:00",
+   "gaps": [],
+   "focus": true
+  },
+  {
+   "id": "proc:IT001.shire.com:{A158F72C-4A7C-5DE8-0000-0010EB030000}",
+   "kind": "process",
+   "host": "IT001.shire.com",
+   "machine": "IT001",
+   "label": "System",
+   "image": "System",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": false
+  },
+  {
+   "id": "proc:IT001.shire.com:{A158F72C-4A86-5DE8-0000-0010FF6B0000}",
+   "kind": "process",
+   "host": "IT001.shire.com",
+   "machine": "IT001",
+   "label": "lsass.exe",
+   "image": "C:\\Windows\\System32\\lsass.exe",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": false
+  },
+  {
+   "id": "proc:IT001.shire.com:{A158F72C-5898-5DE8-0000-0010A6BA6D00}",
+   "kind": "process",
+   "host": "IT001.shire.com",
+   "machine": "IT001",
+   "label": "powershell.exe",
+   "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+   "start": null,
+   "gaps": [
+    "origin_unknown"
+   ],
+   "focus": true
+  },
+  {
+   "id": "proc:IT001.shire.com:{A158F72C-623C-5DE8-0000-001015537400}",
+   "kind": "process",
+   "host": "IT001.shire.com",
+   "machine": "IT001",
+   "label": "svchost.exe",
+   "image": "C:\\Windows\\System32\\svchost.exe",
+   "start": "2019-12-05T01:49:48.106000+00:00",
+   "gaps": [],
+   "focus": false
+  }
+ ],
+ "edges": [
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-4A86-5DE8-0000-0010FF6B0000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B7-5DE8-0000-001086B40000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:49:47.260000+00:00",
+   "focus": false,
+   "sentence": "IT001's lsass.exe connected to HFDC01 port 135, and HFDC01 recorded the same connection (svchost.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171212|2019-12-05T01:49:47.260Z",
+     "record_id": 171212,
+     "event": 3,
+     "time": "2019-12-05T01:49:47.260000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|94840|2019-12-05T01:49:48.193Z",
+     "record_id": 94840,
+     "event": 3,
+     "time": "2019-12-05T01:49:48.193000+00:00"
+    }
+   ],
+   "port": 135,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.933,
+   "id": "e01"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-4A86-5DE8-0000-0010FF6B0000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:49:47.262000+00:00",
+   "focus": false,
+   "sentence": "IT001's lsass.exe connected to HFDC01 port 49668, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171213|2019-12-05T01:49:47.262Z",
+     "record_id": 171213,
+     "event": 3,
+     "time": "2019-12-05T01:49:47.262000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|94841|2019-12-05T01:49:48.195Z",
+     "record_id": 94841,
+     "event": 3,
+     "time": "2019-12-05T01:49:48.195000+00:00"
+    }
+   ],
+   "port": 49668,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.933,
+   "id": "e02"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-623C-5DE8-0000-001015537400}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:49:47.490000+00:00",
+   "focus": false,
+   "sentence": "IT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171214|2019-12-05T01:49:47.490Z",
+     "record_id": 171214,
+     "event": 3,
+     "time": "2019-12-05T01:49:47.490000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|94842|2019-12-05T01:49:48.423Z",
+     "record_id": 94842,
+     "event": 3,
+     "time": "2019-12-05T01:49:48.423000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.933,
+   "id": "e03"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-623C-5DE8-0000-001015537400}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:49:47.619000+00:00",
+   "focus": false,
+   "sentence": "IT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171215|2019-12-05T01:49:47.619Z",
+     "record_id": 171215,
+     "event": 3,
+     "time": "2019-12-05T01:49:47.619000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|94844|2019-12-05T01:49:48.552Z",
+     "record_id": 94844,
+     "event": 3,
+     "time": "2019-12-05T01:49:48.552000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.933,
+   "id": "e04"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-4A7C-5DE8-0000-0010EB030000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47AF-5DE8-0000-0010EB030000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:49:47.967000+00:00",
+   "focus": false,
+   "sentence": "IT001's System connected to HFDC01 port 445, and HFDC01 recorded the same connection (System accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171216|2019-12-05T01:49:47.967Z",
+     "record_id": 171216,
+     "event": 3,
+     "time": "2019-12-05T01:49:47.967000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|94845|2019-12-05T01:49:48.901Z",
+     "record_id": 94845,
+     "event": 3,
+     "time": "2019-12-05T01:49:48.901000+00:00"
+    }
+   ],
+   "port": 445,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.934,
+   "id": "e05"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-623C-5DE8-0000-001015537400}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:49:48.382000+00:00",
+   "focus": false,
+   "sentence": "IT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171218|2019-12-05T01:49:48.382Z",
+     "record_id": 171218,
+     "event": 3,
+     "time": "2019-12-05T01:49:48.382000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|94846|2019-12-05T01:49:49.315Z",
+     "record_id": 94846,
+     "event": 3,
+     "time": "2019-12-05T01:49:49.315000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.933,
+   "id": "e06"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-623C-5DE8-0000-001015537400}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:49:48.438000+00:00",
+   "focus": false,
+   "sentence": "IT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171219|2019-12-05T01:49:48.438Z",
+     "record_id": 171219,
+     "event": 3,
+     "time": "2019-12-05T01:49:48.438000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|94847|2019-12-05T01:49:49.371Z",
+     "record_id": 94847,
+     "event": 3,
+     "time": "2019-12-05T01:49:49.371000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.933,
+   "id": "e07"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-623C-5DE8-0000-001015537400}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:49:48.561000+00:00",
+   "focus": false,
+   "sentence": "IT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171220|2019-12-05T01:49:48.561Z",
+     "record_id": 171220,
+     "event": 3,
+     "time": "2019-12-05T01:49:48.561000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|94848|2019-12-05T01:49:49.494Z",
+     "record_id": 94848,
+     "event": 3,
+     "time": "2019-12-05T01:49:49.494000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.933,
+   "id": "e08"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-623C-5DE8-0000-001015537400}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:49:48.579000+00:00",
+   "focus": false,
+   "sentence": "IT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171221|2019-12-05T01:49:48.579Z",
+     "record_id": 171221,
+     "event": 3,
+     "time": "2019-12-05T01:49:48.579000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|94849|2019-12-05T01:49:49.513Z",
+     "record_id": 94849,
+     "event": 3,
+     "time": "2019-12-05T01:49:49.513000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.934,
+   "id": "e09"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-4A86-5DE8-0000-0010FF6B0000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:50:04.491000+00:00",
+   "focus": false,
+   "sentence": "IT001's lsass.exe connected to HFDC01 port 88, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171251|2019-12-05T01:50:04.491Z",
+     "record_id": 171251,
+     "event": 3,
+     "time": "2019-12-05T01:50:04.491000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|94857|2019-12-05T01:50:05.425Z",
+     "record_id": 94857,
+     "event": 3,
+     "time": "2019-12-05T01:50:05.425000+00:00"
+    }
+   ],
+   "port": 88,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.934,
+   "id": "e10"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-5898-5DE8-0000-0010A6BA6D00}",
+   "target": "proc:HR001.shire.com:{A158F72C-4A89-5DE8-0000-0010EB030000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:50:04.496000+00:00",
+   "focus": true,
+   "sentence": "IT001's powershell.exe connected to HR001 port 5985, and HR001 recorded the same connection (System accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171253|2019-12-05T01:50:04.496Z",
+     "record_id": 171253,
+     "event": 3,
+     "time": "2019-12-05T01:50:04.496000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|202078|2019-12-05T01:50:04.510Z",
+     "record_id": 202078,
+     "event": 3,
+     "time": "2019-12-05T01:50:04.510000+00:00"
+    }
+   ],
+   "port": 5985,
+   "clock_difference_s": 0.0135,
+   "clock_measured": true,
+   "delta_s": 0.014,
+   "id": "e11"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-5898-5DE8-0000-0010A6BA6D00}",
+   "target": "proc:HR001.shire.com:{A158F72C-624D-5DE8-0000-001069929300}",
+   "kind": "remote_start",
+   "grade": "hypothesis",
+   "band": "low",
+   "crosshost": true,
+   "time": "2019-12-05T01:50:05.654000+00:00",
+   "focus": true,
+   "sentence": "Guess (low): the connection from IT001's powershell.exe may have made HR001 start wsmprovhost.exe. Other explanation: wsmprovhost.exe on HR001 starts on its own schedule.",
+   "evidence": [
+    {
+     "role": "outgoing record of the linked connection",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171256|2019-12-05T01:50:06.475Z",
+     "record_id": 171256,
+     "event": 3,
+     "time": "2019-12-05T01:50:06.475000+00:00"
+    },
+    {
+     "role": "incoming record of the linked connection",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|202479|2019-12-05T01:50:06.489Z",
+     "record_id": 202479,
+     "event": 3,
+     "time": "2019-12-05T01:50:06.489000+00:00"
+    },
+    {
+     "role": "process start on the receiving machine",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|201716|2019-12-05T01:50:05.654Z",
+     "record_id": 201716,
+     "event": 1,
+     "time": "2019-12-05T01:50:05.654000+00:00"
+    }
+   ],
+   "image": "wsmprovhost.exe",
+   "computed_band": "low",
+   "assessable": true,
+   "p": 0.2369929135978657,
+   "n_causes": 3,
+   "alternative": "the program on B starts on its own schedule",
+   "claim": "the connection from IT001.shire.com probably made HR001.shire.com start wsmprovhost.exe",
+   "id": "e12"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-4A94-5DE8-0000-001033890000}",
+   "target": "proc:HR001.shire.com:{A158F72C-624D-5DE8-0000-001069929300}",
+   "kind": "started",
+   "grade": "fact",
+   "band": null,
+   "crosshost": false,
+   "time": "2019-12-05T01:50:05.654000+00:00",
+   "focus": true,
+   "sentence": "On HR001, svchost.exe started wsmprovhost.exe (one record on one machine).",
+   "evidence": [
+    {
+     "role": "process start record",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|201716|2019-12-05T01:50:05.654Z",
+     "record_id": 201716,
+     "event": 1,
+     "time": "2019-12-05T01:50:05.654000+00:00"
+    }
+   ],
+   "id": "e13"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-5898-5DE8-0000-0010A6BA6D00}",
+   "target": "proc:HR001.shire.com:{A158F72C-4A89-5DE8-0000-0010EB030000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:50:06.036000+00:00",
+   "focus": true,
+   "sentence": "IT001's powershell.exe connected to HR001 port 5985, and HR001 recorded the same connection (System accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171255|2019-12-05T01:50:06.036Z",
+     "record_id": 171255,
+     "event": 3,
+     "time": "2019-12-05T01:50:06.036000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|202354|2019-12-05T01:50:06.049Z",
+     "record_id": 202354,
+     "event": 3,
+     "time": "2019-12-05T01:50:06.049000+00:00"
+    }
+   ],
+   "port": 5985,
+   "clock_difference_s": 0.014,
+   "clock_measured": true,
+   "delta_s": 0.013,
+   "id": "e14"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-5898-5DE8-0000-0010A6BA6D00}",
+   "target": "proc:HR001.shire.com:{A158F72C-4A89-5DE8-0000-0010EB030000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:50:06.475000+00:00",
+   "focus": true,
+   "sentence": "IT001's powershell.exe connected to HR001 port 5985, and HR001 recorded the same connection (System accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171256|2019-12-05T01:50:06.475Z",
+     "record_id": 171256,
+     "event": 3,
+     "time": "2019-12-05T01:50:06.475000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|202479|2019-12-05T01:50:06.489Z",
+     "record_id": 202479,
+     "event": 3,
+     "time": "2019-12-05T01:50:06.489000+00:00"
+    }
+   ],
+   "port": 5985,
+   "clock_difference_s": 0.0135,
+   "clock_measured": true,
+   "delta_s": 0.014,
+   "id": "e15"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-5898-5DE8-0000-0010A6BA6D00}",
+   "target": "proc:HR001.shire.com:{A158F72C-624F-5DE8-0000-00106CAF9300}",
+   "kind": "remote_start",
+   "grade": "hypothesis",
+   "band": "low",
+   "crosshost": true,
+   "time": "2019-12-05T01:50:07.473000+00:00",
+   "focus": true,
+   "sentence": "Guess (low): the connection from IT001's powershell.exe may have made HR001 start powershell.exe. Other explanation: powershell.exe on HR001 starts on its own schedule.",
+   "evidence": [
+    {
+     "role": "outgoing record of the linked connection",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171256|2019-12-05T01:50:06.475Z",
+     "record_id": 171256,
+     "event": 3,
+     "time": "2019-12-05T01:50:06.475000+00:00"
+    },
+    {
+     "role": "incoming record of the linked connection",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|202479|2019-12-05T01:50:06.489Z",
+     "record_id": 202479,
+     "event": 3,
+     "time": "2019-12-05T01:50:06.489000+00:00"
+    },
+    {
+     "role": "process start on the receiving machine",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|201814|2019-12-05T01:50:07.473Z",
+     "record_id": 201814,
+     "event": 1,
+     "time": "2019-12-05T01:50:07.473000+00:00"
+    }
+   ],
+   "image": "powershell.exe",
+   "computed_band": "low",
+   "assessable": true,
+   "p": 0.2369929135978657,
+   "n_causes": 3,
+   "alternative": "the program on B starts on its own schedule",
+   "claim": "the connection from IT001.shire.com probably made HR001.shire.com start powershell.exe",
+   "id": "e16"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-624D-5DE8-0000-001069929300}",
+   "target": "proc:HR001.shire.com:{A158F72C-624F-5DE8-0000-00106CAF9300}",
+   "kind": "started",
+   "grade": "fact",
+   "band": null,
+   "crosshost": false,
+   "time": "2019-12-05T01:50:07.473000+00:00",
+   "focus": true,
+   "sentence": "On HR001, wsmprovhost.exe started powershell.exe (one record on one machine).",
+   "evidence": [
+    {
+     "role": "process start record",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|201814|2019-12-05T01:50:07.473Z",
+     "record_id": 201814,
+     "event": 1,
+     "time": "2019-12-05T01:50:07.473000+00:00"
+    }
+   ],
+   "id": "e17"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-5898-5DE8-0000-0010A6BA6D00}",
+   "target": "proc:HR001.shire.com:{A158F72C-624F-5DE8-0000-001071B19300}",
+   "kind": "remote_start",
+   "grade": "hypothesis",
+   "band": "low",
+   "crosshost": true,
+   "time": "2019-12-05T01:50:07.516000+00:00",
+   "focus": true,
+   "sentence": "Guess (low): the connection from IT001's powershell.exe may have made HR001 start conhost.exe. Other explanation: conhost.exe on HR001 starts on its own schedule.",
+   "evidence": [
+    {
+     "role": "outgoing record of the linked connection",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171256|2019-12-05T01:50:06.475Z",
+     "record_id": 171256,
+     "event": 3,
+     "time": "2019-12-05T01:50:06.475000+00:00"
+    },
+    {
+     "role": "incoming record of the linked connection",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|202479|2019-12-05T01:50:06.489Z",
+     "record_id": 202479,
+     "event": 3,
+     "time": "2019-12-05T01:50:06.489000+00:00"
+    },
+    {
+     "role": "process start on the receiving machine",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|201825|2019-12-05T01:50:07.516Z",
+     "record_id": 201825,
+     "event": 1,
+     "time": "2019-12-05T01:50:07.516000+00:00"
+    }
+   ],
+   "image": "conhost.exe",
+   "computed_band": "low",
+   "assessable": true,
+   "p": 0.41782018610012595,
+   "n_causes": 3,
+   "alternative": "the program on B starts on its own schedule",
+   "claim": "the connection from IT001.shire.com probably made HR001.shire.com start conhost.exe",
+   "id": "e18"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-624F-5DE8-0000-00106CAF9300}",
+   "target": "proc:HR001.shire.com:{A158F72C-624F-5DE8-0000-001071B19300}",
+   "kind": "started",
+   "grade": "fact",
+   "band": null,
+   "crosshost": false,
+   "time": "2019-12-05T01:50:07.516000+00:00",
+   "focus": true,
+   "sentence": "On HR001, powershell.exe started conhost.exe (one record on one machine).",
+   "evidence": [
+    {
+     "role": "process start record",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|201825|2019-12-05T01:50:07.516Z",
+     "record_id": 201825,
+     "event": 1,
+     "time": "2019-12-05T01:50:07.516000+00:00"
+    }
+   ],
+   "id": "e19"
+  },
+  {
+   "source": "proc:IT001.shire.com:{A158F72C-4A7C-5DE8-0000-0010EB030000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47AF-5DE8-0000-0010EB030000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:53:42.528000+00:00",
+   "focus": false,
+   "sentence": "IT001's System connected to HFDC01 port 445, and HFDC01 recorded the same connection (System accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "IT001.shire.com",
+     "machine": "IT001",
+     "key": "IT001.shire.com|Microsoft-Windows-Sysmon/Operational|171374|2019-12-05T01:53:42.528Z",
+     "record_id": 171374,
+     "event": 3,
+     "time": "2019-12-05T01:53:42.528000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95015|2019-12-05T01:53:43.467Z",
+     "record_id": 95015,
+     "event": 3,
+     "time": "2019-12-05T01:53:43.467000+00:00"
+    }
+   ],
+   "port": 445,
+   "clock_difference_s": 0.933,
+   "clock_measured": true,
+   "delta_s": 0.939,
+   "id": "e20"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-4A89-5DE8-0000-0010EB030000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47AF-5DE8-0000-0010EB030000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:53:55.212000+00:00",
+   "focus": false,
+   "sentence": "HR001's System connected to HFDC01 port 445, and HFDC01 recorded the same connection (System accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|202901|2019-12-05T01:53:55.212Z",
+     "record_id": 202901,
+     "event": 3,
+     "time": "2019-12-05T01:53:55.212000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95029|2019-12-05T01:53:56.140Z",
+     "record_id": 95029,
+     "event": 3,
+     "time": "2019-12-05T01:53:56.140000+00:00"
+    }
+   ],
+   "port": 445,
+   "clock_difference_s": 0.93,
+   "clock_measured": true,
+   "delta_s": 0.928,
+   "id": "e21"
+  },
+  {
+   "source": "proc:ACCT001.shire.com:{A158F72C-4A81-5DE8-0000-0010EB030000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47AF-5DE8-0000-0010EB030000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:53:55.873000+00:00",
+   "focus": false,
+   "sentence": "ACCT001's System connected to HFDC01 port 445, and HFDC01 recorded the same connection (System accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "ACCT001.shire.com",
+     "machine": "ACCT001",
+     "key": "ACCT001.shire.com|Microsoft-Windows-Sysmon/Operational|144019|2019-12-05T01:53:55.873Z",
+     "record_id": 144019,
+     "event": 3,
+     "time": "2019-12-05T01:53:55.873000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95032|2019-12-05T01:53:56.313Z",
+     "record_id": 95032,
+     "event": 3,
+     "time": "2019-12-05T01:53:56.313000+00:00"
+    }
+   ],
+   "port": 445,
+   "clock_difference_s": 0.44,
+   "clock_measured": true,
+   "delta_s": 0.44,
+   "id": "e22"
+  },
+  {
+   "source": "proc:ACCT001.shire.com:{A158F72C-4A93-5DE8-0000-0010306C0000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B7-5DE8-0000-001086B40000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:54:01.602000+00:00",
+   "focus": false,
+   "sentence": "ACCT001's lsass.exe connected to HFDC01 port 135, and HFDC01 recorded the same connection (svchost.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "ACCT001.shire.com",
+     "machine": "ACCT001",
+     "key": "ACCT001.shire.com|Microsoft-Windows-Sysmon/Operational|144236|2019-12-05T01:54:01.602Z",
+     "record_id": 144236,
+     "event": 3,
+     "time": "2019-12-05T01:54:01.602000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95041|2019-12-05T01:54:02.043Z",
+     "record_id": 95041,
+     "event": 3,
+     "time": "2019-12-05T01:54:02.043000+00:00"
+    }
+   ],
+   "port": 135,
+   "clock_difference_s": 0.44,
+   "clock_measured": true,
+   "delta_s": 0.441,
+   "id": "e23"
+  },
+  {
+   "source": "proc:ACCT001.shire.com:{A158F72C-4A93-5DE8-0000-0010306C0000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:54:01.605000+00:00",
+   "focus": false,
+   "sentence": "ACCT001's lsass.exe connected to HFDC01 port 49668, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "ACCT001.shire.com",
+     "machine": "ACCT001",
+     "key": "ACCT001.shire.com|Microsoft-Windows-Sysmon/Operational|144237|2019-12-05T01:54:01.605Z",
+     "record_id": 144237,
+     "event": 3,
+     "time": "2019-12-05T01:54:01.605000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95042|2019-12-05T01:54:02.045Z",
+     "record_id": 95042,
+     "event": 3,
+     "time": "2019-12-05T01:54:02.045000+00:00"
+    }
+   ],
+   "port": 49668,
+   "clock_difference_s": 0.44,
+   "clock_measured": true,
+   "delta_s": 0.44,
+   "id": "e24"
+  },
+  {
+   "source": "proc:ACCT001.shire.com:{A158F72C-633A-5DE8-0000-001034136200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:54:01.925000+00:00",
+   "focus": false,
+   "sentence": "ACCT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "ACCT001.shire.com",
+     "machine": "ACCT001",
+     "key": "ACCT001.shire.com|Microsoft-Windows-Sysmon/Operational|144270|2019-12-05T01:54:01.925Z",
+     "record_id": 144270,
+     "event": 3,
+     "time": "2019-12-05T01:54:01.925000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95043|2019-12-05T01:54:02.365Z",
+     "record_id": 95043,
+     "event": 3,
+     "time": "2019-12-05T01:54:02.365000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.44,
+   "clock_measured": true,
+   "delta_s": 0.44,
+   "id": "e25"
+  },
+  {
+   "source": "proc:ACCT001.shire.com:{A158F72C-633A-5DE8-0000-001034136200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:54:02.048000+00:00",
+   "focus": false,
+   "sentence": "ACCT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "ACCT001.shire.com",
+     "machine": "ACCT001",
+     "key": "ACCT001.shire.com|Microsoft-Windows-Sysmon/Operational|144283|2019-12-05T01:54:02.048Z",
+     "record_id": 144283,
+     "event": 3,
+     "time": "2019-12-05T01:54:02.048000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95045|2019-12-05T01:54:02.488Z",
+     "record_id": 95045,
+     "event": 3,
+     "time": "2019-12-05T01:54:02.488000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.44,
+   "clock_measured": true,
+   "delta_s": 0.44,
+   "id": "e26"
+  },
+  {
+   "source": "proc:ACCT001.shire.com:{A158F72C-633A-5DE8-0000-001034136200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:54:02.807000+00:00",
+   "focus": false,
+   "sentence": "ACCT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "ACCT001.shire.com",
+     "machine": "ACCT001",
+     "key": "ACCT001.shire.com|Microsoft-Windows-Sysmon/Operational|144290|2019-12-05T01:54:02.807Z",
+     "record_id": 144290,
+     "event": 3,
+     "time": "2019-12-05T01:54:02.807000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95048|2019-12-05T01:54:03.247Z",
+     "record_id": 95048,
+     "event": 3,
+     "time": "2019-12-05T01:54:03.247000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.44,
+   "clock_measured": true,
+   "delta_s": 0.44,
+   "id": "e27"
+  },
+  {
+   "source": "proc:ACCT001.shire.com:{A158F72C-633A-5DE8-0000-001034136200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:54:02.862000+00:00",
+   "focus": false,
+   "sentence": "ACCT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "ACCT001.shire.com",
+     "machine": "ACCT001",
+     "key": "ACCT001.shire.com|Microsoft-Windows-Sysmon/Operational|144291|2019-12-05T01:54:02.862Z",
+     "record_id": 144291,
+     "event": 3,
+     "time": "2019-12-05T01:54:02.862000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95049|2019-12-05T01:54:03.302Z",
+     "record_id": 95049,
+     "event": 3,
+     "time": "2019-12-05T01:54:03.302000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.44,
+   "clock_measured": true,
+   "delta_s": 0.44,
+   "id": "e28"
+  },
+  {
+   "source": "proc:ACCT001.shire.com:{A158F72C-633A-5DE8-0000-001034136200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:54:03.006000+00:00",
+   "focus": false,
+   "sentence": "ACCT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "ACCT001.shire.com",
+     "machine": "ACCT001",
+     "key": "ACCT001.shire.com|Microsoft-Windows-Sysmon/Operational|144292|2019-12-05T01:54:03.006Z",
+     "record_id": 144292,
+     "event": 3,
+     "time": "2019-12-05T01:54:03.006000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95050|2019-12-05T01:54:03.446Z",
+     "record_id": 95050,
+     "event": 3,
+     "time": "2019-12-05T01:54:03.446000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.44,
+   "clock_measured": true,
+   "delta_s": 0.44,
+   "id": "e29"
+  },
+  {
+   "source": "proc:ACCT001.shire.com:{A158F72C-633A-5DE8-0000-001034136200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:54:03.027000+00:00",
+   "focus": false,
+   "sentence": "ACCT001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "ACCT001.shire.com",
+     "machine": "ACCT001",
+     "key": "ACCT001.shire.com|Microsoft-Windows-Sysmon/Operational|144293|2019-12-05T01:54:03.027Z",
+     "record_id": 144293,
+     "event": 3,
+     "time": "2019-12-05T01:54:03.027000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95051|2019-12-05T01:54:03.467Z",
+     "record_id": 95051,
+     "event": 3,
+     "time": "2019-12-05T01:54:03.467000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.44,
+   "clock_measured": true,
+   "delta_s": 0.44,
+   "id": "e30"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-6177-5DE8-0000-001070B59200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:55:02.470000+00:00",
+   "focus": false,
+   "sentence": "HR001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|203165|2019-12-05T01:55:02.470Z",
+     "record_id": 203165,
+     "event": 3,
+     "time": "2019-12-05T01:55:02.470000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95076|2019-12-05T01:55:03.401Z",
+     "record_id": 95076,
+     "event": 3,
+     "time": "2019-12-05T01:55:03.401000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.93,
+   "clock_measured": true,
+   "delta_s": 0.931,
+   "id": "e31"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-6177-5DE8-0000-001070B59200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:55:02.708000+00:00",
+   "focus": false,
+   "sentence": "HR001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|203215|2019-12-05T01:55:02.708Z",
+     "record_id": 203215,
+     "event": 3,
+     "time": "2019-12-05T01:55:02.708000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95079|2019-12-05T01:55:03.639Z",
+     "record_id": 95079,
+     "event": 3,
+     "time": "2019-12-05T01:55:03.639000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.93,
+   "clock_measured": true,
+   "delta_s": 0.931,
+   "id": "e32"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-4A89-5DE8-0000-0010EB030000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47AF-5DE8-0000-0010EB030000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:55:03.164000+00:00",
+   "focus": false,
+   "sentence": "HR001's System connected to HFDC01 port 445, and HFDC01 recorded the same connection (System accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|203216|2019-12-05T01:55:03.164Z",
+     "record_id": 203216,
+     "event": 3,
+     "time": "2019-12-05T01:55:03.164000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95081|2019-12-05T01:55:04.094Z",
+     "record_id": 95081,
+     "event": 3,
+     "time": "2019-12-05T01:55:04.094000+00:00"
+    }
+   ],
+   "port": 445,
+   "clock_difference_s": 0.93,
+   "clock_measured": true,
+   "delta_s": 0.93,
+   "id": "e33"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-4A93-5DE8-0000-0010016E0000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B7-5DE8-0000-001086B40000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:55:03.562000+00:00",
+   "focus": false,
+   "sentence": "HR001's lsass.exe connected to HFDC01 port 135, and HFDC01 recorded the same connection (svchost.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|203217|2019-12-05T01:55:03.562Z",
+     "record_id": 203217,
+     "event": 3,
+     "time": "2019-12-05T01:55:03.562000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95082|2019-12-05T01:55:04.493Z",
+     "record_id": 95082,
+     "event": 3,
+     "time": "2019-12-05T01:55:04.493000+00:00"
+    }
+   ],
+   "port": 135,
+   "clock_difference_s": 0.93,
+   "clock_measured": true,
+   "delta_s": 0.931,
+   "id": "e34"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-4A93-5DE8-0000-0010016E0000}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:55:03.564000+00:00",
+   "focus": false,
+   "sentence": "HR001's lsass.exe connected to HFDC01 port 49668, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|203218|2019-12-05T01:55:03.564Z",
+     "record_id": 203218,
+     "event": 3,
+     "time": "2019-12-05T01:55:03.564000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95083|2019-12-05T01:55:04.495Z",
+     "record_id": 95083,
+     "event": 3,
+     "time": "2019-12-05T01:55:04.495000+00:00"
+    }
+   ],
+   "port": 49668,
+   "clock_difference_s": 0.93,
+   "clock_measured": true,
+   "delta_s": 0.931,
+   "id": "e35"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-6177-5DE8-0000-001070B59200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:55:03.581000+00:00",
+   "focus": false,
+   "sentence": "HR001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|203219|2019-12-05T01:55:03.581Z",
+     "record_id": 203219,
+     "event": 3,
+     "time": "2019-12-05T01:55:03.581000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95084|2019-12-05T01:55:04.511Z",
+     "record_id": 95084,
+     "event": 3,
+     "time": "2019-12-05T01:55:04.511000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.93,
+   "clock_measured": true,
+   "delta_s": 0.93,
+   "id": "e36"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-6177-5DE8-0000-001070B59200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:55:03.639000+00:00",
+   "focus": false,
+   "sentence": "HR001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|203220|2019-12-05T01:55:03.639Z",
+     "record_id": 203220,
+     "event": 3,
+     "time": "2019-12-05T01:55:03.639000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95085|2019-12-05T01:55:04.569Z",
+     "record_id": 95085,
+     "event": 3,
+     "time": "2019-12-05T01:55:04.569000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.93,
+   "clock_measured": true,
+   "delta_s": 0.93,
+   "id": "e37"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-6177-5DE8-0000-001070B59200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:55:03.821000+00:00",
+   "focus": false,
+   "sentence": "HR001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|203221|2019-12-05T01:55:03.821Z",
+     "record_id": 203221,
+     "event": 3,
+     "time": "2019-12-05T01:55:03.821000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95089|2019-12-05T01:55:04.751Z",
+     "record_id": 95089,
+     "event": 3,
+     "time": "2019-12-05T01:55:04.751000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.93,
+   "clock_measured": true,
+   "delta_s": 0.93,
+   "id": "e38"
+  },
+  {
+   "source": "proc:HR001.shire.com:{A158F72C-6177-5DE8-0000-001070B59200}",
+   "target": "proc:HFDC01.shire.com:{D14E8C55-47B5-5DE8-0000-0010CB5A0000}",
+   "kind": "same_connection",
+   "grade": "fact",
+   "band": null,
+   "crosshost": true,
+   "time": "2019-12-05T01:55:03.839000+00:00",
+   "focus": false,
+   "sentence": "HR001's svchost.exe connected to HFDC01 port 389, and HFDC01 recorded the same connection (lsass.exe accepted it).",
+   "evidence": [
+    {
+     "role": "outgoing record (machine that started it)",
+     "host": "HR001.shire.com",
+     "machine": "HR001",
+     "key": "HR001.shire.com|Microsoft-Windows-Sysmon/Operational|203222|2019-12-05T01:55:03.839Z",
+     "record_id": 203222,
+     "event": 3,
+     "time": "2019-12-05T01:55:03.839000+00:00"
+    },
+    {
+     "role": "incoming record (machine that received it)",
+     "host": "HFDC01.shire.com",
+     "machine": "HFDC01",
+     "key": "HFDC01.shire.com|Microsoft-Windows-Sysmon/Operational|95090|2019-12-05T01:55:04.769Z",
+     "record_id": 95090,
+     "event": 3,
+     "time": "2019-12-05T01:55:04.769000+00:00"
+    }
+   ],
+   "port": 389,
+   "clock_difference_s": 0.93,
+   "clock_measured": true,
+   "delta_s": 0.93,
+   "id": "e39"
+  }
+ ],
+ "choice_candidates": [
+  {
+   "file": "covenant_psremoting_grunt.zip",
+   "facts": 33,
+   "wsmprovhost_linked_bands": [
+    "low"
+   ]
+  },
+  {
+   "file": "covenant_psremoting_command.zip",
+   "facts": 8,
+   "wsmprovhost_linked_bands": [
+    "not assessable"
+   ]
+  }
+ ]
+}

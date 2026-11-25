@@ -1,0 +1,96 @@
+# Scenario S1: download and run. The TRUE STORY, written before the scenario code.
+#
+# Harmless by design: the "payload" only prints a line and exits after 2 seconds.
+# Runs ONLY inside the VM and talks ONLY to the lab's test server on the host.
+# The ground truth is written as patterns (program names, relationships), never as GUIDs or
+# record numbers, because those differ on every run (DESIGN 7).
+
+scenario: S1
+title: Download and run
+runs_in: vm
+test_server: "the lab test server: http://{test_server.ip}:{test_server.port}"   # as seen from the VM (NAT).
+                                          # Each run records the address it used (since 2026-10-18:
+                                          # 10.0.2.2:18765; earlier runs: 10.0.2.2:8765)
+
+programs:
+  fetch: s1_fetch.exe                     # started by the scenario runner
+  payload: s1_payload.exe                 # written to disk by fetch, then started by fetch
+payload_path_contains: \AnalystLab\scenarios\s1\payload\
+
+# What happens, in order, and which recorded evidence should show it.
+steps:
+  - id: 1
+    what: s1_fetch.exe starts
+    evidence: {sysmon_event: 1, Image_endswith: s1_fetch.exe}
+  - id: 2
+    what: s1_fetch.exe connects to the test server
+    evidence: {sysmon_event: 3, Image_endswith: s1_fetch.exe, DestinationIp: "{test_server.ip}", DestinationPort: "{test_server.port}"}
+  - id: 3
+    what: s1_fetch.exe creates s1_payload.exe
+    evidence: {sysmon_event: 11, Image_endswith: s1_fetch.exe, TargetFilename_endswith: s1_payload.exe}
+  - id: 3b
+    what: the agent fingerprints the finished file (after s1_fetch.exe closes it)
+    evidence: {agent_type: FILE_HASH, TargetFilename_endswith: s1_payload.exe, hash_status: ok,
+               sha256_equals: "SHA256 in event 1 Hashes of s1_payload.exe (step 4)"}
+  - id: 4
+    what: s1_fetch.exe starts s1_payload.exe
+    evidence: {sysmon_event: 1, Image_endswith: s1_payload.exe, ParentImage_endswith: s1_fetch.exe}
+  - id: 5
+    what: s1_payload.exe ends, then s1_fetch.exe ends
+    evidence: [{sysmon_event: 5, Image_endswith: s1_payload.exe}, {sysmon_event: 5, Image_endswith: s1_fetch.exe}]
+
+# Expected NOT to appear (absence is part of the true story)
+not_expected:
+  - {sysmon_event: 1, why: "the scenario's programs start no other program (review 2026-10-19)"}
+  - {sysmon_event: 22, why: "the server is addressed by IP, so no DNS lookup happens"}
+  - {sysmon_event: 15, why: "a program's own download leaves no 'downloaded from the internet' marker"}
+
+# Notes for checkers and the runner
+notes:
+  - Order steps by UtcTime, not record number. Sysmon often logs network events (3) late, so a 3
+    can get a higher record number than the 11 that followed it.
+  - The runner deletes \AnalystLab\scenarios\s1\payload\ before each run, so event 11 is a
+    fresh creation (overwriting can keep the old creation time).
+
+# How the evidence graph should grade each relationship (DESIGN 4.7).
+# Roles: fetch / payload = the programs above; payload_file = the file fetch created
+# (payload_path_contains + the payload's name); test_server = the test_server address above.
+# Edge names are the graph's (engine/graph.py); tools/check_graph_scenario.py reads this section.
+expected_graph:
+  facts:
+    - {from: fetch, edge: started, to: payload,
+       says: fetch started payload}                 # event 1: ParentProcessGuid = fetch's ProcessGuid
+    - {from: fetch, edge: connected_to, to: test_server,
+       says: fetch connected to test server}        # event 3 carries fetch's ProcessGuid
+    - {from: fetch, edge: created, to: payload_file,
+       says: fetch created payload file}            # event 11 carries fetch's ProcessGuid
+    - {from: payload_file, edge: ran_as, to: payload,
+       says: payload process runs the payload file} # same path AND the agent's FILE_HASH = Sysmon's process hash
+  hypotheses:
+    - claim: the payload file's content came from the test server
+      between: [test_server, payload_file]          # must NOT be a fact (layer 2 grades it, week 3)
+      why: the file was created by the same process within ~1 s after its connection
+      why_not_fact: a script download leaves no "downloaded from the internet" marker (event 15), so nothing records the transfer itself
+      # (an `expected_confidence: high` line stood here until 2026-10-24. It was written before the
+      # confidence method was approved; that method gives a program living only seconds at most
+      # "low" by timing, so the line could never be met and the sheet records what HAPPENED, not
+      # which grade to expect: removed by decision Q1, docs/plans/reports/hypotheses.md. The
+      # checker prints the band the method implies.)
+    - claim: fetch started the payload because of what it fetched
+      between: [test_server, payload]
+      kind: fetched_then_ran                 # T3: true by the scenario's design (fetch downloads, then runs it)
+      optional: true                         # only drawn when the start falls inside the timing window; when
+                                             # drawn, the checker verifies it from the raw records (decision Q2,
+                                             # 2026-10-24: failing a run for a TRUE link was a checker false alarm)
+  gaps: []                                   # fetch's own start is recorded (started by the runner)
+
+alert_expected:
+  rule: "download-then-execute, our own rule analystlab.fetch_write_run (engine/own_rules.py)"
+  # (until 2026-10-24 this line named a Sigma correlation, temporal_ordered; the rule was built as an
+  # own rule in package B instead: text corrected by the integration review, the detection unchanged)
+  within_seconds: 60
+  check:                                     # machine-readable (tools/check_alerts.py), added 2026-10-24
+    - {rule_id: analystlab.fetch_write_run, level: medium, involves: payload}
+
+# Assumptions this scenario checks (VERIFICATION_PLAN section 2)
+checks_assumptions: [A12, A13, A14, A15]

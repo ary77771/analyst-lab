@@ -1,0 +1,6 @@
+# Packages the agent needs inside the VM (the engine, tests and charts stay on the laptop).
+# Same versions as requirements.txt; sub-dependencies pinned by requirements-lock.txt when
+# tools/make_vm_bundle.ps1 downloads them. Installed offline in the VM by vm_guest_setup.ps1.
+pywin32==312          # Windows event log API
+psutil==7.2.2         # listening-port snapshots, resource usage
+httpx==0.28.1         # sends batches to the laptop's receiver

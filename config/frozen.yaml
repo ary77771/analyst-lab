@@ -1,0 +1,230 @@
+# Every number the detection and investigation use, in ONE place (fair-test rule 2,
+# docs/plans/hard-part-plan.md). Values are chosen on DEV data only, each with its reason.
+# The git tag `freeze-v1` (then `freeze-v2`) fixes this file before any TEST data is evaluated and before the blind
+# scenarios are opened; changing a value after that means a new tag and saying so in the report.
+#
+# null = not chosen yet. Code must refuse to run an official evaluation while a value it needs
+# is null (engine code reads this file through one helper, added with the first package).
+
+version: 3          # freeze-v3 (2026-11-14, docs/plans/v3-prereg.md); freeze-v2 (2026-11-13); freeze-v1 (2026-10-30)
+
+data:
+  dev_cutoff_day_utc: "2026-10-22"     # laptop days up to here = dev; from 2026-10-23 = test
+  v2_test_from_day_utc: "2026-11-14"   # v2's own laptop test days: exactly these days (docs/plans/v2-prereg.md;
+  v2_test_to_day_utc: "2026-11-20"     # set at freeze-v2: days recorded after the freeze, final Sysmon config v0.3)
+  v3_test_from_day_utc: "2026-11-15"   # v3's own laptop test days (docs/plans/v3-prereg.md section 3): the 7 full
+  v3_test_to_day_utc: "2026-11-21"     # days after freeze-v3; scored after 2026-11-22 00:00 UTC
+
+sigma:
+  rules_commit: e3f466211866e92553d8389d621ed13cfed5523d   # SigmaHQ, tools/fetch_sigma_rules.ps1
+  min_level: medium                    # lowest level that raises an alert (Yousif 2026-10-23, after the dev
+                                       # false-alarm counts: informational 243/h, low 120/h, medium+ 3.06/h;
+                                       # docs/results/c-dev-false-alarms.md). Lower levels stay in the store
+                                       # for investigation; they just don't raise alerts.
+
+declared_registry:                     # v4 F7 (engine/regcmd.py, engine/detect.py; docs/plans/v4-prereg.md section 5)
+  reg_command: true                    # `reg add/delete <key> ...` on a reg.exe command line is offered to the
+                                       # registry rules as the registry event it DECLARES (Sysmon here records
+                                       # registry events only for autostart places). The alert cites the reg.exe
+                                       # start and says "declared, not recorded"; never a stored event or graph fact.
+
+declared_script:                       # v4 F8 (engine/pscmd.py, engine/detect.py; docs/plans/v4-prereg.md section 5)
+  powershell_command: true             # the code on a powershell.exe command line (-Command, a bare first word,
+                                       # -EncodedCommand decoded) is offered to SigmaHQ's PowerShell script rules
+                                       # (ps_script, event 4104: we do not record PowerShell's own log) as the
+                                       # script block it DECLARES. Same rules as F7: the alert cites the
+                                       # powershell.exe start, says "declared, not recorded"; never stored.
+
+baselines:                             # learned normal per machine (package B part 2; engine/baseline.py). Files live in
+                                       # recordings/baselines/ (program names: git-ignored); the hash is of the file's bytes
+                                       # (= Get-FileHash, any case). An official run refuses other files.
+  - {file: recordings/baselines/laptop.json, sha256: 9c96d1a3bbadb36899b166510795abb8103178a9fa10383ca010e2d57b0ee6fd,
+     learned_from: "laptop dev snapshot, normal use, events before 2026-10-23"}
+  - {file: recordings/baselines/vm.json, sha256: ecb0a03047160d41d9774c414cb8b309a815db37cadaee068478b9c01e0c7948,
+     learned_from: "3 S0 baseline boots of the VM snapshot taken 2026-10-30 13:08Z (harness without Bypass; runs since then)"}
+  # v4 F3 (create_send_wipe): programs that create files and delete them again, learned into their OWN files
+  # (python -m engine.baseline --wipers; stores from tools/build_learn_store.py --to 2026-11-14), so the two
+  # files above stay byte-identical
+  - {file: recordings/baselines/laptop-wipers.json, sha256: 6529b9e2b9373423122c314cc8c4b75823eb8fe757455f21f4084b5ad903d83b,
+     learned_from: "laptop recordings 2026-10-16..2026-11-14 (v4's learn period; its test week starts 11-15), Sysmon 1/3/11/26"}
+  - {file: recordings/baselines/vm-wipers.json, sha256: e09a532b84954f6e0bd15aa0c8d1557b32738e36b0b05330d5353637a6b12dfa,
+     learned_from: "the same 3 S0 baseline boots as vm.json (0 wiping programs: nothing runs in them)"}
+  # v4 F2 (short_unseen): programs that opened outgoing unicast connections (the beacon rule's own series),
+  # learned into their OWN files (python -m engine.baseline --connectors), so the files above stay byte-identical
+  - {file: recordings/baselines/laptop-connectors.json, sha256: 380b2587acbec2c620bfd3334fe2f3cee97282df933f71426844027b8d4b9f2d,
+     learned_from: "laptop recordings 2026-10-16..2026-11-14 (v4's learn period), 122 programs"}
+  - {file: recordings/baselines/vm-connectors.json, sha256: c19ad3b52a5e083409f353e4e7e86209465f50de8f9a3f6377bfaedc5551cf20,
+     learned_from: "the same 3 S0 baseline boots as vm.json (vm-to-1114.db, as vm-wipers.json), 5 programs"}
+
+own_rules:                             # package B (engine/own_rules.py reads these; read via engine/config.py)
+  fetch_write_run: {window: 60.0, level: medium}            # connect -> write executable -> it starts, within 60 s
+  file_churn: {window: 60.0, created: 30, deleted: 30, level: medium}   # kept as is (decided 2026-10-30, docs/plans/freeze-prep.md)
+  new_shell_parent: {level: medium}                         # learned normal per machine (Yousif 2026-10-23)
+  new_listener: {level: medium, loopback_level: low}        # v4 F5: loopback-only ports (this machine only) are not raised
+  # v3 1.7: reference names also include SigmaHQ e4a6b256 (System File Execution Location Anomaly, pinned rules)'s
+  # 55 system binaries, so these rules do not depend on what started inside a short run window
+  lookalike_name: {edits: 1, min_length: 5, level: medium, extra_references: &system_binaries [atbroker, audiodg, bcdedit, bitsadmin, certreq, certutil, cmstp, conhost, consent, cscript, csrss, dashost, defrag, dfrgui, dism, dllhost, dllhst3g, dwm, eventvwr, finger, fsquirt, logonui, lsaiso, lsass, lsm, msiexec, ntoskrnl, powershell, powershell_ise, pwsh, regsvr32, rundll32, runonce, runtimebroker, schtasks, services, sihost, smartscreen, smss, spoolsv, svchost, taskhost, taskhostw, taskmgr, userinit, werfault, werfaultsecure, wininit, winlogon, winver, wlanext, wmic, wscript, wsl, wsmprovhost]}  # version 2 (B1); v3 1.7 list
+  embedded_system_name: {min_ref_length: 6, level: medium, extra_references: *system_binaries}  # version 3 (docs/plans/v3-prereg.md 1.1): L = 6, 0 alerts on dev laptop + VM (2026-11-14)
+  drop_run_delete: {run_window: 300.0, delete_window: 900.0, writers: any, level: medium}  # v3 1.2: variant A, 0 alerts on dev laptop + VM
+  create_send_wipe: {min_files: 3, window: 900.0, level: medium, level_without_connection: low, max_connections: 20}  # v4 F3: one episode <= 15 min
+
+follow_through: {window: 600.0, max_events: 200}   # v4 F1 (engine/follow.py): a raised alert's subject process and its
+                                       # descendants are followed for 10 minutes; a derived view, never evidence
+
+beacon:                                # package D (RITA v5.1.2, adapted; engine/beacon.py; reasons in docs/plans/reports/beacon.md)
+  # PROPOSED 2026-10-22 from the laptop dev data and a null model, not from S2 (see the report);
+  # decided unchanged for freeze-v1 on 2026-10-30 (docs/plans/freeze-prep.md).
+  min_timestamps: 10                   # check-ins before a series is judged. STATED OPENLY: 10 is the largest value
+                                       # that keeps S2 (10 check-ins by its ground truth) judgeable. Null model
+                                       # (random arrivals, 4,000 trials per period, counted in check-ins after the
+                                       # fold, periods 10 s - 15 min): with 10 check-ins at most 2.9 % of random
+                                       # series reach regularity 0.9 (at a 10 s period; 0.8 % at 30 s, <= 0.4 %
+                                       # from 60 s); with 11 at most 1.6 %; 12: 1.2 %; 15: 0.4 %; 20: 0.2 %; with
+                                       # 6: 13 %. A conventional 2 % level would require 11 and S2 would need an
+                                       # 11th check-in; decided 2026-10-30: stays 10. A 30 s rhythm is judged after
+                                       # 4.5 min (DESIGN 4.6).
+  sleep_gap_seconds: 300               # a host silence longer than this = asleep -> the window and its series end.
+                                       # The recorder has no heartbeat, so silence is the only sign. Laptop dev data:
+                                       # silences of 5-30 min cluster (modern-standby naps: 56 in 7 days); 1-5 min
+                                       # silences while awake are rare (22). A rhythm is only seen while the whole
+                                       # host stays busy: a slow rhythm (15 min, 1 h) survives on a busy laptop
+                                       # (seen in the dev data) but is cut on an idle machine.
+  rhythm_threshold: 0.9                # the ALERT gate, on RITA's timestamp (gap regularity) score, not on the
+                                       # blended beacon score (on an endpoint every background service is
+                                       # persistent, so the blend cannot tell a rhythm from a chatty service).
+                                       # 0.9: see the null-model figures under min_timestamps; the laptop's real
+                                       # rhythms sit at 0.95-1.0 and random series below 0.85 (the band between
+                                       # is nearly empty). Laptop dev data: 111 alerts in 47.5 awake hours (2.3
+                                       # per hour) from 11 programs = 35 distinct rhythms (time sync every 60 s,
+                                       # a local app polling ~20 ports every 2 min, pollers at 5-90 min, DHCP).
+                                       # Known limit (simulation through the production path, 10 check-ins):
+                                       # +-10 % jitter is caught ~100 % from 11 s to 60 s but only ~25 % at 5-15
+                                       # min (RITA's absolute 10 s skew scale: slow periods get a noisy skew
+                                       # term); +-20 %: ~100 % at 12-30 s, 62 % at 60 s, ~17 % slower; +-40 %:
+                                       # 52 % at 30 s (S2J's case). A period of exactly 10 s is a coin flip (the
+                                       # min_median_gap rule tests the measured median); at 10-20 s "regular"
+                                       # only means the middle half of the gaps stays within a ~10 s band.
+  time_resolution_seconds: 1           # RITA's unit (it stores Unix seconds). Adaptation: a connection less than
+                                       # 1 s after the PREVIOUS connection belongs to the same check-in (a "double
+                                       # tap" or a burst is one check-in however long it runs; RITA drops only
+                                       # exactly-zero gaps), and RITA's "Q2 differs from Q1 and Q3" guard compares
+                                       # the quartiles at this resolution (exact float equality never fires on
+                                       # millisecond gaps). Check-in gaps keep millisecond precision: whole
+                                       # seconds turned fast random traffic into "perfectly regular" (measured).
+  min_median_gap_seconds: 10           # adaptation: a series whose median gap is below RITA's 10 s skew scale is
+                                       # judged by the MAD term alone (RITA's skew counts as 0 below an IQR of
+                                       # 10 s) and random fast traffic passes far too often (null model, 10
+                                       # check-ins: 17 % at a 1.5 s mean gap, 4 % at 5 s). Such series are not
+                                       # judged. Same constant as skew_min_iqr_seconds, no new number. Cost: a
+                                       # beacon faster than one check-in per 10 s is invisible to this rule, and
+                                       # one of exactly 10 s is skipped about half the time (measured median);
+                                       # a margin on the cut (e.g. 12) was considered; stays 10 (2026-10-30).
+  level: medium                        # the level of a rhythm alert (was a constant in engine/beacon.py until 2026-10-24)
+  expected:                            # listed updaters (C1, decided 2026-10-23): still alerted, at level
+                                       # informational and labelled "expected"; written before the freeze
+    - {program: c1_updater.exe, destination: "10.0.2.2:18765", reason: "the lab's listed updater (C1 control)"}
+  unicast_only: true                   # broadcast/multicast/link-local/loopback destinations are the operating
+                                       # system's announcements (NetBIOS, mDNS, LLMNR, DHCP discovery); RITA too
+                                       # only pairs hosts. Laptop: removes 46 of 145 alerts at gate 0.8.
+  split_at_boot: true                  # Sysmon "service started" (event 4) ends the window: two VM boots less than
+                                       # 5 min apart would otherwise merge into one window (seen in the dev runs).
+  beats_per_bin: 5                     # histogram bins are >= 5 median gaps wide (max 24 bins): a steady rhythm
+                                       # then loses at most 0.09 of the histogram score to bin alignment.
+  short_series_rule: >-                # how RITA's day-scale scores work on short runs (the adaptation)
+    Time is measured in the series' own beats (median gap), not hours: bins = min(24, window / (5 beats)).
+    RITA's minimums stay: consistency needs 6 busy bins, the histogram 11; coverage = span / window (window
+    = the host's awake stretch since the last sleep or boot, capped at 24 h). A subscore without enough
+    data is left out and the beacon score is the mean of the rest (timestamp + duration [+ histogram]).
+    The beacon score is reported and ranked; the alert is gated on the timestamp score alone.
+  # RITA's own constants, kept as published (changing them would be a new method, not an adaptation):
+  max_bins: 24
+  histogram_min_busy_bins: 11
+  consistency_min_busy_bins: 6
+  window_cap_seconds: 86400
+  skew_min_iqr_seconds: 10
+  mad_min_median_seconds: 1
+  max_connections: 86400
+  # version 3 (docs/plans/v3-prereg.md 1.3): v2 package B2's registered short test (Greenwood, alpha 1 %,
+  # cut-offs = docs/plans/b2/b2_crit.json m=4) ONLY for series of a program file written <= 24 h before the
+  # first check-in, outside Windows and Program Files. m = 4 = the smallest within budget: 0 extra series on
+  # the dev laptop (50 such series, 12 with >= 4 check-ins) and the VM dev store (2026-11-14).
+  short_min: 4
+  short_cutoffs: {4: 0.333925, 5: 0.252998, 6: 0.206203, 7: 0.175800, 8: 0.154232, 9: 0.137970}
+  fresh_window_seconds: 86400
+  # v4 F2 (docs/plans/v4-prereg.md section 5): the same short test (same cut-offs) also judges series of a
+  # program this machine never saw opening an outgoing connection during its learning period (the
+  # *-connectors.json files under baselines:; shells/script hosts and unknown processes never count as
+  # learned). Laptop hold-out (learn 10-16..11-07, judge 11-08..11-14): 1 alert in 7 days; learn only to
+  # 10-22, judge 23 days: 11 (0.48/day, 10 of them one sync app). Pre-registered brake: <= 1/day: passed.
+  # OFF (2026-11-17, by the pre-registered blind condition): on seen blind runs it turns B15 MISSED ->
+  # DETECTED at incident level but the innocent B11 CLEAN -> FALSE ALARM in 2 of 3 runs (4 even polls);
+  # not tuned on those two scenarios. Turning it on is Yousif's decision (docs/plans/v4-prereg.md, F2).
+  short_unseen: false
+
+confidence:                            # package E (engine/confidence.py; link-type table and reasons: DESIGN 4.7,
+                                       # approved by Yousif 2026-10-23; docs/plans/reports/confidence.md)
+  # PROPOSED 2026-10-23 from principle and the laptop dev data, never from how scenario links grade;
+  # frozen in freeze-v1 (2026-10-30).
+  band_high: 0.01                      # p < 1 % -> high: "less than 1 in 100 by chance", the edge DESIGN 4.7 has
+                                       # had since v1. IF the formula were exact, a seed graph (<= 60 nodes, a few
+                                       # dozen timing hypotheses) would hold fewer than one chance "high"; it is not
+                                       # exact for child starts (dev A16: 1.8x per cause, 6x per process at burst
+                                       # factor 1), so that promise did not hold for T2/T3 at factor 1 (the burst
+                                       # factor 2.5 and leads_only below answer it). Sigma-p is reported next to every graph. With lambda's band pool
+                                       # always in the max, T1 can never be high (long-lived band 1.1 %) and T2/T3
+                                       # only for lives of 20-60 min: no timing link is high on the dev week.
+  band_medium: 0.10                    # p >= 10 % -> low: one in ten is a commonplace coincidence. An edge value goes
+                                       # to the weaker band. Laptop dev week: 97 % of timing hypotheses are low anyway.
+  window_before_seconds: 2             # the effect may be stamped up to 2 s before the cause (Sysmon stamps a file
+                                       # when it is opened for writing, a connection when it is set up) = CLOCK_SLACK
+  window_after_seconds: 10             # a client writes its file as the first bytes arrive; a program acts on a
+                                       # request within seconds. Dev laptop download markers: 6 of 6 files written
+                                       # by the connecting process were created within 10 s of the connection.
+  sleep_gap_seconds: 60                # active time: a silence longer than 60 s is not counted. Dev laptop gaps are
+                                       # short (5-30 s: 4,273) or long (asleep, 85 h over 30 min); only 41 fall in
+                                       # 30 s - 5 min, so active time is 46.2 h at 60 s and 47.1 h at 300 s.
+                                       # (Package D uses 300 s to END a rhythm series: another purpose.)
+  min_pool_events: 5                   # a program's own pool rate needs >= 5 effects on the laptop (the usual
+                                       # "expected count >= 5" rule of thumb). lambda = max(lifetime-band pool
+                                       # [always], program pool [if >= 5], within-life rate): Yousif 2026-10-23,
+                                       # so a borrowed quiet-program name can only add caution (re-check finding 3)
+  competing_span_seconds: 900          # competing causes counted within +-15 min of the linked cause = the graph
+                                       # window (graph.window_minutes), so the graph shows what was counted
+  lifetime_bands_seconds: [60, 3600]   # fallback pool bands: < 1 min, 1-60 min, >= 1 h. Rates per second differ
+                                       # ~100x between them on the laptop (file creations 0.078 / 0.021 / 0.0009)
+  burst_factor: 2.5                    # DECIDED 2026-10-24 by the pre-registered sideband control (docs/plans/package-j-
+                                       # design.md section 2; engine/calibration.py; tools/burst_factor.py; result: docs/results/
+                                       # j-burst-factor-dev.md; analysis commit cfc62f9 before the run, result commit 4c20ddc).
+                                       # Control = the true window shifted -12/+12 s in the process's active seconds, laptop dev
+                                       # week, medium band, per process, cluster bootstrap (B 10,000), one-sided 95 % upper bound.
+                                       # T1: U = 1.84 (-12) / 2.36 (+12), 50/53 processes -> 2.5 (smallest grid value >= 2.36).
+                                       # T3: U = 5.31 (-12) > 5: the rule's STOP condition (Poisson picture too wrong for T3).
+                                       # T2: undecidable (12-13 processes, 0 control hits). Yousif delegated the stop decision;
+                                       # chosen (with a sensitivity check): T2 and T3 are LEADS ONLY (see leads_only) and this
+                                       # factor (from T1) applies to every row. Multiplies lambda; grades are no longer provisional.
+  leads_only: [T2, T3]                 # timing rows never graded above "low" (2026-10-24, package J). T3 per process: chance
+                                       # coincidences 3.6x the prediction (upper 5.3x), concentrated in quiet processes (1-4 causes:
+                                       # ~8x; 13-15 % of their control windows hold a child start vs ~1.7 % predicted): programs
+                                       # often connect and start another program in one burst, so timing cannot tell a cause from
+                                       # a coincidence. Measured rates would put those links at "low" (>= 10 %) anyway. T2: too few
+                                       # data to certify any band; the earlier A16 check put it at 3-29x. The fact chain carries
+                                       # the story; these links stay visible as leads.
+  pool_sha256: 3e39f2cfd5c5263c8e483a82e427683cc5f0b9b6f5a36afe9e8a25f78946b1bb   # set 2026-10-30 (rebuilt identically 3 times)
+                                       # SHA256 of the pool file built from the dev snapshot (`python -m
+                                       # engine.confidence --build-pool`), filled at freeze-v1
+
+graph:                                 # packages F/G (DESIGN 4.7)
+  window_minutes: 15
+  max_depth: 5
+  max_nodes: 60
+  hub_rule:                            # package G (engine/hubs.py), Yousif 2026-10-23: "the best one" of the measured
+                                       # options = O2b (docs/results/options-g-hubs-dev.md). A hub is kept in a view
+                                       # but not walked through (the seed always is).
+    method: distinct_children          # programs ranked by the number of DIFFERENT programs they start
+    top_share: 0.01                    # the top 1 % of programs (by full path: a look-alike name elsewhere is not a hub)
+    min_children: 2                    # never a hub below 2 distinct children; shells are never hubs (engine/hubs.py)
+    learned_from: "laptop dev snapshot, normal use, events before 2026-10-23"
+    file: recordings/hubs/hubs.json   # program names from the laptop: git-ignored (privacy rule 7)
+    sha256: 31c9f68a88d58c53ef9e5a489ea58d76457289a563dd28ebb5b9c200016061f2   # = Get-FileHash of the file (any case)
+                                       # laptop dev week: 4 hubs of 379 programs, cut 18 distinct children; 3 of
+                                       # them on the old fixed list of 6; 0 shells or scenario programs

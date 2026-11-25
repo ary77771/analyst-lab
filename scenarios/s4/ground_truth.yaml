@@ -1,0 +1,88 @@
+# Scenario S4: unusual program chain. The TRUE STORY, written before the scenario code.
+#
+# Harmless by design: a document-viewer-like program (s4_viewer.exe) starts Windows' command
+# shell (cmd.exe), which starts PowerShell running a tiny script from the scenario CD
+# (s4_note.ps1: prints one line, waits 2 s). Nothing is written, nothing is downloaded, no
+# network. A viewer has no reason to start a shell: that chain is what the lab should notice.
+# Runs ONLY inside the VM. Written as patterns, never GUIDs or exact times (DESIGN 7).
+
+scenario: S4
+title: Unusual program chain
+runs_in: vm
+# no timing rule that Windows' startup storm could upset (only bursts within 15 s and order):
+# the VM's launcher may skip its calm-down wait (2026-10-20)
+needs_calm_vm: false
+
+programs:
+  viewer: s4_viewer.exe                   # started by the scenario runner (run_scenario.ps1)
+  shell: cmd.exe                          # started by the viewer
+  script: powershell.exe                  # started by the shell, runs s4_note.ps1
+
+# Windows' own programs: the runner inside the VM is PowerShell too, so these roles are matched
+# ONLY by their process identity (the chain above, by ProcessGuid), never by name alone.
+windows_programs: [shell, script]
+
+steps:
+  - id: 1
+    what: s4_viewer.exe starts
+    evidence: {sysmon_event: 1, Image_endswith: s4_viewer.exe, Image_suffix: '\s4\s4_viewer.exe'}   # from the CD's s4 folder
+  - id: 2
+    what: the viewer starts the command shell
+    evidence: {sysmon_event: 1, Image_endswith: cmd.exe, ParentImage_endswith: s4_viewer.exe}
+  - id: 3
+    what: the shell starts PowerShell running the script s4_note.ps1
+    evidence: {sysmon_event: 1, Image_endswith: powershell.exe, ParentImage_endswith: cmd.exe,
+               CommandLine_suffix: '\s4\s4_note.ps1'}     # exactly the CD's script, as the last word
+  # Steps 4-5 were added after the first real run (20261019-175901-9063), which showed them: every
+  # time PowerShell runs a script it writes two empty test files to its temp folder to check
+  # Windows' script policy (AppLocker / application control) and deletes them at once. That is
+  # PowerShell's own behaviour, not the scenario's; the first answer sheet wrongly said "nothing
+  # is written". Corrected from the evidence, not loosened: exactly these two, nothing else.
+  - id: 4
+    what: PowerShell writes its two script-policy test files (its own check, at every start)
+    evidence:
+      - {sysmon_event: 11, Image_endswith: powershell.exe, TargetFilename_contains: '\AppData\Local\Temp\__PSScriptPolicyTest_', TargetFilename_suffix: '.ps1'}
+      - {sysmon_event: 11, Image_endswith: powershell.exe, TargetFilename_contains: '\AppData\Local\Temp\__PSScriptPolicyTest_', TargetFilename_suffix: '.psm1'}
+  - id: 5
+    what: PowerShell deletes exactly those two again (milliseconds later)
+    evidence:
+      - {sysmon_event: 26, Image_endswith: powershell.exe, TargetFilename_contains: '\AppData\Local\Temp\__PSScriptPolicyTest_', TargetFilename_suffix: '.ps1', same_target_as_step: 4}
+      - {sysmon_event: 26, Image_endswith: powershell.exe, TargetFilename_contains: '\AppData\Local\Temp\__PSScriptPolicyTest_', TargetFilename_suffix: '.psm1', same_target_as_step: 4}
+  - id: 6
+    what: PowerShell ends (after printing one line and waiting 2 s)
+    evidence: {sysmon_event: 5, Image_endswith: powershell.exe}
+  - id: 7
+    what: the shell ends
+    evidence: {sysmon_event: 5, Image_endswith: cmd.exe}
+  - id: 8
+    what: the viewer ends
+    evidence: {sysmon_event: 5, Image_endswith: s4_viewer.exe}
+
+# Expected NOT to appear for the scenario's three processes (beyond what the steps explain)
+not_expected:
+  - {sysmon_event: 1, why: "none of the three starts any other program (beyond the chain)"}
+  - {sysmon_event: 3, why: "none of the three connects anywhere"}
+  - {sysmon_event: 22, why: "no names are looked up"}
+  - {sysmon_event: 11, why: "no other file is written (the script only prints)"}
+  - {sysmon_event: 26, why: "no other file is deleted"}
+
+notes:
+  - The script is read from the read-only scenario CD, so no file event is expected for it.
+  - cmd.exe and powershell.exe are Windows' own, signed programs; what is unusual is WHO
+    started them (a viewer), not the programs themselves.
+
+# How the evidence graph should grade each relationship (DESIGN 4.7).
+expected_graph:
+  facts:
+    - {from: viewer, edge: started, to: shell, says: viewer started the shell}
+    - {from: shell, edge: started, to: script, says: shell started PowerShell}
+  gaps: []
+
+alert_expected:
+  rule: a document viewer starting a command shell (Sigma community rules for suspicious parents, week 3)
+  check:                                     # machine-readable (tools/check_alerts.py), added 2026-10-24: the own
+                                             # learned-normal rule (decided 2026-10-23); community rules that also
+                                             # fire are listed by the checker, not required
+    - {rule_id: analystlab.new_shell_parent, level: medium, involves: viewer}
+
+checks_assumptions: []

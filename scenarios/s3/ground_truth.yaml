@@ -1,0 +1,74 @@
+# Scenario S3: unexpected listener. The TRUE STORY, written before the scenario code.
+#
+# Harmless by design: a program opens a listening TCP port on 127.0.0.1 (reachable only from
+# inside the VM itself, so no firewall prompt and nothing outside can connect), keeps it open
+# for 60 seconds without accepting anyone, closes it, and exits. Nothing is written, nothing is
+# run, no network traffic. Runs ONLY inside the VM.
+# Sysmon has no "port opened" event: the lab sees listeners through the AGENT's port snapshots
+# (every 10 s: PORT_LISTEN_START / PORT_LISTEN_STOP with the owner's process number, program
+# and start time). Written as patterns, never as GUIDs, process numbers or exact times (DESIGN 7).
+
+scenario: S3
+title: Unexpected listener
+runs_in: vm
+
+programs:
+  listener: s3_listen.exe                 # started by the scenario runner (run_scenario.ps1)
+
+listen: {ip: 127.0.0.1, port: 47213}      # the port the program opens (fixed, so the sheet can name it)
+
+# What happens, in order, and which recorded evidence should show it.
+# agent_type: an agent record instead of a Sysmon event. Port records carry no Sysmon GUID, so
+# the checker ties them to the program's own process by process number + start time (the
+# owner's start time must equal its Sysmon event 1 time), never by name alone.
+# seconds_after: this step's record must come within [min, max] s after the given step's record
+# (agent records: the agent's own time). Snapshots are 10 s apart, so a 60 s listener is seen
+# for 50-70 s; slack for the VM's slow mode (first real run: seen after 8.9 s; the snapshot shares
+# the agent's loop with event reading, so a burst of events can delay it: 25 s allowed, review 2026-10-19).
+steps:
+  - id: 1
+    what: s3_listen.exe starts
+    evidence: {sysmon_event: 1, Image_endswith: s3_listen.exe}
+  - id: 2
+    what: the agent sees s3_listen.exe listening on 127.0.0.1:47213 (next snapshot; 10 s apart + slow-mode slack)
+    evidence: {agent_type: PORT_LISTEN_START, Image_endswith: s3_listen.exe, LocalIp: "127.0.0.1",
+               LocalPort: 47213, seconds_after: {step: 1, min: 0, max: 25}}
+  - id: 3
+    what: the agent sees that port close again, about 60 s later
+    evidence: {agent_type: PORT_LISTEN_STOP, Image_endswith: s3_listen.exe, LocalIp: "127.0.0.1",
+               LocalPort: 47213, seconds_after: {step: 2, min: 45, max: 75}}
+  - id: 4
+    what: s3_listen.exe ends
+    evidence: {sysmon_event: 5, Image_endswith: s3_listen.exe}
+
+# Expected NOT to appear (absence is part of the true story)
+not_expected:
+  - {agent_type: PORT_LISTEN_START, why: "no other port: only 127.0.0.1:47213 (step 2)"}
+  - {sysmon_event: 1, why: "it starts no other program"}
+  - {sysmon_event: 3, why: "nobody connects and the program connects nowhere: a listener alone makes no connection"}
+  - {sysmon_event: 22, why: "no names are looked up"}
+  - {sysmon_event: 11, why: "the program writes no files"}
+
+notes:
+  - Listening on 127.0.0.1 keeps it harmless and avoids Windows Firewall's "allow access?" prompt,
+    which a program listening on all addresses would trigger in the VM.
+  - The port stays open 60 s so several 10 s snapshots see it; the program exits 3 s after
+    closing it. The STOP record names the owner the agent saw at START (agent/main.py), so it does
+    not depend on the program still running.
+
+# How the evidence graph should grade each relationship (DESIGN 4.7).
+expected_graph:
+  facts:
+    - {from: listener, edge: listen_started, to: listen_port,
+       says: listener started listening on its port}      # event 1 + PORT_LISTEN_START, exact owner
+    - {from: listener, edge: listen_stopped, to: listen_port,
+       says: listener stopped listening on its port}      # event 1 + PORT_LISTEN_STOP
+  gaps: []
+
+alert_expected:
+  rule: new listening port opened by a program that has never listened before (week 3)
+  check:                                     # machine-readable (tools/check_alerts.py), added 2026-10-24
+    - {rule_id: analystlab.new_listener, level: medium, involves: listener}
+
+# Assumptions this scenario checks (VERIFICATION_PLAN section 2)
+checks_assumptions: [A11]     # Sysmon doesn't log listening ports; the agent's snapshots catch them

@@ -1,0 +1,1 @@
+import{j as n}from"./index-BY9KdeSS.js";function l({terms:t}){const s=Object.entries(t??{});return s.length?n.jsxs("p",{className:"ft-jargon",children:[n.jsx("span",{className:"ft-muted",children:"In plain words: "}),s.map(([e,r],a)=>n.jsxs("span",{children:[n.jsx("abbr",{title:r,children:e})," = ",r,a<s.length-1?"; ":"."]},e))]}):null}export{l as J};

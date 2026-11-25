@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investigation: {{ r.alert.title }}</title>
+<style>
+  :root { --ink:#1d2330; --muted:#5b6474; --line:#d9dee7; --bg:#ffffff; --soft:#f4f6fa; --warn:#fff4e5; --warnline:#b54708;
+          --fact:#1f6f43; --hyp:#8a5a00; --gap:#7a2e8f; --alert:#b42318; }
+  /* report v3 (debate 11): red is ONLY the alert level; a band is told by line style and opacity, never by red */
+  body { font: 15px/1.55 system-ui, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 24px; margin: 0 0 4px; } h2 { font-size: 18px; margin: 32px 0 8px; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .meta, .muted { color: var(--muted); font-size: 13px; }
+  .summary { background: var(--soft); border-radius: 8px; padding: 12px 16px; }
+  .banner { background: var(--warn); border: 2px solid var(--warnline); border-radius: 8px; padding: 10px 14px; margin: 16px 0 0; }
+  .legend { margin: 12px 0 0; font-size: 14px; } .legend .item { margin: 4px 0; padding: 2px 10px; }
+  .item { border-left: 4px solid var(--line); padding: 6px 12px; margin: 10px 0; }
+  .fact { border-color: var(--fact); } .hyp { border-color: var(--hyp); border-left-style: dashed; } .gap { border-color: var(--gap); border-left-style: dotted; }
+  .band { display: inline-block; font-size: 12px; font-weight: 600; padding: 0 8px; border-radius: 10px; color: var(--hyp); border: 2px solid var(--hyp); background: #fff; }
+  .band.high { border-style: solid; } .band.medium { border-style: dashed; opacity: .85; } .band.low { border-style: dotted; opacity: .7; }
+  .level { display: inline-block; font-weight: 700; padding: 1px 10px; border-radius: 10px; color: #fff; background: var(--alert); }
+  .verdict { border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin: 16px 0 0; }
+  .verdict ol { margin: 8px 0; padding-left: 24px; } .verdict li { margin: 6px 0; }
+  .when { display: inline-block; min-width: 92px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .chain { font-size: 12px; color: var(--fact); font-weight: 600; }
+  tr.before td { background: var(--soft); } table.timeline td:nth-child(-n+2) { white-space: nowrap; }
+  .gloss { font-weight: 600; }
+  .cite { font: 12px/1.4 ui-monospace, Consolas, monospace; color: var(--muted); word-break: break-all; }
+  details.tech { margin-top: 4px; font-size: 13px; color: var(--muted); } details.tech summary { cursor: pointer; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; } td, th { border-bottom: 1px solid var(--line); padding: 4px 6px; text-align: left; vertical-align: top; }
+  @media print { main { max-width: none; } details.tech { display: block; } }
+</style>
+</head>
+<body><main>
+<h1>Investigation: {{ r.alert.title }}</h1>
+<div class="meta">Analyst Lab report · machine {{ r.alert.host or "?" }} · alert time {{ r.alert.time }} · generated from {{ r.events_db or "the event store" }} (no AI wrote it: templates + the evidence graph)</div>
+{% if r.declared_banner %}
+<div class="banner" id="declared-banner">⚠ <strong>{{ r.declared_banner.note }}</strong>. {{ r.declared_banner.text }}</div>
+{% endif %}
+
+{% set v = r.verdict %}
+<div class="verdict" id="verdict">
+  <div><strong>{{ v.title }}</strong> · <span class="level">{{ v.level_text }}</span></div>
+  {% if v.steps %}<div class="muted">What the recording shows, step by step (times from the first step):</div>
+  <ol id="steps">{% for s in v.steps %}<li><span class="when">{{ s.offset_text or "" }}</span> {{ s.text }}
+    <div class="cite">source: {% for c in s.citations %}<span title="{{ c.key }}">{{ c.text }}</span>{% if not loop.last %}; {% endif %}{% endfor %}</div></li>{% endfor %}</ol>
+  {% if v.steps_more %}<div class="muted">… and {{ v.steps_more }} more step(s) in section 4.</div>{% endif %}{% endif %}
+  <div><strong>✔ Proven:</strong> {{ v.proven.text }}</div>
+  {% if v.not_proven %}<div><strong>? Not proven:</strong> {{ v.not_proven.text }}</div>{% endif %}
+  {% if v.cant_see %}<div><strong>∅ Can't see:</strong> {{ v.cant_see.text }}</div>{% endif %}
+</div>
+
+<div class="legend" id="legend"><strong>How to read this report</strong>
+  <div class="item fact"><strong>Proven</strong> (solid line): a recorded event states it.</div>
+  <div class="item hyp"><strong>Suspected</strong> (dashed line): the timing or a match suggests it; the number says how often a coincidence would give the same picture, not the chance that it is true.</div>
+  <div class="item gap"><strong>Unknown</strong> (dotted line): the recording can't show it, and we say so.</div>
+  <div class="muted">PID = the process number Windows gave a running program.</div>
+</div>
+
+<h2>1. Summary</h2>
+<div class="summary">{% for l in r.summary_lines %}<div><strong>{{ l.label }}:</strong> {{ l.text }}</div>{% endfor %}</div>
+
+<h2>2. The alert and why it fired</h2>
+<div class="item">
+  <div><strong>{{ r.alert.title }}</strong> · <span class="level">Alert level: {{ r.alert.level }}</span> · rule <code>{{ r.alert.rule }}</code> ({{ r.alert.source }}{% if r.alert.author %}, by {{ r.alert.author }}{% endif %})</div>
+  <div>{{ r.alert.reason }}</div>
+  <div class="cite">evidence: {% for c in r.alert.citations %}<span title="{{ c.key }}">{{ c.text }}</span>{% if not loop.last %}; {% endif %}{% endfor %}</div>
+  <details class="tech"><summary>record keys</summary><div class="cite">{% for c in r.alert.citations %}{{ c.key }}{% if not loop.last %}<br>{% endif %}{% endfor %}</div></details>
+</div>
+
+<h2>3. Timeline</h2>
+{% if r.timeline %}
+<table class="timeline"><tr><th>when{% if r.layout.offset_from %} (from {{ r.layout.offset_from }}){% endif %}</th><th>time (UTC)</th><th>what</th><th>grade</th></tr>
+{% for t in r.timeline %}<tr{% if t.placement == "before" %} class="before"{% endif %}><td>{% if t.placement == "before" %}before this{% else %}{{ t.offset_text or "" }}{% endif %}</td><td>{% if t.placement != "before" %}{{ t.time_precise[11:23] if t.time_precise else t.time }}{% endif %}</td><td>{{ t.text }}</td><td>{{ t.grade }}</td></tr>{% endfor %}
+</table>
+{% else %}<p class="muted">Nothing around the alert could be placed on a timeline.</p>{% endif %}
+
+<h2>4. Established facts</h2>
+<p class="muted">Each fact is stated by one recorded event, or by an exact match between two records.</p>
+{% for f in r.facts %}
+<div class="item fact"><div>{{ f.sentence }} <span class="muted">({{ f.time }})</span>{% if f.in_chain %} <span class="chain">· in the alert's chain</span>{% endif %}</div>
+  <div class="cite">source: {% for c in f.citations %}<span title="{{ c.key }}">{{ c.text }}</span>{% if not loop.last %}; {% endif %}{% endfor %}</div>
+  <details class="tech"><summary>record keys</summary><div class="cite">{% for c in f.citations %}{{ c.key }}{% if not loop.last %}<br>{% endif %}{% endfor %}</div></details></div>
+{% else %}<p class="muted">No facts in this view.</p>{% endfor %}
+
+<h2>5. Hypotheses</h2>
+<p class="muted">Suspected links: may be true, not proven. The number shown is the chance of a coincidence, not the chance the hypothesis is true.</p>
+{% for h in r.hypotheses %}
+<div class="item hyp">
+  <div><span class="band {{ h.band }}">{{ h.band }}</span> <span class="gloss">{{ h.band_label }}</span> {{ h.sentence }} <span class="muted">({{ h.time }})</span>{% if h.provisional %} <span class="muted">· provisional</span>{% endif %}</div>
+  {% if h.chance_short %}<div class="chance-short">{{ h.chance_short }}</div>{% endif %}
+  {% for l in h.plain %}{% if h.chance_short and l.label.startswith("How often") %}<details class="tech"><summary>the full sentence</summary><div><strong>{{ l.label }}:</strong> {{ l.text }}</div></details>{% else %}<div><strong>{{ l.label }}:</strong> {{ l.text }}</div>{% endif %}{% endfor %}
+  <div class="cite">source: {% for c in h.citations %}<span title="{{ c.key }}">{{ c.text }}</span>{% if not loop.last %}; {% endif %}{% endfor %}</div>
+  <details class="tech"><summary>technical details</summary><ul>{% for x in h.details %}<li>{{ x.label }}: {{ x.text }}</li>{% endfor %}</ul>
+    <div class="cite">{% for c in h.citations %}{{ c.key }}{% if not loop.last %}<br>{% endif %}{% endfor %}</div></details>
+</div>
+{% else %}<p class="muted">No hypotheses in this view.</p>{% endfor %}
+
+<h2>6. What the evidence cannot show (gaps)</h2>
+{% for g in r.gaps %}
+<div class="item gap"><div>{% if g.placement == "before" %}<strong>Before this:</strong> {% endif %}<strong>{{ g.what }}</strong>: {{ g.where }}{% if g.placement != "before" %} <span class="muted">({{ g.time }})</span>{% endif %}</div><div>{{ g.reason }}</div>
+  <div class="cite">source: {% for c in g.citations %}<span title="{{ c.key }}">{{ c.text }}</span>{% if not loop.last %}; {% endif %}{% endfor %}</div>
+  <details class="tech"><summary>record keys</summary><div class="cite">{% for c in g.citations %}{{ c.key }}{% if not loop.last %}<br>{% endif %}{% endfor %}</div></details></div>
+{% else %}<p class="muted">No gaps in this view.</p>{% endfor %}
+
+<h2>7. Limitations of this analysis</h2>
+<ul>{% for l in r.limitations %}<li>{{ l }}</li>{% endfor %}</ul>
+
+<h2>8. Recommended next steps</h2>
+<ol>{% for s in r.next_steps %}<li>{{ s }}</li>{% endfor %}</ol>
+
+<p class="muted" id="footer">View: {{ r.graph.nodes }} nodes{% if r.graph.truncated %} (limit reached){% endif %}{% if r.graph.hubs_not_followed %}; {{ r.graph.hubs_not_followed }} busy common program(s) shown but not followed further{% endif %}.{% if r.graph.sigma_p_assessable is not none and r.graph.timing_graded %} Of the {{ r.graph.timing_graded }} timing link(s) graded on this page (counting each new file or program once), about {{ "%.2f" | format(r.graph.sigma_p_assessable) }} would be expected even if nothing here were linked{% if r.graph.timing_includes_leads %} (fewer than real use gives, for program starts){% endif %}.{% endif %}{% if r.graph.timing_not_assessable %} {{ r.graph.timing_not_assessable }} more timing link(s) could not be graded (the program ran too briefly).{% endif %}</p>
+</main></body>
+</html>

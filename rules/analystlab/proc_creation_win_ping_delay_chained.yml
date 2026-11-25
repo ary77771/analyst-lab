@@ -1,0 +1,49 @@
+title: Ping Used As A Timer In A Chained Command Line
+id: 0ca454c0-b187-48f0-9716-acc3cca7e699
+name: ping_delay_chained
+status: experimental
+description: |
+    Detects ping.exe started by cmd.exe to a loopback address with a count (-n): a "wait N seconds"
+    timer, not a network test, where the parent command line chains further commands with '&',
+    '&&' or '||'.
+    Malware and droppers use this one-liner to delay a second stage or a clean-up so that it runs
+    after the first program has finished or outside a sandbox's time window (MITRE ATT&CK
+    T1497.003 Time Based Evasion). SigmaHQ covers the ping + del and ping + copy variants
+    (54786ddc..., ded54c1b...); this rule covers the general "ping, then anything" chain.
+    Analyst Lab v4 (learned from blind scenario B17, which is therefore SEEN for this rule).
+references:
+    - https://attack.mitre.org/techniques/T1497/003/
+author: Analyst Lab
+date: 2026-11-14
+tags:
+    - attack.defense-evasion
+    - attack.t1497.003
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_img:
+        Image|endswith: '\ping.exe'
+    selection_loopback:
+        CommandLine|contains:
+            - ' 127.'
+            - '"127.'
+            - ' localhost'
+            - '"localhost'
+            - ' ::1'
+    selection_count:
+        CommandLine|contains|windash: ' -n '
+    selection_parent:
+        ParentImage|endswith: '\cmd.exe'
+        ParentCommandLine|contains:
+            - '&'
+            - '||'
+    condition: all of selection_*
+falsepositives:
+    - Hand-written one-liners and build scripts that wait before running something (e.g.
+      'ping -n 3 127.0.0.1 >nul && node x'); batch files that use ping as "sleep" usually start
+      cmd.exe with the script's name, without '&' on the command line, but a path or extra command
+      containing '&' (C:\R&D\wait.bat) also matches
+    - 'Known limits (not covered): the timer form "ping -n 1 -w 3000 <unreachable address>", numeric
+      loopback forms (2130706433, 0x7f000001) and a renamed ping.exe'
+level: medium

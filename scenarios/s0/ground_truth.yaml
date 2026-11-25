@@ -1,0 +1,18 @@
+# Scenario S0: BASELINE boot (decided 2026-10-23: rules that learn each machine's normal).
+#
+# Not an attack and not a test: the VM boots from the clean snapshot like every run, waits
+# for Windows to calm down, then runs NOTHING for 10 minutes. Everything recorded in that boot
+# is the VM's normal activity: the laptop learns from it which programs start command shells
+# and which programs open listening ports (engine/baseline.py), so the rules
+# analystlab.new_shell_parent and analystlab.new_listener can flag anything new later.
+# 2-3 baseline boots are recorded once and frozen with freeze-v1; the scenario checkers are not
+# run on them (there is nothing to check).
+
+scenario: S0
+title: Baseline boot (nothing runs)
+runs_in: vm
+baseline: true
+
+programs: {}
+steps: []
+not_expected: []

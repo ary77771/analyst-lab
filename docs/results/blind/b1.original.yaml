@@ -1,0 +1,107 @@
+# Blind scenario B1: lookalike copy that beacons, then deletes itself. The TRUE STORY,
+# written BEFORE the scenario code.
+#
+# b1_setup.exe copies itself into the work folder under a name that looks like a Windows
+# service host ("scvhost.exe", letters swapped), starts the copy with svchost-style arguments
+# and waits. The copy calls the lab test server 8 times, about 15 s apart (+-3 s random
+# jitter), each time on a new connection; then it writes a small cleanup batch file, starts
+# cmd.exe on it and exits; cmd.exe deletes the copy and then the batch file itself.
+# Harmless: the requests are plain GETs that fetch nothing useful; nothing is changed outside
+# C:\AnalystLab\scenarios\b1\work\. Refuses to run unless it sees the lab VM (VirtualBox guest
+# files AND C:\AnalystLab\scenarios). Written as patterns, never GUIDs, process numbers or times.
+
+scenario: B1
+title: Lookalike copy beacons and self-deletes
+runs_in: vm
+test_server: "the lab test server: http://{test_server.ip}:{test_server.port}"   # 10.0.2.2:18765, by IP
+
+programs:
+  main: b1_setup.exe                    # started by the scenario runner (from the run CD, bin\)
+  copy: scvhost.exe                     # b1_setup.exe's own file, copied to the work folder, started by main
+windows_programs:
+  cleanup_shell: cmd.exe                # C:\Windows\System32\cmd.exe, started by copy
+files:
+  copy_file: \AnalystLab\scenarios\b1\work\scvhost.exe        # created by main, deleted by cleanup_shell
+  cleanup_script: \AnalystLab\scenarios\b1\work\cleanup.cmd   # created by copy, deleted by cleanup_shell
+copy_path_contains: \AnalystLab\scenarios\b1\work\
+
+steps:
+  - id: 1
+    what: b1_setup.exe starts
+    evidence: {sysmon_event: 1, Image_endswith: b1_setup.exe}
+  - id: 2
+    what: b1_setup.exe creates scvhost.exe in the work folder (a byte-for-byte copy of itself)
+    evidence: {sysmon_event: 11, Image_endswith: b1_setup.exe, TargetFilename_endswith: \b1\work\scvhost.exe}
+  - id: 2b
+    what: the agent fingerprints scvhost.exe; its SHA-256 equals b1_setup.exe's own (same program, new name)
+    evidence: {agent_type: FILE_HASH, TargetFilename_endswith: \b1\work\scvhost.exe, hash_status: ok,
+               sha256_equals: "SHA256 in event 1 Hashes of b1_setup.exe (step 1) and of scvhost.exe (step 3)"}
+  - id: 3
+    what: about 2 s later, b1_setup.exe starts scvhost.exe with the command line "-k netsvcs"
+    evidence: {sysmon_event: 1, Image_endswith: \b1\work\scvhost.exe, ParentImage_endswith: b1_setup.exe,
+               CommandLine_contains: -k netsvcs}
+  - id: 4
+    what: scvhost.exe connects to the test server 8 times (one new TCP connection each), about 15 s
+      apart with +-3 s random jitter (first one right after it starts, last one ~105 s later)
+    evidence: {sysmon_event: 3, Image_endswith: \b1\work\scvhost.exe, DestinationIp: "{test_server.ip}",
+               DestinationPort: "{test_server.port}"}
+  - id: 5
+    what: scvhost.exe creates cleanup.cmd in the work folder
+    evidence: {sysmon_event: 11, Image_endswith: \b1\work\scvhost.exe, TargetFilename_endswith: \b1\work\cleanup.cmd}
+  - id: 6
+    what: scvhost.exe starts cmd.exe /c ...\cleanup.cmd, then ends right away
+    evidence: [{sysmon_event: 1, Image_endswith: \cmd.exe, ParentImage_endswith: \b1\work\scvhost.exe,
+                CommandLine_contains: cleanup.cmd},
+               {sysmon_event: 5, Image_endswith: \b1\work\scvhost.exe}]
+  - id: 7
+    what: cmd.exe deletes scvhost.exe (retrying until the copy has exited), then deletes cleanup.cmd
+      (the batch file deletes itself), then ends
+    evidence: [{sysmon_event: 26, Image_endswith: \cmd.exe, TargetFilename_endswith: \b1\work\scvhost.exe},
+               {sysmon_event: 26, Image_endswith: \cmd.exe, TargetFilename_endswith: \b1\work\cleanup.cmd},
+               {sysmon_event: 5, Image_endswith: \cmd.exe}]
+  - id: 8
+    what: b1_setup.exe (which waited for the copy and then for scvhost.exe to disappear) ends
+    evidence: {sysmon_event: 5, Image_endswith: b1_setup.exe}
+
+not_expected:
+  - {sysmon_event: 22, why: "the test server is addressed by IP, so no name is looked up"}
+  - {sysmon_event: 3, Image_endswith: b1_setup.exe, why: "the original never connects anywhere; only the copy does"}
+  - {sysmon_event: 15, why: "nothing is downloaded from the internet, so no download marker"}
+  - {agent_type: PORT_LISTEN_START, Image_endswith: \b1\work\scvhost.exe, why: "nothing listens on a port"}
+
+expected_story: >-
+  A program copied itself under a lookalike Windows name (scvhost.exe, same hash as the
+  original), started the copy with svchost-style arguments, and the copy contacted the test
+  server at a regular ~15 s rhythm (8 times), which looks like beaconing to a command server.
+  It then used a dropped batch file run by cmd.exe to delete itself and the batch file,
+  leaving no program behind; only the recording shows it existed.
+tricky_part: >-
+  The beacon is 8 separate short connections with jitter, so it is a pattern over time, not one
+  event. The copy has the same hash as the first program but a different name and a name that
+  imitates svchost.exe (not equal to it). The deletions are done by cmd.exe, not by the program
+  itself, after the copy has already ended, so the "who removed the evidence" link goes through
+  the cleanup script. Nothing is left on disk at the end.
+
+notes:
+  - Order steps by UtcTime, not record number (Sysmon can log network events late).
+  - Step 4 is 8 connections in truth; each one is a separate event 3. The jitter is random per
+    run (uniform -3..+3 s around 15 s), so exact gaps differ between runs.
+  - The out folder C:\AnalystLab\scenarios\b1\work is emptied by the runner before the run, so
+    the event 11s are fresh creations. At the end the work folder is empty.
+  - Roles under files are the work-folder paths; the copy's process role is matched by full path
+    (\b1\work\scvhost.exe) so it can never be confused with a real Windows process.
+  - Deletions (step 7) are in the steps but not in expected_graph below, because the writer
+    doesn't know the graph's edge name for "deleted"; the truth is cleanup_shell deleted
+    copy_file and cleanup_script.
+  - The total run takes about 2 minutes. If the VM check fails the program prints a refusal and
+    exits with code 3 without doing anything.
+
+expected_graph:
+  facts:
+    - {from: main, edge: started, to: copy, says: main started copy}                   # event 1 parent = main
+    - {from: main, edge: created, to: copy_file, says: main created copy file}         # event 11 by main
+    - {from: copy_file, edge: ran_as, to: copy, says: copy process runs the copy file} # same path + FILE_HASH = process hash
+    - {from: copy, edge: connected_to, to: test_server, says: copy connected to test server}
+    - {from: copy, edge: created, to: cleanup_script, says: copy created cleanup script}
+    - {from: copy, edge: started, to: cleanup_shell, says: copy started cleanup shell}
+  gaps: []                              # main's own start is recorded (started by the runner)

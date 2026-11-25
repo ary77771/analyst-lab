@@ -1,0 +1,84 @@
+# Scenario S5: file churn. The TRUE STORY, written before the scenario code.
+#
+# Harmless by design: a program creates 40 small dummy text files in its own folder under
+# C:\AnalystLab\scenarios\s5\work, then quickly writes 40 new copies of them (same dummy text,
+# a different file ending), then deletes the 40 originals. Everything stays inside that one
+# folder (undone by the snapshot restore). No network, nothing is run.
+# Sysmon config v0.2 records every file created or deleted under \AnalystLab\, and the agent
+# fingerprints them, so the whole burst is visible. Patterns only, never exact times (DESIGN 7).
+
+scenario: S5
+title: File churn
+runs_in: vm
+# no timing rule that Windows' startup storm could upset (only bursts within 15 s and order):
+# the VM's launcher may skip its calm-down wait (2026-10-20)
+needs_calm_vm: false
+
+programs:
+  churn: s5_churn.exe                     # started by the scenario runner (run_scenario.ps1)
+
+# Groups of files the story is about (the graph checker resolves each to exactly `count` file
+# nodes in this run: path contains `path_contains`, name ends with `suffix`)
+file_groups:
+  originals: {path_contains: '\AnalystLab\scenarios\s5\work\', suffix: '.txt', count: 40}
+  copies: {path_contains: '\AnalystLab\scenarios\s5\work\', suffix: '.txt.s5copy', count: 40}
+
+# _contains: case-insensitive part of the value; _suffix: how the value ends.
+# within_seconds: all `count` matches lie within this many seconds (a burst).
+steps:
+  - id: 1
+    what: s5_churn.exe starts
+    evidence: {sysmon_event: 1, Image_endswith: s5_churn.exe}
+  # Step 2 added after the review (2026-10-19): the first real run showed the program creating
+  # its two folders (Sysmon records a new folder as a file event 11; the agent marks it "directory")
+  - id: 2
+    what: it creates its folders (C:\AnalystLab\scenarios\s5 and ...\s5\work)
+    evidence:
+      - {sysmon_event: 11, Image_endswith: s5_churn.exe, TargetFilename_suffix: '\AnalystLab\scenarios\s5'}
+      - {sysmon_event: 11, Image_endswith: s5_churn.exe, TargetFilename_suffix: '\AnalystLab\scenarios\s5\work'}
+  - id: 3
+    what: it creates 40 dummy text files in its work folder, all within a few seconds
+    evidence: {sysmon_event: 11, Image_endswith: s5_churn.exe, TargetFilename_contains: '\AnalystLab\scenarios\s5\work\',
+               TargetFilename_suffix: '.txt', count: 40, within_seconds: 15}
+  - id: 4
+    what: about 10 s later it writes 40 copies (a new file ending), within a few seconds
+    evidence: {sysmon_event: 11, Image_endswith: s5_churn.exe, TargetFilename_contains: '\AnalystLab\scenarios\s5\work\',
+               TargetFilename_suffix: '.txt.s5copy', count: 40, within_seconds: 15}
+  - id: 5
+    what: it deletes exactly the 40 originals it created, within a few seconds
+    evidence: {sysmon_event: 26, Image_endswith: s5_churn.exe, TargetFilename_contains: '\AnalystLab\scenarios\s5\work\',
+               TargetFilename_suffix: '.txt', count: 40, within_seconds: 15, same_target_as_step: 3}
+  - id: 6
+    what: s5_churn.exe ends
+    evidence: {sysmon_event: 5, Image_endswith: s5_churn.exe}
+
+# Beyond what the steps explain (review 2026-10-19: without 11/26 here, a file written anywhere
+# else, or the copies deleted too, went unnoticed by this checker)
+not_expected:
+  - {sysmon_event: 11, why: "no other file is created, anywhere"}
+  - {sysmon_event: 26, why: "no other file is deleted (the copies stay)"}
+  - {sysmon_event: 1, why: "it starts no other program"}
+  - {sysmon_event: 3, why: "no network"}
+  - {sysmon_event: 22, why: "no names are looked up"}
+
+notes:
+  - The program waits 10 s after creating the originals, so the agent can fingerprint them
+    before they are deleted (otherwise whether an original has a fingerprint would depend on
+    timing, and the graph's gaps would differ from run to run).
+  - The copies have the same dummy text as the originals; the graph may note "same content at
+    another path" as a layer-2 candidate, never as a fact.
+
+# How the evidence graph should grade each relationship (DESIGN 4.7).
+expected_graph:
+  facts:
+    - {from: churn, edge: created, to: originals, count: 40, says: churn created the 40 originals}
+    - {from: churn, edge: created, to: copies, count: 40, says: churn created the 40 copies}
+    - {from: churn, edge: deleted, to: originals, count: 40, says: churn deleted the 40 originals}
+  gaps: []
+
+alert_expected:
+  rule: burst of file creations and deletions by one process (week 3)
+  check:                                     # machine-readable (tools/check_alerts.py), added 2026-10-24
+    - {rule_id: analystlab.file_churn, level: medium, involves: churn}
+
+checks_assumptions: []

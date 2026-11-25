@@ -1,0 +1,43 @@
+# Privacy rule (DESIGN.md 9.1): recordings and databases never leave the laptop
+recordings/*
+!recordings/README.md
+*.jsonl
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.log
+noise_report*
+stats-export*/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node / dashboard
+node_modules/
+dashboard/dist/
+
+# Go / build outputs
+scenarios/bin/
+build/
+dist/
+*.exe
+
+# Downloads (ISOs, installers) stay out of the repo
+downloads/
+*.iso
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+# Local secrets (none expected)
+.env
+# development layout fixtures (dumped from lab recordings)
+engine/dashboard/static/dev/

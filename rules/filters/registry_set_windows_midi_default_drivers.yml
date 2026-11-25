@@ -1,0 +1,32 @@
+title: Windows Writes Its Own Default MIDI Drivers (Drivers32 midi / midi1)
+id: 82e6a980-fe63-49af-aa66-629d6cbddd2e
+name: windows_midi_default_drivers
+status: experimental
+description: |
+    Analyst Lab v4 (F6). Windows MIDI Services (Windows 11 24H2 and later) requires, and its service
+    host keeps writing, exactly two Drivers32 values: midi = wdmaud.drv and midi1 = wdmaud2.drv
+    (Microsoft: https://microsoft.github.io/MIDI/kb/required-registry-entries). SigmaHQ's ASEP rules
+    watch every Drivers32 value and have no filter for these defaults (checked against SigmaHQ master,
+    rules modified 2025-10-22), so every boot of the lab VM raised 4 medium alerts. Only this exact
+    write is filtered: svchost.exe from System32, these two value names, these two Windows driver
+    names. Any other Drivers32 value or data (a hijacked or added driver) still alerts.
+author: Analyst Lab
+date: 2026-11-15
+logsource:
+    category: registry_set
+    product: windows
+filter:
+    rules:
+        - cbf93e5d-ca6c-4722-8bea-e9119007c248   # CurrentVersion NT Autorun Keys Modification
+        - 480421f9-417f-4d3b-9552-fd2728443ec8   # Wow6432Node Windows NT CurrentVersion Autorun Keys Modification
+    selection:
+        Image: 'C:\Windows\system32\svchost.exe'
+        TargetObject|endswith:
+            - '\Windows NT\CurrentVersion\Drivers32\midi'
+            - '\Windows NT\CurrentVersion\Drivers32\midi1'
+    selection_default_driver:
+        - TargetObject|endswith: '\Drivers32\midi'
+          Details: 'wdmaud.drv'
+        - TargetObject|endswith: '\Drivers32\midi1'
+          Details: 'wdmaud2.drv'
+    condition: not (selection and selection_default_driver)

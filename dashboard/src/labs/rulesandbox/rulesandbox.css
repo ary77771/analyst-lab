@@ -1,0 +1,31 @@
+/* Rule sandbox (night-tools): prefix rs-, design tokens and the shared lab sizes only. Red is for alerts: a
+   warning about an innocent run is a caution, amber and dashed. */
+.rs-page { display: grid; gap: 0.875rem; min-width: 0; }
+.rs-sandbox { padding: 0.5rem 0.75rem; border: 1px dashed var(--line-2); border-radius: 0.5rem; color: var(--muted); font-size: var(--lab-small); }
+.rs-form { display: grid; gap: 0.5rem; margin-top: 0.625rem; }
+.rs-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; }
+.rs-select { min-width: 0; max-width: 100%; padding: 0.3rem 0.5rem; border: 1px solid var(--line-2); border-radius: 0.375rem; background: var(--panel-2); color: var(--text); }
+.rs-text { width: 100%; min-height: 14rem; padding: 0.625rem 0.75rem; border: 1px solid var(--line-2); border-radius: 0.5rem; background: var(--panel-2);
+  color: var(--text); font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.5; resize: vertical; }
+.rs-text:focus { outline: none; border-color: var(--accent); }
+.rs-level { color: var(--muted); font-size: 0.875rem; margin-bottom: 0.5rem; }
+.rs-level[data-raised] { color: var(--text); }
+.rs-warnings { display: grid; gap: 0.375rem; margin: 0.625rem 0; }
+.rs-warnings li { padding: 0.4rem 0.625rem; border: 1px dashed var(--ink-hypo); border-radius: 0.5rem; color: var(--ink-hypo); font-size: 0.875rem; font-weight: 600; }
+.rs-sub { font-size: var(--lab-title); font-weight: 600; color: var(--text); margin: 0.75rem 0 0.375rem; }
+.rs-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+.rs-table td { padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--line); color: var(--text); }
+.rs-table td.num { color: var(--muted); white-space: nowrap; }
+.rs-kind { font-size: var(--lab-small); padding: 0.0625rem 0.4rem; border: 1px solid var(--line-2); border-radius: 0.3rem; color: var(--muted); }
+.rs-kind[data-kind="innocent"], .rs-kind[data-kind="control"], .rs-kind[data-kind="baseline"] { border-style: dashed; border-color: var(--ink-hypo); color: var(--ink-hypo); }
+.rs-sample { margin-top: 0.75rem; }
+.rs-sample summary { cursor: pointer; font-size: 0.875rem; color: var(--accent); margin-bottom: 0.375rem; }
+.rs-sample ol { display: grid; gap: 0.5rem; }
+.rs-sample li { display: grid; gap: 0.25rem; padding: 0.5rem 0.625rem; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--panel-2); min-width: 0; }
+.rs-meta { font-size: var(--lab-small); color: var(--muted); }
+.rs-sample dl { display: grid; gap: 0.125rem; }
+.rs-sample dl > div { display: grid; grid-template-columns: minmax(7rem, max-content) 1fr; gap: 0.75rem; font-size: 0.8125rem; }
+.rs-sample dt { color: var(--muted); }
+.rs-sample dd code { font-family: var(--font-mono); font-size: var(--lab-small); color: var(--text); overflow-wrap: anywhere; }
+.rs-sample dl > div[data-read] dt { color: var(--accent); font-weight: 600; }
+.rs-sample dl > div[data-read] dd code { border-bottom: 2px solid var(--accent); }

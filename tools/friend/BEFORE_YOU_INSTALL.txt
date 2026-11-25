@@ -1,0 +1,33 @@
+Analyst Lab - a student project recorder
+
+Thank you for helping! This installs a small recorder for Yousif's university project.
+For about 7 days it notes down what happens on this laptop, so the project can measure
+how much "normal" activity a laptop produces.
+
+What it records (with Windows' own Sysmon tool, made by Microsoft):
+  - programs starting and closing
+  - network connections and name lookups (which website names were looked up)
+  - new or deleted program and script files, and files in Downloads and Startup
+
+What stays private:
+  - Everything it records stays ON THIS LAPTOP. Nothing is uploaded, ever.
+  - At the end you click "Export my statistics". That makes ONE small text file with
+    numbers only (for example "412 programs started per hour"), no names, files, websites
+    or times. You read it, and only if you are happy you send it to Yousif.
+  - "Pause for 1 hour" stops Analyst Lab recording details whenever you like (only counts are
+    kept). Windows' own Sysmon log, which only administrators can open, still notes details as
+    it always does; uninstalling empties it.
+
+What Setup does (it asks for administrator permission once):
+  - turns on Sysmon (if Windows asks for a restart, restart once; it finishes by itself)
+    On older Windows without built-in Sysmon, Setup downloads it from Microsoft, which
+    means accepting Microsoft's Sysinternals licence.
+  - adds a background task that starts the recorder when you log in
+  - adds an "Analyst Lab" icon on your Desktop: open it any time to see that it's working
+
+When you're done: open Analyst Lab and click "Uninstall everything" (or use Windows'
+Settings > Apps). That removes the recorder, its task, Sysmon (if Setup installed it) and
+all recordings.
+
+Windows may say "Windows protected your PC" because this student program is not signed:
+click "More info", then "Run anyway".

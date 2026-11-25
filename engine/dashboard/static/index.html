@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analyst Lab</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/vendor/cytoscape.min.js"></script>
+</head>
+<body>
+<header>
+  <strong>Analyst Lab</strong>
+  <nav>
+    <button data-tab="alerts" class="active">Alerts <span id="alert-count"></span></button>
+    <button data-tab="investigation">Investigation</button>
+    <button data-tab="scenarios">Scenarios</button>
+  </nav>
+  <label class="muted">show from level
+    <select id="min-level"></select>  <!-- filled from /api/config: the frozen default is selected -->
+  </label>
+</header>
+
+<main>
+  <section id="tab-alerts" class="tab active">
+    <table id="alerts"><thead><tr><th>time (UTC)</th><th>level</th><th>alert</th><th>machine</th><th>source</th></tr></thead><tbody></tbody></table>
+    <p id="alerts-empty" class="muted" hidden>No alerts at this level yet.</p>
+  </section>
+
+  <section id="tab-investigation" class="tab">
+    <div id="inv-head" class="muted">Pick an alert on the Alerts screen.</div>
+    <div class="inv">
+      <div id="graph"></div>
+      <aside>
+        <div class="legend"><span class="l fact"></span>fact <span class="l hyp"></span>hypothesis <span class="l gap"></span>gap</div>
+        <h3>Evidence</h3>
+        <div id="evidence" class="muted">Click a line or a node in the graph to see the events behind it.</div>
+      </aside>
+    </div>
+    <h3>Timeline</h3>
+    <table id="timeline"><tbody></tbody></table>
+  </section>
+
+  <section id="tab-scenarios" class="tab">
+    <p class="muted">Each run restores the VM's clean snapshot, runs the scenario, sends everything to the laptop and shuts the VM down (about 10-20 minutes). One run at a time.</p>
+    <table id="scenarios"><thead><tr><th>scenario</th><th>title</th><th>last result</th><th></th></tr></thead><tbody></tbody></table>
+    <h3>Current run</h3>
+    <pre id="run">No run started from here yet.</pre>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

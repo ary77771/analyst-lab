@@ -1,0 +1,1541 @@
+{
+ "source": [
+  "docs/results/v4/art-official-phase1.md",
+  "docs/results/v4/art-official-phase2.md",
+  "docs/results/v4/art-v3-vs-v4.md",
+  "docs/plans/v4/art-split.json"
+ ],
+ "half": "TEST (sealed: unseen by v4 before the freeze)",
+ "tests": [
+  {
+   "technique": "T1006",
+   "guid": "88f6327e",
+   "phase": 2,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Direct Volume Access",
+   "test_name": "Read volume boot sector via DOS device path (PowerShell)"
+  },
+  {
+   "technique": "T1007",
+   "guid": "51f17016",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Service Discovery",
+   "test_name": "Get-Service Execution"
+  },
+  {
+   "technique": "T1007",
+   "guid": "5f864a3f",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Service Discovery",
+   "test_name": "System Service Discovery - net.exe"
+  },
+  {
+   "technique": "T1007",
+   "guid": "7cd7eaa3",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Service Discovery",
+   "test_name": "System Service Discovery - Windows Scheduled Tasks (schtasks)"
+  },
+  {
+   "technique": "T1007",
+   "guid": "89676ba1",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Service Discovery",
+   "test_name": "System Service Discovery"
+  },
+  {
+   "technique": "T1007",
+   "guid": "d70d82bd",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Service Discovery",
+   "test_name": "System Service Discovery - Services Registry Enumeration"
+  },
+  {
+   "technique": "T1012",
+   "guid": "0434d081",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Query Registry",
+   "test_name": "Query Registry with Powershell cmdlets"
+  },
+  {
+   "technique": "T1012",
+   "guid": "5c784969",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Query Registry",
+   "test_name": "Check Software Inventory Logging (SIL) status via Registry"
+  },
+  {
+   "technique": "T1012",
+   "guid": "6fb4c4c5",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Query Registry",
+   "test_name": "Reg query for AlwaysInstallElevated status"
+  },
+  {
+   "technique": "T1012",
+   "guid": "8f7578c4",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Query Registry",
+   "test_name": "Query Registry"
+  },
+  {
+   "technique": "T1012",
+   "guid": "96257079",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Query Registry",
+   "test_name": "Inspect SystemStartOptions Value in Registry"
+  },
+  {
+   "technique": "T1016",
+   "guid": "038263cb",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Network Configuration Discovery",
+   "test_name": "List Windows Firewall Rules"
+  },
+  {
+   "technique": "T1016",
+   "guid": "7dd47911",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Network Configuration Discovery",
+   "test_name": "IPv4 Enumeration with GetIpAddrTable"
+  },
+  {
+   "technique": "T1016",
+   "guid": "970ab6a1",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Network Configuration Discovery",
+   "test_name": "System Network Configuration Discovery on Windows"
+  },
+  {
+   "technique": "T1027",
+   "guid": "450e7218",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information",
+   "test_name": "Execute base64-encoded PowerShell from Windows Registry"
+  },
+  {
+   "technique": "T1027",
+   "guid": "7e47ee60",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Obfuscated Files or Information",
+   "test_name": "Snake Malware Encrypted crmlog file"
+  },
+  {
+   "technique": "T1027",
+   "guid": "8b3f4ed6",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information",
+   "test_name": "Obfuscated Command in PowerShell"
+  },
+  {
+   "technique": "T1027",
+   "guid": "a50d5a97",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Obfuscated Files or Information",
+   "test_name": "Execute base64-encoded PowerShell"
+  },
+  {
+   "technique": "T1027.001",
+   "guid": "a374947c",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Obfuscated Files or Information: Binary Padding",
+   "test_name": "Pad Binary to Change Hash using PowerShell - Windows"
+  },
+  {
+   "technique": "T1027.009",
+   "guid": "09b8f49c",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Embedded Payloads",
+   "test_name": "Embed Simulated Payload Overlay in Carrier Executable"
+  },
+  {
+   "technique": "T1027.009",
+   "guid": "4f37ebea",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Embedded Payloads",
+   "test_name": "Embed Simulated Payload Data in Carrier Image File"
+  },
+  {
+   "technique": "T1027.009",
+   "guid": "53b9902a",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Embedded Payloads",
+   "test_name": "Embed Simulated Payload Data in Carrier PDF File"
+  },
+  {
+   "technique": "T1027.009",
+   "guid": "75edafa4",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Embedded Payloads",
+   "test_name": "Embed Base64 Payload String in XML Resource File"
+  },
+  {
+   "technique": "T1027.009",
+   "guid": "8112d9ba",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Embedded Payloads",
+   "test_name": "Embed Base64 Payload String in PowerShell Script Carrier"
+  },
+  {
+   "technique": "T1027.009",
+   "guid": "82084e9b",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Embedded Payloads",
+   "test_name": "Embed Base64 Payload String in CSV Data File"
+  },
+  {
+   "technique": "T1027.009",
+   "guid": "a50df5f9",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Obfuscated Files or Information: Embedded Payloads",
+   "test_name": "Embed Hex-Encoded Simulated Shellcode String in Text Carrier"
+  },
+  {
+   "technique": "T1027.009",
+   "guid": "f989c010",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Embedded Payloads",
+   "test_name": "Embed Base64 Payload String in Windows Script File Carrier"
+  },
+  {
+   "technique": "T1027.013",
+   "guid": "6e8dea32",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Obfuscated Files or Information: Encrypted/Encoded File",
+   "test_name": "Turla Snake Queue File Artifact"
+  },
+  {
+   "technique": "T1027.013",
+   "guid": "7693ccaa",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Encrypted/Encoded File",
+   "test_name": "Decode Eicar File and Write to File"
+  },
+  {
+   "technique": "T1027.013",
+   "guid": "b404caaa",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Encrypted/Encoded File",
+   "test_name": "Decrypt Eicar File and Write to File"
+  },
+  {
+   "technique": "T1027.018",
+   "guid": "125b1b41",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Invisible Unicode",
+   "test_name": "Invisible Unicode in Environment Variables"
+  },
+  {
+   "technique": "T1027.018",
+   "guid": "5917f0fd",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Obfuscated Files or Information: Invisible Unicode",
+   "test_name": "File Masquerading with Zero-Width Space"
+  },
+  {
+   "technique": "T1037.001",
+   "guid": "d6042746",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Initialization Scripts: Logon Script (Windows)",
+   "test_name": "Logon Scripts"
+  },
+  {
+   "technique": "T1039",
+   "guid": "6ed67921",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Data from Network Shared Drive",
+   "test_name": "Copy a sensitive File over Administrative share with copy"
+  },
+  {
+   "technique": "T1041",
+   "guid": "d1253f6e",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Exfiltration Over C2 Channel",
+   "test_name": "C2 Data Exfiltration"
+  },
+  {
+   "technique": "T1048.003",
+   "guid": "6aa58451",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol",
+   "test_name": "Exfiltration Over Alternative Protocol - HTTP"
+  },
+  {
+   "technique": "T1048.003",
+   "guid": "dd4b4421",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol",
+   "test_name": "Exfiltration Over Alternative Protocol - ICMP"
+  },
+  {
+   "technique": "T1053.002",
+   "guid": "4a6c0dc4",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Scheduled Task/Job: At",
+   "test_name": "At.exe Scheduled task"
+  },
+  {
+   "technique": "T1053.005",
+   "guid": "02124c37",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Scheduled Task/Job: Scheduled Task",
+   "test_name": "Scheduled Task Persistence via Eventviewer.msc"
+  },
+  {
+   "technique": "T1053.005",
+   "guid": "1a73e89e",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Scheduled Task/Job: Scheduled Task",
+   "test_name": "Turla Topinambour Dropper and Scheduled Task Persistence"
+  },
+  {
+   "technique": "T1053.005",
+   "guid": "42f53695",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Scheduled Task/Job: Scheduled Task",
+   "test_name": "Scheduled task Local"
+  },
+  {
+   "technique": "T1053.005",
+   "guid": "6731e8a0",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Scheduled Task/Job: Scheduled Task",
+   "test_name": "Turla KopiLuwak Scheduled Task for JavaScript Stager"
+  },
+  {
+   "technique": "T1053.005",
+   "guid": "8fcfa3d5",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Scheduled Task/Job: Scheduled Task",
+   "test_name": "Scheduled Task Persistence via CompMgmt.msc"
+  },
+  {
+   "technique": "T1053.005",
+   "guid": "af9fd58f",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Scheduled Task/Job: Scheduled Task",
+   "test_name": "Powershell Cmdlet Scheduled Task"
+  },
+  {
+   "technique": "T1053.005",
+   "guid": "dda6fc7b",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Scheduled Task/Job: Scheduled Task",
+   "test_name": "PowerShell Modify A Scheduled Task"
+  },
+  {
+   "technique": "T1053.005",
+   "guid": "e895677d",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Scheduled Task/Job: Scheduled Task",
+   "test_name": "Scheduled Task Executing Base64 Encoded Commands From Registry"
+  },
+  {
+   "technique": "T1053.005",
+   "guid": "fec27f65",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Scheduled Task/Job: Scheduled Task",
+   "test_name": "Scheduled Task Startup Script"
+  },
+  {
+   "technique": "T1059.003",
+   "guid": "00682c9f",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Command and Scripting Interpreter: Windows Command Shell",
+   "test_name": "Command prompt writing script to file then executes it"
+  },
+  {
+   "technique": "T1059.003",
+   "guid": "127b4afe",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Command and Scripting Interpreter: Windows Command Shell",
+   "test_name": "Writes text to a file and displays it."
+  },
+  {
+   "technique": "T1059.003",
+   "guid": "d0eb3597",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Command and Scripting Interpreter: Windows Command Shell",
+   "test_name": "Suspicious Execution via Windows Command Shell"
+  },
+  {
+   "technique": "T1069.001",
+   "guid": "1f454dd6",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Permission Groups Discovery: Local Groups",
+   "test_name": "Basic Permission Groups Discovery Windows (Local)"
+  },
+  {
+   "technique": "T1069.001",
+   "guid": "69119e58",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Permission Groups Discovery: Local Groups",
+   "test_name": "WMIObject Group Discovery"
+  },
+  {
+   "technique": "T1069.001",
+   "guid": "a580462d",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Permission Groups Discovery: Local Groups",
+   "test_name": "Permission Groups Discovery PowerShell (Local)"
+  },
+  {
+   "technique": "T1078.001",
+   "guid": "aa6cb8c4",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Valid Accounts: Default Accounts",
+   "test_name": "Activate Guest Account"
+  },
+  {
+   "technique": "T1078.003",
+   "guid": "a524ce99",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Valid Accounts: Local Accounts",
+   "test_name": "Create local account with admin privileges"
+  },
+  {
+   "technique": "T1083",
+   "guid": "0e36303b",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "File and Directory Discovery",
+   "test_name": "File and Directory Discovery (cmd.exe)"
+  },
+  {
+   "technique": "T1083",
+   "guid": "2158908e",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "File and Directory Discovery",
+   "test_name": "File and Directory Discovery (PowerShell)"
+  },
+  {
+   "technique": "T1083",
+   "guid": "c6c34f61",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "File and Directory Discovery",
+   "test_name": "Simulating MAZE Directory Enumeration"
+  },
+  {
+   "technique": "T1087.001",
+   "guid": "80887bec",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Account Discovery: Local Account",
+   "test_name": "Enumerate all accounts on Windows (Local)"
+  },
+  {
+   "technique": "T1087.001",
+   "guid": "a138085e",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Account Discovery: Local Account",
+   "test_name": "Enumerate logged on users via CMD (Local)"
+  },
+  {
+   "technique": "T1087.001",
+   "guid": "ae4b6361",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Account Discovery: Local Account",
+   "test_name": "Enumerate all accounts via PowerShell (Local)"
+  },
+  {
+   "technique": "T1095",
+   "guid": "b2858526",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Non-Application Layer Protocol",
+   "test_name": "Turla Topinambour TCP Callback via Inline .NET"
+  },
+  {
+   "technique": "T1098",
+   "guid": "5598f7cb",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Account Manipulation",
+   "test_name": "Admin Account Manipulate"
+  },
+  {
+   "technique": "T1119",
+   "guid": "634bd9b9",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Automated Collection",
+   "test_name": "Automated Collection PowerShell"
+  },
+  {
+   "technique": "T1119",
+   "guid": "aa1180e2",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Automated Collection",
+   "test_name": "Recon information for export with Command Prompt"
+  },
+  {
+   "technique": "T1119",
+   "guid": "c3f6d794",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Automated Collection",
+   "test_name": "Recon information for export with PowerShell"
+  },
+  {
+   "technique": "T1119",
+   "guid": "cb379146",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Automated Collection",
+   "test_name": "Automated Collection Command Prompt"
+  },
+  {
+   "technique": "T1120",
+   "guid": "2cb4dbf2",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Peripheral Device Discovery",
+   "test_name": "Win32_PnPEntity Hardware Inventory"
+  },
+  {
+   "technique": "T1120",
+   "guid": "424e18fd",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Peripheral Device Discovery",
+   "test_name": "Peripheral Device Discovery via fsutil"
+  },
+  {
+   "technique": "T1120",
+   "guid": "5c876daf",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Peripheral Device Discovery",
+   "test_name": "Get Printer Device List via PowerShell Command"
+  },
+  {
+   "technique": "T1123",
+   "guid": "7a21cce2",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": true,
+   "technique_name": "Audio Capture",
+   "test_name": "Registry artefact when application use microphone"
+  },
+  {
+   "technique": "T1124",
+   "guid": "1d5711d6",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Time Discovery",
+   "test_name": "System Time Discovery - PowerShell"
+  },
+  {
+   "technique": "T1124",
+   "guid": "20aba24b",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Time Discovery",
+   "test_name": "System Time Discovery"
+  },
+  {
+   "technique": "T1124",
+   "guid": "25c5d1f1",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Time Discovery",
+   "test_name": "Discover System Time Zone via Registry"
+  },
+  {
+   "technique": "T1124",
+   "guid": "d5d5a6b0",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "System Time Discovery",
+   "test_name": "System Time Discovery W32tm as a Delay"
+  },
+  {
+   "technique": "T1132.001",
+   "guid": "c3ed6d2a",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Data Encoding: Standard Encoding",
+   "test_name": "XOR Encoded data."
+  },
+  {
+   "technique": "T1135",
+   "guid": "13daa2cf",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Network Share Discovery",
+   "test_name": "Network Share Discovery via dir command"
+  },
+  {
+   "technique": "T1135",
+   "guid": "1b0814d1",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Network Share Discovery",
+   "test_name": "Network Share Discovery PowerShell"
+  },
+  {
+   "technique": "T1135",
+   "guid": "20f1097d",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Network Share Discovery",
+   "test_name": "Network Share Discovery command prompt"
+  },
+  {
+   "technique": "T1135",
+   "guid": "ab39a04f",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Network Share Discovery",
+   "test_name": "View available share drives"
+  },
+  {
+   "technique": "T1140",
+   "guid": "71abc534",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Deobfuscate/Decode Files or Information",
+   "test_name": "Certutil Rename and Decode"
+  },
+  {
+   "technique": "T1140",
+   "guid": "9f8b1c54",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Deobfuscate/Decode Files or Information",
+   "test_name": "Expand CAB with expand.exe"
+  },
+  {
+   "technique": "T1140",
+   "guid": "dc6fe391",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Deobfuscate/Decode Files or Information",
+   "test_name": "Deobfuscate/Decode Files Or Information"
+  },
+  {
+   "technique": "T1197",
+   "guid": "3c73d728",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "BITS Jobs",
+   "test_name": "Bitsadmin Download (cmd)"
+  },
+  {
+   "technique": "T1197",
+   "guid": "62a06ec5",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "BITS Jobs",
+   "test_name": "Persist, Download, & Execute"
+  },
+  {
+   "technique": "T1197",
+   "guid": "afb5e09e",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "BITS Jobs",
+   "test_name": "Bits download using desktopimgdownldr.exe (cmd)"
+  },
+  {
+   "technique": "T1197",
+   "guid": "f63b8bc4",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "BITS Jobs",
+   "test_name": "Bitsadmin Download (PowerShell)"
+  },
+  {
+   "technique": "T1202",
+   "guid": "0fd14730",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Indirect Command Execution",
+   "test_name": "Indirect Command Execution - Scriptrunner.exe"
+  },
+  {
+   "technique": "T1202",
+   "guid": "8b34a448",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Indirect Command Execution",
+   "test_name": "Indirect Command Execution - forfiles.exe"
+  },
+  {
+   "technique": "T1202",
+   "guid": "cecfea7a",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Indirect Command Execution",
+   "test_name": "Indirect Command Execution - pcalua.exe"
+  },
+  {
+   "technique": "T1202",
+   "guid": "cf3391e0",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Indirect Command Execution",
+   "test_name": "Indirect Command Execution - conhost.exe"
+  },
+  {
+   "technique": "T1204.002",
+   "guid": "3f3120f0",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "User Execution: Malicious File",
+   "test_name": "ClickFix Campaign - Abuse RunMRU to Launch mshta via PowerShell"
+  },
+  {
+   "technique": "T1204.002",
+   "guid": "3f3af983",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "User Execution: Malicious File",
+   "test_name": "OSTap Payload Download"
+  },
+  {
+   "technique": "T1205.002",
+   "guid": "0284704c",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Traffic Signaling: Socket Filters",
+   "test_name": "T1205.002 - Simulate Packet Capture Driver Service Registration"
+  },
+  {
+   "technique": "T1205.002",
+   "guid": "e69a8f7f",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Traffic Signaling: Socket Filters",
+   "test_name": "T1205.002 - Create Raw Socket Binding Persistence Hook Registry"
+  },
+  {
+   "technique": "T1216",
+   "guid": "2a8f2d3c",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Script Proxy Execution",
+   "test_name": "manage-bde.wsf Signed Script Command Execution"
+  },
+  {
+   "technique": "T1216.002",
+   "guid": "275d963d",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Script Proxy Execution: SyncAppvPublishingServer",
+   "test_name": "SyncAppvPublishingServer Signed Script PowerShell Command Execution"
+  },
+  {
+   "technique": "T1217",
+   "guid": "4312cdbc",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Browser Information Discovery",
+   "test_name": "List Mozilla Firefox bookmarks on Windows with command prompt"
+  },
+  {
+   "technique": "T1217",
+   "guid": "727dbcdb",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Browser Information Discovery",
+   "test_name": "List Internet Explorer Bookmarks using the command prompt"
+  },
+  {
+   "technique": "T1217",
+   "guid": "74094120",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Browser Information Discovery",
+   "test_name": "Extract Edge Browsing History"
+  },
+  {
+   "technique": "T1217",
+   "guid": "76f71e2f",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Browser Information Discovery",
+   "test_name": "List Google Chrome / Edge Chromium Bookmarks on Windows with command prompt"
+  },
+  {
+   "technique": "T1217",
+   "guid": "faab755e",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Browser Information Discovery",
+   "test_name": "List Google Chrome / Opera Bookmarks on Windows with powershell"
+  },
+  {
+   "technique": "T1218",
+   "guid": "5bcda9cd",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Binary Proxy Execution",
+   "test_name": "Lolbin Gpscript logon option"
+  },
+  {
+   "technique": "T1218",
+   "guid": "7816c252",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Binary Proxy Execution",
+   "test_name": "System Binary Proxy Execution - Wlrmdr Lolbin"
+  },
+  {
+   "technique": "T1218",
+   "guid": "ab76e34f",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Binary Proxy Execution",
+   "test_name": "Provlaunch.exe Executes Arbitrary Command via Registry Key"
+  },
+  {
+   "technique": "T1218",
+   "guid": "f8da74bb",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Binary Proxy Execution",
+   "test_name": "Lolbin Gpscript startup option"
+  },
+  {
+   "technique": "T1218.011",
+   "guid": "32d1cf1b",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Binary Proxy Execution: Rundll32",
+   "test_name": "Rundll32 execute VBscript command using Ordinal number"
+  },
+  {
+   "technique": "T1218.011",
+   "guid": "8a7f56ee",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Binary Proxy Execution: Rundll32",
+   "test_name": "Rundll32 execute payload by calling RouteTheCall"
+  },
+  {
+   "technique": "T1218.011",
+   "guid": "9f5d081a",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Binary Proxy Execution: Rundll32",
+   "test_name": "Launches an executable using Rundll32 and pcwutl.dll"
+  },
+  {
+   "technique": "T1218.011",
+   "guid": "f3ad3c5b",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Binary Proxy Execution: Rundll32",
+   "test_name": "Rundll32 execute command via FileProtocolHandler"
+  },
+  {
+   "technique": "T1222",
+   "guid": "6c4ac96f",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "File and Directory Permissions Modification",
+   "test_name": "Enable Local and Remote Symbolic Links via fsutil"
+  },
+  {
+   "technique": "T1222",
+   "guid": "6cd715aa",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "File and Directory Permissions Modification",
+   "test_name": "Enable Local and Remote Symbolic Links via Powershell"
+  },
+  {
+   "technique": "T1222",
+   "guid": "78bef0d4",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "File and Directory Permissions Modification",
+   "test_name": "Enable Local and Remote Symbolic Links via reg.exe"
+  },
+  {
+   "technique": "T1222.001",
+   "guid": "32b979da",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "File and Directory Permissions Modification: Windows Permissions",
+   "test_name": "attrib - hide file"
+  },
+  {
+   "technique": "T1222.001",
+   "guid": "98d34bb4",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "File and Directory Permissions Modification: Windows Permissions",
+   "test_name": "Take ownership using takeown utility"
+  },
+  {
+   "technique": "T1222.001",
+   "guid": "a8206bcc",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "File and Directory Permissions Modification: Windows Permissions",
+   "test_name": "cacls - Grant permission to specified user or group recursively"
+  },
+  {
+   "technique": "T1222.001",
+   "guid": "bec1e95c",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "File and Directory Permissions Modification: Windows Permissions",
+   "test_name": "attrib - Remove read-only attribute"
+  },
+  {
+   "technique": "T1496",
+   "guid": "44315fb0",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Resource Hijacking",
+   "test_name": "Windows - Simulate CPU Load with PowerShell"
+  },
+  {
+   "technique": "T1497.001",
+   "guid": "4a41089a",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Virtualization/Sandbox Evasion: System Checks",
+   "test_name": "Detect Virtualization Environment via WMI Manufacturer/Model Listing (Windows)"
+  },
+  {
+   "technique": "T1497.001",
+   "guid": "502a7dc4",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Virtualization/Sandbox Evasion: System Checks",
+   "test_name": "Detect Virtualization Environment (Windows)"
+  },
+  {
+   "technique": "T1497.001",
+   "guid": "eed8b13f",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Virtualization/Sandbox Evasion: System Checks",
+   "test_name": "Turla Mosquito Sandbox Evasion via SetupDiGetClassDevs Check"
+  },
+  {
+   "technique": "T1547",
+   "guid": "5cb0b071",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution",
+   "test_name": "Driver Installation Using pnputil.exe"
+  },
+  {
+   "technique": "T1547",
+   "guid": "cb01b3da",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution",
+   "test_name": "Add a driver"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "1d958c61",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "HKLM - Modify default System Shell - Winlogon Shell KEY Value "
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "554cbd88",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "Reg Key RunOnce"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "6e1666d5",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "Creating Boot Verification Program Key for application execution during successful boot"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "8834b65a",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "Change Startup Folder - HKCU Modify User Shell Folders Startup Value"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "9dc7767b",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "SystemBC Malware-as-a-Service Registry"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "a70faea1",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "HKCU - Policy Settings Explorer Run Key"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "acfef903",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "Change Startup Folder - HKLM Modify User Shell Folders Common Startup Value"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "b051b3c0",
+   "phase": 2,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "Allowing custom application to execute during new RDP logon session"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "b5c9a9bc",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "HKLM - Policy Settings Explorer Run Key"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "bda6a3d6",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "Add persistance via Recycle bin"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "de47f4a0",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "Add persistence via Windows Context Menu"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "e55be3fd",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "Reg Key Run"
+  },
+  {
+   "technique": "T1547.001",
+   "guid": "f7fab6cc",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+   "test_name": "HKLM - Append Command to Winlogon Userinit KEY Value"
+  },
+  {
+   "technique": "T1547.004",
+   "guid": "95a3c42f",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Winlogon Helper DLL",
+   "test_name": "Winlogon HKLM Shell Key Persistence - PowerShell"
+  },
+  {
+   "technique": "T1547.004",
+   "guid": "bf9f9d65",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Winlogon Helper DLL",
+   "test_name": "Winlogon Shell Key Persistence - PowerShell"
+  },
+  {
+   "technique": "T1547.004",
+   "guid": "d40da266",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution: Winlogon Helper DLL",
+   "test_name": "Winlogon Notify Key Logon Persistence - PowerShell"
+  },
+  {
+   "technique": "T1547.004",
+   "guid": "f9b8daff",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Winlogon Helper DLL",
+   "test_name": "Winlogon HKLM Userinit Key Persistence - PowerShell"
+  },
+  {
+   "technique": "T1547.004",
+   "guid": "fb32c935",
+   "phase": 1,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Winlogon Helper DLL",
+   "test_name": "Winlogon Userinit Key Persistence - PowerShell"
+  },
+  {
+   "technique": "T1547.005",
+   "guid": "afdfd7e3",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Security Support Provider",
+   "test_name": "Modify HKLM:\\System\\CurrentControlSet\\Control\\Lsa Security Support Provider configuration in registry"
+  },
+  {
+   "technique": "T1547.005",
+   "guid": "de3f8e74",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Security Support Provider",
+   "test_name": "Modify HKLM:\\System\\CurrentControlSet\\Control\\Lsa\\OSConfig Security Support Provider configuration in registry"
+  },
+  {
+   "technique": "T1547.006",
+   "guid": "e5cb5564",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Kernel Modules and Extensions",
+   "test_name": "Snake Malware Kernel Driver Comadmin"
+  },
+  {
+   "technique": "T1547.009",
+   "guid": "ce4fc678",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Boot or Logon Autostart Execution: Shortcut Modification",
+   "test_name": "Shortcut Modification"
+  },
+  {
+   "technique": "T1547.014",
+   "guid": "04d55cef",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Active Setup",
+   "test_name": "HKLM - re-execute 'Internet Explorer Core Fonts' StubPath payload by decreasing version number"
+  },
+  {
+   "technique": "T1547.014",
+   "guid": "39e417dd",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Active Setup",
+   "test_name": "HKLM - Add malicious StubPath value to existing Active Setup Entry"
+  },
+  {
+   "technique": "T1547.014",
+   "guid": "deff4586",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Boot or Logon Autostart Execution: Active Setup",
+   "test_name": "HKLM - Add atomic_test key to launch executable as part of user setup"
+  },
+  {
+   "technique": "T1552.001",
+   "guid": "0d4f2281",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Unsecured Credentials: Credentials In Files",
+   "test_name": "List Credential Files via PowerShell"
+  },
+  {
+   "technique": "T1552.001",
+   "guid": "b0cdacf6",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Unsecured Credentials: Credentials In Files",
+   "test_name": "List Credential Files via Command Prompt"
+  },
+  {
+   "technique": "T1559",
+   "guid": "17521690",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Inter-Process Communication",
+   "test_name": "Create Named Pipe"
+  },
+  {
+   "technique": "T1559",
+   "guid": "7a8f8ae9",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Inter-Process Communication",
+   "test_name": "Named Pipe Integrity Reduction for Turla's RPC backdoor"
+  },
+  {
+   "technique": "T1566.002",
+   "guid": "bc177ef9",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Phishing: Spearphishing Link",
+   "test_name": "Paste and run technique"
+  },
+  {
+   "technique": "T1567.004",
+   "guid": "f0057c81",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Exfiltration Over Web Service: Exfiltration Over Webhook",
+   "test_name": "Exfiltrate staged data to a Discord webhook (PowerShell)"
+  },
+  {
+   "technique": "T1572",
+   "guid": "ae9ef4b0",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Protocol Tunneling",
+   "test_name": "DNS over HTTPS Large Query Volume"
+  },
+  {
+   "technique": "T1592.001",
+   "guid": "d430bf85",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Gather Victim Host Information: Hardware",
+   "test_name": "Enumerate PlugNPlay Camera"
+  },
+  {
+   "technique": "T1614.001",
+   "guid": "1f23bfe8",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Location Discovery: System Language Discovery",
+   "test_name": "Discover System Language with Powershell"
+  },
+  {
+   "technique": "T1614.001",
+   "guid": "631d4cf1",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Location Discovery: System Language Discovery",
+   "test_name": "Discover System Language by Registry Query"
+  },
+  {
+   "technique": "T1614.001",
+   "guid": "69f625ba",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "System Location Discovery: System Language Discovery",
+   "test_name": "Discover System Language with dism.exe"
+  },
+  {
+   "technique": "T1614.001",
+   "guid": "d91473ca",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "System Location Discovery: System Language Discovery",
+   "test_name": "Discover System Language with chcp"
+  },
+  {
+   "technique": "T1649",
+   "guid": "eb121494",
+   "phase": 1,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Steal or Forge Authentication Certificates",
+   "test_name": "Staging Local Certificates via Export-Certificate"
+  },
+  {
+   "technique": "T1653",
+   "guid": "84933ae7",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": true,
+   "technique_name": "Power Settings",
+   "test_name": "Extend console lock display timeout via powercfg"
+  },
+  {
+   "technique": "T1653",
+   "guid": "ac77e6c0",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Power Settings",
+   "test_name": "Disable Fast Startup via direct registry modification (HiberbootEnabled)"
+  },
+  {
+   "technique": "T1653",
+   "guid": "d4acd6ff",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Power Settings",
+   "test_name": "Prevent system sleep via powercfg (AC/DC standby timeout)"
+  },
+  {
+   "technique": "T1653",
+   "guid": "eb271877",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Power Settings",
+   "test_name": "Disable hibernation via powercfg"
+  },
+  {
+   "technique": "T1685",
+   "guid": "0486ee68",
+   "phase": 1,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Disable or Modify Tools",
+   "test_name": "Impair Windows Defender via Disk Space Exhaustion using fsutil"
+  },
+  {
+   "technique": "T1685",
+   "guid": "5e27f36d",
+   "phase": 2,
+   "result": "declared",
+   "without_citing_rules": false,
+   "technique_name": "Disable or Modify Tools",
+   "test_name": "Lockbit Black - Use Registry Editor to turn on automatic logon -Powershell"
+  },
+  {
+   "technique": "T1685",
+   "guid": "9719d0e1",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Disable or Modify Tools",
+   "test_name": "LockBit Black - Use Registry Editor to turn on automatic logon -cmd"
+  },
+  {
+   "technique": "T1685",
+   "guid": "d6d22332",
+   "phase": 2,
+   "result": "recorded",
+   "without_citing_rules": false,
+   "technique_name": "Disable or Modify Tools",
+   "test_name": "LockBit Black - Disable Privacy Settings Experience Using Registry -cmd"
+  },
+  {
+   "technique": "T1685",
+   "guid": "d8c57eaa",
+   "phase": 2,
+   "result": "missed",
+   "without_citing_rules": false,
+   "technique_name": "Disable or Modify Tools",
+   "test_name": "LockBit Black - Disable Privacy Settings Experience Using Registry -Powershell"
+  }
+ ]
+}

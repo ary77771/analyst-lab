@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* Design tokens: see dashboard/DESIGN-SYSTEM.md. One dark theme, picked for the demo. */
+@theme {
+  /* contrast raised for projectors (design review 2026-11-20): every text token reaches 4.5:1 on
+     `raised`, and cards stand off the canvas */
+  --color-canvas: #0d1117;
+  --color-surface: #1a2230;
+  --color-raised: #232d3d;
+  --color-border: #3a475c;
+  --color-border-strong: #56657d;
+  --color-fg: #eef2f7;
+  --color-fg-muted: #b4bdcb;
+  --color-fg-subtle: #8f9bae;
+
+  --color-accent: #4c9eff;
+  --color-accent-fg: #06121f;
+
+  --color-fact: #3fcf8e;
+  --color-hypo: #e8b339;
+  --color-gap: #a78bfa;
+  --color-alert: #f2555a;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --radius-control: 6px;
+  --radius-card: 10px;
+}
+
+html, body, #root { height: 100%; }
+body {
+  background: var(--color-canvas);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+h1, h2, h3 { letter-spacing: -0.01em; line-height: 1.25; }
+.num { font-variant-numeric: tabular-nums; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 240ms ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* hatched tile: "caught from the typed command" on the Coverage screen */
+.hatch { background: repeating-linear-gradient(45deg, var(--color-fg-muted) 0 2px, transparent 2px 5px); }
+
+/* the ink's line sample: colour AND style, so a washed-out projector still shows it */
+.ink-line { display: inline-block; width: 22px; height: 0; border-top-width: 2.5px; vertical-align: middle; }
+.ink-line.solid { border-top-style: solid; }
+.ink-line.dashed { border-top-style: dashed; }
+.ink-line.dotted { border-top-style: dotted; }

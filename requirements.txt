@@ -1,0 +1,22 @@
+# Direct Python dependencies for the agent and engine (Python 3.14).
+# Exact versions of everything, including sub-dependencies, are in requirements-lock.txt.
+# Rebuild the environment with:  python -m pip install -r requirements-lock.txt
+
+pywin32==312          # Windows event log API (agent)
+psutil==7.2.2         # listening-port snapshots, resource usage (agent)
+fastapi==0.143.2      # engine HTTP API
+uvicorn==0.54.0       # runs the FastAPI app
+pyyaml==6.0.3         # detection rules
+httpx==0.28.1         # agent -> engine HTTP client
+pandas==3.0.6         # experiments
+matplotlib==3.11.2    # charts for the report
+pytest==9.1.1         # tests
+networkx==3.7         # evidence graph (stage 9)
+pyinstaller==6.22.3   # bundles the friend package (no Python needed on friends' laptops)
+pysigma==2.0.1        # Sigma rules -> queries (week 3 detection)
+pysigma-backend-sqlite==2.1.1  # Sigma -> SQLite, incl. correlation rules
+jinja2==3.1.6         # investigation reports (engine/report.py)
+rapidfuzz==3.14.6     # edit distance for the look-alike name rule (version 2, MIT)
+stix2==3.0.2  # night Labs: case export as STIX 2.1 (engine/labs, imported lazily)
+pefile==2024.8.26  # night Labs: file inspector
+yara-x==1.24.0  # night Labs: YARA scan (imported lazily)

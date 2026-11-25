@@ -1,0 +1,77 @@
+{
+ "source": "official blind round-4 runs on the lived-in VM, replayed through frozen v4 (tools/demo_replay.py)",
+ "floor": "medium",
+ "sides": [
+  {
+   "scenario": "B19",
+   "run_id": "20261120-013940-301b",
+   "kind": "innocent",
+   "title": "Document backup tool with rotation (innocent)",
+   "raised": [],
+   "below_floor": [
+    {
+     "title": "A program created files and deleted them again",
+     "level": "low",
+     "rule": "analystlab.create_send_wipe"
+    }
+   ]
+  },
+  {
+   "scenario": "B18",
+   "run_id": "20261120-011832-4287",
+   "kind": "attack",
+   "title": "Sync agent sweeps saved secrets and sends them in slow slices",
+   "raised": [
+    {
+     "title": "Potential Reconnaissance For Cached Credentials Via Cmdkey.EXE",
+     "level": "high",
+     "rule": "07f8bdc2-c9b3-472a-9817-5a670b872f53",
+     "steps": [
+      "b18_syncagent.exe started cmdkey.exe"
+     ],
+     "counts": {
+      "facts": 18,
+      "hypotheses": 0,
+      "gaps": 1,
+      "before": 1,
+      "in_chain": 1,
+      "steps": 1,
+      "nodes": 13
+     }
+    },
+    {
+     "title": "A program created files and deleted them again, after connecting out",
+     "level": "medium",
+     "rule": "analystlab.create_send_wipe",
+     "steps": [
+      "b18_syncagent.exe created s1.dat",
+      "b18_syncagent.exe created s2.dat",
+      "b18_syncagent.exe created s3.dat",
+      "b18_syncagent.exe created pkg.zip",
+      "b18_syncagent.exe deleted s1.dat",
+      "b18_syncagent.exe deleted s2.dat",
+      "b18_syncagent.exe deleted s3.dat",
+      "b18_syncagent.exe connected to 10.0.2.2:18765",
+      "b18_syncagent.exe deleted pkg.zip"
+     ],
+     "counts": {
+      "facts": 18,
+      "hypotheses": 0,
+      "gaps": 1,
+      "before": 1,
+      "in_chain": 11,
+      "steps": 9,
+      "nodes": 13
+     }
+    }
+   ],
+   "below_floor": [
+    {
+     "title": "Local Accounts Discovery",
+     "level": "low",
+     "rule": "502b42de-4306-40b4-9596-6f590c81f073"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+# Scenario S6: persistence (version 2, package C). The TRUE STORY, written before the scenario code.
+#
+# Harmless by design: a program copies itself into its own lab folder (as s6_startup.exe: a copy
+# under the SAME name would make check_scenario expect the running program to come from it;
+# renamed 2026-11-07 before any run) and makes that copy start
+# at the next logon, twice over, the two most common ways (MITRE ATT&CK T1547.001):
+#   - a value under the user's Run key (HKCU\Software\Microsoft\Windows\CurrentVersion\Run),
+#   - a small .cmd file in the user's Startup folder (it only prints a line).
+# Nothing ever starts it: the VM is restored to its clean snapshot after the run, so there is no
+# next logon. No network, no other program is started. Started as the normal user (no admin).
+# Sysmon config v0.3 records registry changes in autostart places (event 13 = value set); v0.2
+# already records files created in Startup folders and under \AnalystLab\.
+# Patterns only, never exact times (DESIGN 7).
+
+scenario: S6
+title: Persistence (Run key + Startup folder)
+runs_in: vm
+needs_calm_vm: false
+
+programs:
+  persist: s6_persist.exe                 # started by the scenario runner (run_scenario.ps1)
+
+file_groups:
+  copy: {path_contains: '\AnalystLab\scenarios\s6\', suffix: 's6_startup.exe', count: 1}
+  startup_script: {path_contains: '\Start Menu\Programs\Startup\', suffix: 'analystlab_s6.cmd', count: 1}
+
+steps:
+  - id: 1
+    what: s6_persist.exe starts
+    evidence: {sysmon_event: 1, Image_endswith: s6_persist.exe}
+  - id: 2
+    what: it creates its folder C:\AnalystLab\scenarios\s6
+    evidence: {sysmon_event: 11, Image_endswith: s6_persist.exe, TargetFilename_suffix: '\AnalystLab\scenarios\s6'}
+  - id: 3
+    what: it copies itself into that folder
+    evidence: {sysmon_event: 11, Image_endswith: s6_persist.exe, TargetFilename_suffix: '\AnalystLab\scenarios\s6\s6_startup.exe'}
+  - id: 4
+    what: the agent fingerprints the copy (an executable under \AnalystLab\)
+    evidence: {agent_type: FILE_HASH, TargetFilename_suffix: '\AnalystLab\scenarios\s6\s6_startup.exe', hash_status: ok}
+  - id: 5
+    what: it adds a value to the user's Run key that starts the copy (with -startup)
+    evidence: {sysmon_event: 13, Image_endswith: s6_persist.exe, EventType: SetValue,
+               TargetObject_contains: '\Software\Microsoft\Windows\CurrentVersion\Run\',
+               TargetObject_suffix: '\AnalystLab S6', Details_contains: '\AnalystLab\scenarios\s6\s6_startup.exe'}
+  - id: 6
+    what: it writes analystlab_s6.cmd into the user's Startup folder
+    evidence: {sysmon_event: 11, Image_endswith: s6_persist.exe,
+               TargetFilename_contains: '\Start Menu\Programs\Startup\', TargetFilename_suffix: 'analystlab_s6.cmd'}
+  - id: 7
+    what: s6_persist.exe ends
+    evidence: {sysmon_event: 5, Image_endswith: s6_persist.exe}
+
+not_expected:
+  - {sysmon_event: 1, why: "it starts no other program (the copy never runs: no logon follows)"}
+  - {sysmon_event: 3, why: "no network"}
+  - {sysmon_event: 22, why: "no names are looked up"}
+  - {sysmon_event: 11, why: "no other file is created"}
+  - {sysmon_event: 26, why: "nothing is deleted"}
+  - {sysmon_event: 12, why: "it creates or deletes no registry key (the Run key exists already)"}
+  - {sysmon_event: 13, why: "it sets no other autostart value"}
+
+notes:
+  - The Run value's name is "AnalystLab S6"; its data is the copy's full path in quotes plus
+    -startup. In -startup mode the program only prints a line and exits (never reached here).
+  - The Startup file is a .cmd that only prints a line (@echo). Windows would run it at logon.
+  - HKCU appears in Sysmon as HKU\<the user's SID>\...; patterns avoid the SID.
+
+# How the evidence graph should grade each relationship (DESIGN 4.7).
+# persist_autostart = the autostart entry (registry value) persist set in this run (new in v2).
+expected_graph:
+  facts:
+    - {from: persist, edge: created, to: copy, count: 1, says: persist created its copy}
+    - {from: persist, edge: created, to: startup_script, count: 1, says: persist wrote the Startup-folder script}
+    - {from: persist, edge: set_autostart, to: persist_autostart, count: 1, says: persist set a Run-key value}
+    - {from: persist_autostart, edge: will_start, to: copy, count: 1,
+       says: the Run-key value names the copy (one event's data says so; it never ran here)}
+  gaps: []
+
+alert_expected:
+  rule: autostart registry value set; file written to a Startup folder (SigmaHQ community rules)
+  check:
+    - {rule_id: 20f0ee37-5942-4e45-b7d5-c5b5db9df5cd, level: medium, involves: persist}   # CurrentVersion Autorun Keys Modification
+    - {rule_id: 2aa0a6b4-a865-495b-ab51-c28249537b75, level: medium, involves: persist}   # Startup Folder File Write
+
+checks_assumptions: []

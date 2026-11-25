@@ -1,0 +1,110 @@
+{
+ "dataset": {
+  "name": "OTRF Security-Datasets",
+  "commit": "d9d40ef123d2c87d5d3df28c96bcab4f0faccc87",
+  "path": "datasets/atomic/windows/lateral_movement/host/",
+  "url": "https://github.com/OTRF/Security-Datasets"
+ },
+ "source_result": "docs/results/linker/test.json",
+ "source_result_sha1_on_disk": "3fb8706445c23eaf347b70c827cabae612d597fc",
+ "source_result_sha1_note": "git-blob-style SHA-1 of test.json's bytes as checked out here (line endings may differ from the copy stored in git)",
+ "pooled": {
+  "files": 27,
+  "two_plus_machines": 26,
+  "one_machine": 1,
+  "errors": [],
+  "cross_machine_outgoing": 208,
+  "facts": 197,
+  "files_with_facts": 23,
+  "ambiguous": 0,
+  "time_disagrees": 4,
+  "local": 0,
+  "one_sided_outgoing": 7,
+  "one_sided_incoming": 3,
+  "not_drawable": 0,
+  "control1_problems": 0,
+  "control1_facts_checked": 197,
+  "control1_valid": true,
+  "control2_facts": 0,
+  "hypotheses": {
+   "not assessable": 50,
+   "low": 33,
+   "worker: not assessable": 4,
+   "worker: low": 1
+  },
+  "gaps": {},
+  "worker_starts": {
+   "wsmprovhost.exe": 5
+  },
+  "by_tolerance": {
+   "1/5": 197,
+   "2/10": 197,
+   "5/20": 197
+  },
+  "clock_differences_s": [
+   -10.261,
+   -9.246,
+   -9.035,
+   -3.385,
+   -3.204,
+   -3.054,
+   -1.212,
+   -1.089,
+   -1.015,
+   -0.597,
+   -0.515,
+   -0.314,
+   -0.098,
+   -0.013,
+   -0.002,
+   0.014,
+   0.057,
+   0.065,
+   0.205,
+   0.205,
+   0.275,
+   0.44,
+   0.469,
+   0.472,
+   0.499,
+   0.93,
+   0.933,
+   1.066
+  ],
+  "clock_unmeasured_pairs": 15,
+  "wsman_files": {
+   "covenant_com_wsman_automation.zip": {
+    "wsmprovhost_starts": 0,
+    "linked_bands": []
+   },
+   "covenant_psremoting_command.zip": {
+    "wsmprovhost_starts": 1,
+    "linked_bands": [
+     "not assessable"
+    ]
+   },
+   "covenant_psremoting_grunt.zip": {
+    "wsmprovhost_starts": 1,
+    "linked_bands": [
+     "low"
+    ]
+   }
+  }
+ },
+ "sentences": [
+  "208 connections went from one recorded machine to another; 197 of them were recorded on both ends, so they are facts. 0 were ambiguous.",
+  "The other 11 are not drawn as facts: for 4 the two machines' times disagreed by more than the allowed tolerance, and 7 were recorded only by the machine that started them. 3 more were recorded only by the receiving machine.",
+  "Two safety checks found no wrong facts: an independent re-check of all 197 facts found 0 problems, and mixing machines from two different captures (times lined up) gave 0 false facts.",
+  "The number of facts did not depend on the time tolerance: 197 at 1/5 s, 197 at 2/10 s, 197 at 5/20 s (measured / unmeasured clock).",
+  "The linker also made 83 guesses that a connection made the other machine start a program: 33 low, 50 not assessable.",
+  "5 of the guesses are about remote-work programs (5x wsmprovhost.exe started in all): 1 low, 4 not assessable. No such start was left without a connection to link it to (no gaps).",
+  "Every guess about what a connection made the other machine do is 'not assessable' or 'low': these public captures are short (51 to 343.5 seconds, median 120.5), so there is little normal behaviour of the second machine to compare with. 'Not assessable' means the second machine was active for less than 120 seconds (10 x the 12-second window)."
+ ],
+ "capture_lengths_s": {
+  "files": 26,
+  "min": 51.0,
+  "median": 120.5,
+  "max": 343.5,
+  "note": "measured by tools/linker_export.py (first to last Sysmon event of each file with 2+ machines), not taken from test.json"
+ }
+}

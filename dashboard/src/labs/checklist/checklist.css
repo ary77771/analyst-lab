@@ -1,0 +1,53 @@
+/* Investigation checklist (prefix cl-), design A tokens. Ink colours and line styles as everywhere. */
+.cl-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(34rem, 1fr)); gap: 0.75rem; align-items: start; }
+.cl-q { padding: 0.875rem 1rem; display: grid; gap: 0.5rem; align-content: start; border-left: 3px solid var(--line-2); }
+.cl-q[data-status="fact"] { border-left: 3px solid var(--ink-fact); }
+.cl-q[data-status="hypothesis"] { border-left: 3px dashed var(--ink-hypo); }
+.cl-q[data-status="gap"] { border-left: 3px dotted var(--ink-gap); }
+.cl-head { display: flex; align-items: baseline; gap: 0.625rem; }
+.cl-head h3 { flex: 1; font-size: 1.0625rem; font-weight: 600; color: var(--text); }
+.cl-n { color: var(--dim); font-size: 0.8125rem; }
+.cl-status { font-size: var(--lab-small); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+.cl-status[data-status="fact"] { color: var(--ink-fact); }
+.cl-status[data-status="hypothesis"] { color: var(--ink-hypo); }
+.cl-status[data-status="gap"] { color: var(--ink-gap); }
+.cl-lines { display: grid; gap: 0.25rem; }
+.cl-lines li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.5rem; font-size: 0.875rem; color: var(--text); line-height: 1.45; }
+.cl-lines li[data-ink="none"] { grid-template-columns: 1fr; color: var(--muted); }
+.cl-lines li b { font-size: var(--lab-small); letter-spacing: 0.06em; text-transform: uppercase; padding-top: 0.1875rem; }
+.cl-note { font-size: 0.8125rem; line-height: 1.5; color: var(--muted); }
+.cl-witness { font-size: 0.8125rem; line-height: 1.5; color: var(--text); }
+.cl-witness em { font-style: normal; color: var(--ink-gap); }
+.cl-links { gap: 0.375rem; }
+.cl-programs { display: grid; gap: 0.5rem; }
+.cl-programs > li { display: grid; gap: 0.25rem; padding: 0.5rem 0.625rem; border-radius: 0.375rem; background: var(--panel-2); border: 1px solid var(--line); }
+.cl-cmd { font-size: 0.8125rem; color: var(--text); line-height: 1.5; }
+.cl-cmd code { font-family: var(--font-mono); font-size: 0.75rem; word-break: break-all; margin-left: 0.375rem; }
+.cl-recording { font-size: 0.9375rem; color: var(--text); }
+.cl-lines li[data-ink]:not(:has(b)) { grid-template-columns: 1fr; }
+
+/* sections of the landing page (merged from "I have an alert") */
+.cl-section { display: grid; gap: 0.5rem; }
+.cl-section-title { font-size: var(--lab-title); font-weight: 600; color: var(--text); margin-top: 0.5rem; }
+.cl-q[data-status="mixed"] { border-left: 3px dashed var(--ink-fact); }
+.cl-q[data-status="unproven"] { border-left: 3px dashed var(--ink-hypo); }
+.cl-status[data-status="mixed"] { color: var(--ink-fact); }
+.cl-status[data-status="unproven"] { color: var(--ink-hypo); }
+
+/* critique-3: "What ran?" first screen: short command line, the full ones folded; the lab's own launcher dimmed */
+.cl-harness { opacity: 0.7; font-style: italic; }
+.cl-full > summary { cursor: pointer; margin-top: 0.25rem; }
+.cl-full[open] > summary { margin-bottom: 0.25rem; }
+
+/* e2e review: a question's note stays small and quiet under its answer (a panel rule made it bright) */
+.cl-q p.cl-note { font-size: 0.8125rem; color: var(--muted); }
+
+/* the incident in one paragraph: each part hovers its source question; the status shows only as a quiet underline */
+.cl-summary { margin-top: 0.5rem; padding: 0.75rem 0.875rem; border: 1px solid var(--line-2); border-radius: 0.5rem; background: var(--panel-2); }
+.cl-summary-title { display: block; font-size: var(--lab-small); font-weight: 600; color: var(--muted); margin-bottom: 0.25rem; }
+.cl-summary p { font-size: 1rem; line-height: 1.6; color: var(--text); }
+.cl-sum-part { cursor: help; text-decoration: underline dotted; text-decoration-color: var(--line-2); text-underline-offset: 0.2em; }
+.cl-sum-part:hover { text-decoration-color: var(--accent); }
+.cl-sum-part[data-status="hypothesis"] { text-decoration-color: color-mix(in srgb, var(--ink-hypo) 70%, transparent); }
+.cl-sum-part[data-status="none"] { color: var(--muted); }
+

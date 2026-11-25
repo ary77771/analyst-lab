@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analyst Lab: friend guide</title>
+<!-- Built into "START HERE.html" by tools\build_friend_package.ps1 (the IMG placeholders become
+     embedded pictures). Self-contained on purpose: no internet needed to read it. -->
+<style>
+/* Layout: one friendly reading column; "the deal" first, then numbered steps with pictures */
+:root {
+  --bg: #f3f6fa; --card: #ffffff; --ink: #1a2230; --muted: #5b6678; --line: #d8dee8;
+  --accent: #1f6feb; --accent-soft: #e4eeff;
+  --ok: #18794e; --ok-soft: #dff3e8; --warn: #9a5800; --warn-soft: #fdf0d8; --no: #b42318; --no-soft: #fde4e1;
+  --dlg-blue: #1f5fa8; --dlg-ink: #ffffff;
+  --font: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --mono: Consolas, "Cascadia Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root {
+  --bg: #10151c; --card: #18202b; --ink: #e7ecf3; --muted: #9ca8b9; --line: #2b3646;
+  --accent: #6aa3ff; --accent-soft: #1b2a44;
+  --ok: #6fd3a0; --ok-soft: #163226; --warn: #f2b660; --warn-soft: #3a2b12; --no: #ff8f84; --no-soft: #3d1a17;
+  color-scheme: dark; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--font); }
+.page { max-width: 46rem; margin: 0 auto; padding: 2.2rem 16px 4rem; display: grid; gap: 1.6rem; }
+h1, h2, h3 { line-height: 1.2; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 1.4rem; font-weight: 750; }
+h3 { font-size: 1.08rem; font-weight: 700; }
+p { margin: 0; }
+.lede { font-size: 1.1rem; color: var(--muted); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.25rem; display: grid; gap: .7rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip { font-size: .9rem; font-weight: 600; padding: .3rem .7rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.deal { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .8rem; }
+.deal > div { border-radius: 10px; padding: .9rem 1rem; display: grid; gap: .35rem; align-content: start; }
+.you { background: var(--accent-soft); } .not { background: var(--ok-soft); }
+ul.tight { margin: 0; padding-left: 1.2rem; display: grid; gap: .3rem; }
+.promise { display: grid; gap: .55rem; }
+.promise div { display: grid; grid-template-columns: 2rem 1fr; gap: .6rem; align-items: start; }
+.promise b.icon { width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: var(--ok-soft); color: var(--ok); font-size: 1rem; }
+
+section { display: grid; gap: .9rem; }
+.steps { display: grid; gap: 1rem; counter-reset: s; list-style: none; margin: 0; padding: 0; }
+.steps > li { counter-increment: s; display: grid; grid-template-columns: 2.4rem 1fr; gap: .8rem; }
+.steps > li::before { content: counter(s); width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: #fff; font-weight: 800; }
+.steps > li > div { display: grid; gap: .5rem; min-width: 0; }
+.hint { font-size: .93rem; color: var(--muted); }
+.box-warn { background: var(--warn-soft); color: var(--ink); border-radius: 10px; padding: .75rem 1rem; font-size: .95rem; }
+.box-warn b { color: var(--warn); }
+kbd, .btn { font: 600 .9rem var(--font); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; padding: .05rem .45rem; background: var(--card); white-space: nowrap; }
+
+/* drawings of Windows' own prompts */
+.dlg { border-radius: 8px; overflow: hidden; max-width: 26rem; box-shadow: 0 6px 20px rgba(0,0,0,.18); font-size: .92rem; }
+.dlg.smart { background: var(--dlg-blue); color: var(--dlg-ink); padding: 1rem 1.1rem; display: grid; gap: .55rem; }
+.dlg.smart .t { font-size: 1.15rem; font-weight: 700; }
+.dlg.smart .link { text-decoration: underline; font-weight: 600; outline: 3px solid #ffd54a; outline-offset: 2px; border-radius: 3px; width: fit-content; }
+.dlg.smart .row { display: flex; justify-content: flex-end; gap: .5rem; }
+.dlg .b { border: 1px solid rgba(255,255,255,.7); padding: .25rem .9rem; border-radius: 4px; }
+.dlg .b.hot { outline: 3px solid #ffd54a; outline-offset: 2px; font-weight: 700; }
+.dlg.uac { background: #fff; color: #1a1a1a; border: 1px solid #c8c8c8; }
+.dlg.uac .top { background: #f2f2f2; padding: .7rem 1rem; font-weight: 600; }
+.dlg.uac .mid { padding: .8rem 1rem; display: grid; gap: .3rem; }
+.dlg.uac .row { display: flex; gap: .5rem; padding: 0 1rem 1rem; }
+.dlg.uac .b { border-color: #9a9a9a; flex: 1; text-align: center; }
+.dlg.uac .b.hot { background: #0067c0; color: #fff; border-color: #0067c0; }
+
+figure { margin: 0; display: grid; gap: .4rem; }
+.shot { position: relative; width: calc(100% - 1.2rem); max-width: 33rem; margin-left: 1.2rem; }
+.shot img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.pin { position: absolute; width: 1.7rem; height: 1.7rem; margin: -.85rem 0 0 -.85rem; border-radius: 50%; background: #e5484d; color: #fff;
+  font: 800 .9rem/1.7rem var(--font); text-align: center; box-shadow: 0 0 0 3px #fff; }
+figcaption { font-size: .9rem; color: var(--muted); }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+.legend li { display: grid; grid-template-columns: 1.7rem 1fr; gap: .6rem; align-items: start; }
+.legend .n { width: 1.7rem; height: 1.7rem; border-radius: 50%; background: #e5484d; color: #fff; font-weight: 800; font-size: .9rem; display: grid; place-items: center; }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .8rem; }
+.two > div { border-radius: 10px; padding: .9rem 1rem; display: grid; gap: .4rem; align-content: start; }
+.yes { background: var(--ok-soft); } .nope { background: var(--no-soft); }
+.yes h3 { color: var(--ok); } .nope h3 { color: var(--no); }
+
+details { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: .75rem 1rem; }
+details + details { margin-top: .5rem; }
+summary { cursor: pointer; font-weight: 650; }
+details p, details ul { margin-top: .5rem; }
+code { font-family: var(--mono); font-size: .88em; background: var(--accent-soft); padding: 0 .3rem; border-radius: 4px; word-break: break-all; }
+.thanks { text-align: center; font-size: 1.15rem; font-weight: 650; padding: 1rem; }
+
+/* week timeline: a real sequence, so the order is the information */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .5rem; }
+.timeline li { border-top: 4px solid var(--accent); background: var(--bg); border-radius: 8px; padding: .55rem .6rem; display: grid; gap: .15rem; align-content: start; font-size: .9rem; min-width: 0; }
+.timeline .when { font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.timeline b { font-size: 1rem; }
+.timeline li.quiet { border-top-color: var(--line); }
+.timeline li.danger { border-top-color: var(--no); }
+.timeline li.danger b { color: var(--no); }
+@media (max-width: 40rem) { .timeline { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 5.5rem 1fr; border-top: 0; border-left: 4px solid var(--accent); }
+  .timeline li.quiet { border-left-color: var(--line); } .timeline li.danger { border-left-color: var(--no); }
+  .timeline li span:last-child { grid-column: 2; } }
+
+/* the uninstall warning: the one place on the page that is loud */
+.stop { background: var(--no-soft); border: 2px solid var(--no); border-radius: 12px; padding: 1.1rem 1.25rem; display: grid; gap: .8rem; }
+.stop-head { display: flex; gap: .7rem; align-items: center; }
+.stop-icon { width: 2.2rem; height: 2.2rem; flex: none; border-radius: 50%; background: var(--no); color: #fff; font-weight: 900; font-size: 1.3rem; display: grid; place-items: center; }
+.stop h2 { color: var(--no); }
+.stop-big { font-size: 1.12rem; }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+.checklist li { display: grid; grid-template-columns: 1.6rem 1fr; gap: .4rem; align-items: start; background: var(--card); border-radius: 8px; padding: .5rem .7rem; }
+.tick { font-size: 1.2rem; line-height: 1.2; color: var(--no); }
+.stop-note { background: var(--card); border-radius: 8px; padding: .7rem .9rem; font-size: .95rem; }
+@media (max-width: 30rem) { body { font-size: 16px; } }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header style="display:grid;gap:.8rem">
+    <h1>Help Yousif's project, without lifting a finger (almost)</h1>
+    <p class="lede">A 5-minute install, then you just use your laptop as usual for about a week. Here's everything, in plain words.</p>
+    <div class="chips"><span class="chip">⏱ 5 min to install</span><span class="chip">🗓 about 7 days of normal use</span><span class="chip">📨 1 min after day 1, 2 min at the end</span></div>
+  </header>
+
+  <section class="card" aria-label="Your week at a glance">
+    <h2>Your week at a glance</h2>
+    <ol class="timeline">
+      <li><span class="when">Day 0</span><b>Install</b><span>5 minutes, then forget about it</span></li>
+      <li><span class="when">Day 1</span><b>Quick check</b><span>export &amp; send once, so Yousif can see it works</span></li>
+      <li class="quiet"><span class="when">Days 2–7</span><b>Nothing</b><span>just use your laptop as usual</span></li>
+      <li><span class="when">Day 7</span><b>Final export</b><span>export &amp; send the final numbers</span></li>
+      <li class="danger"><span class="when">Last</span><b>Uninstall</b><span>only <u>after</u> you've sent the final export</span></li>
+    </ol>
+  </section>
+
+  <section class="card" aria-label="The deal">
+    <h2>The deal</h2>
+    <div class="deal">
+      <div class="you"><h3>You do</h3><ul class="tight"><li>Install it once</li><li>Use your laptop normally</li><li>Day 1 and day 7: click one button, glance at a short file, send it</li><li>Uninstall, but only after the final file is sent</li></ul></div>
+      <div class="not"><h3>You don't</h3><ul class="tight"><li>Keep anything open</li><li>Change how you use your laptop</li><li>Send any of your actual activity</li><li>Need internet for it</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why does Yousif need this?</h2>
+    <p>His university project is a tool that helps investigators figure out <b>what a harmful program did</b> on a computer, by following the traces it leaves behind.</p>
+    <p>The tricky part: computers are busy all the time. Programs start, connect and stop constantly, even when you do nothing. To tell "suspicious" from "just a normal busy laptop", the project needs to know <b>how busy normal laptops are</b>. Like a doctor who needs to know a normal heart rate before calling one too fast.</p>
+    <p>Your laptop gives him that "normal heart rate". <b>Only counts</b>, like "400 programs started per hour", never what those programs were.</p>
+  </section>
+
+  <section class="card" aria-label="Privacy promises">
+    <h2>Your privacy, in four promises</h2>
+    <div class="promise">
+      <div><b class="icon">✓</b><p><b>Everything it records stays on your laptop.</b> Nothing is uploaded. It works without internet.</p></div>
+      <div><b class="icon">✓</b><p><b>You only ever send one small file of numbers</b>, and you read it first. No names, websites, files or times.</p></div>
+      <div><b class="icon">✓</b><p><b>Pause any time for an hour.</b> While paused, Analyst Lab only counts that "something happened", never what. (Windows' own Sysmon log, which only administrators can open, still notes details as it always does; uninstalling empties it.)</p></div>
+      <div><b class="icon">✓</b><p><b>"Uninstall everything" removes it all</b>: the program, its background task, everything it recorded, and Sysmon if Setup turned it on. (That's also why you export first.)</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Install it (5 minutes)</h2>
+    <ol class="steps">
+      <li><div>
+        <h3>Double-click <span class="btn">Setup-AnalystLab.exe</span></h3>
+        <p class="hint">It's in the same folder as this guide.</p>
+      </div></li>
+      <li><div>
+        <h3>If Windows says "Windows protected your PC"</h3>
+        <p>Click <b>More info</b>, then <b>Run anyway</b>. This appears because it's a student program, and the "signature" that would make Windows trust it costs money.</p>
+        <div class="dlg smart" aria-label="Drawing of the Windows protected your PC message">
+          <span class="t">Windows protected your PC</span>
+          <span>Microsoft Defender SmartScreen prevented an unrecognized app from starting…</span>
+          <span class="link">More info</span>
+          <div class="row"><span class="b hot">Run anyway</span><span class="b">Don't run</span></div>
+        </div>
+        <p class="hint">(A drawing: yours may look slightly different. The yellow outlines show what to click.)</p>
+      </div></li>
+      <li><div>
+        <h3>"Do you want to allow this app to make changes?" → <b>Yes</b></h3>
+        <div class="dlg uac" aria-label="Drawing of the allow changes prompt">
+          <div class="top">User Account Control</div>
+          <div class="mid"><b>Do you want to allow this app to make changes to your device?</b><span>Setup - Analyst Lab</span></div>
+          <div class="row"><span class="b hot">Yes</span><span class="b">No</span></div>
+        </div>
+        <p class="hint">Setup needs this once, to turn on Microsoft's recording tool (Sysmon, part of Windows). If your account isn't an admin, Windows asks for an admin password here.</p>
+      </div></li>
+      <li><div>
+        <h3>Read the short "before you install" page → <b>Next</b> → <b>Install</b></h3>
+        <p class="hint">It can take a few minutes. If it asks to restart your laptop, say yes; it finishes by itself afterwards.</p>
+      </div></li>
+      <li><div>
+        <h3>Keep "Open Analyst Lab" ticked → <b>Finish</b></h3>
+        <p>A small window opens and, after about 20 seconds, checks by itself that recording works. You should see this:</p>
+        <figure>
+          <div class="shot">
+            <img src="{{IMG:status-window.png}}" alt="The Analyst Lab window: green headline Collecting, you don't need to do anything; progress Day 1 of 7; buttons; four PASS lines">
+            <span class="pin" style="left:-2.5%;top:14%">1</span>
+            <span class="pin" style="left:-2.5%;top:30%">2</span>
+            <span class="pin" style="left:-2.5%;top:57.5%">3</span>
+            <span class="pin" style="left:-2.5%;top:64.7%">4</span>
+            <span class="pin" style="left:-2.5%;top:80%">5</span>
+            <span class="pin" style="left:72.5%;top:72.5%">6</span>
+          </div>
+          <figcaption>The real window, from our test run.</figcaption>
+        </figure>
+        <ul class="legend">
+          <li><span class="n">1</span><span><b>Green "Collecting"</b> = all good. You can close the window; recording continues in the background.</span></li>
+          <li><span class="n">2</span><span><b>Progress:</b> "Day 1 of 7". A day counts when your laptop is switched on that day, so days it stays off don't count. Take your time.</span></li>
+          <li><span class="n">3</span><span><b>Export my statistics:</b> you'll use it twice, on day 1 and day 7 (see below).</span></li>
+          <li><span class="n">4</span><span><b>Pause for 1 hour:</b> whenever you want privacy. It resumes by itself.</span></li>
+          <li><span class="n">5</span><span><b>Self-test:</b> four PASS lines mean everything is recorded. You can run it again any time.</span></li>
+          <li><span class="n">6</span><span><b>Uninstall everything:</b> <b style="color:var(--no)">don't touch it until the very end</b>. It deletes all recordings for good (see the red box below).</span></li>
+        </ul>
+      </div></li>
+    </ol>
+    <div class="box-warn"><b>That's it.</b> Now forget about it and use your laptop as usual. To check on it, open <b>Analyst Lab</b> from your Desktop.</div>
+  </section>
+
+  <section>
+    <h2>Day 1: a quick check (1 minute)</h2>
+    <p>The day after you install, please send one export. It tells Yousif <b>whether recording works on your laptop</b> (it includes a "nothing missed" check and the self-test result), so if something's off he can help <i>now</i>, not after a wasted week.</p>
+    <ol class="steps">
+      <li><div><h3>Open <b>Analyst Lab</b> from your Desktop → click <span class="btn">Export my statistics</span></h3><p class="hint">It saves <code>AnalystLab-statistics-(date).txt</code> on your Desktop and opens it.</p></div></li>
+      <li><div><h3>Have a look, then send it to Yousif</h3><p class="hint">However you usually talk: WhatsApp, Telegram, email… That's it until day 7. <b>Don't uninstall now</b>: recording carries on.</p></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Day 7: the final export (2 minutes)</h2>
+    <p>When the window says <b>"Day 7 of 7 … Done!"</b>:</p>
+    <ol class="steps">
+      <li><div><h3>Click <span class="btn">Export my statistics</span></h3><p class="hint">A new file with today's date appears on your Desktop and opens for you.</p></div></li>
+      <li><div><h3>Read it</h3><p>It looks like this: plain words, then numbers.</p>
+        <figure><div class="shot"><img src="{{IMG:export-file.png}}" alt="The statistics file: a short explanation, days recorded, active hours, and counts of events per type"></div>
+        <figcaption>The top of a real statistics file, from our test run (more numbers of the same kind follow below).</figcaption></figure>
+      </div></li>
+      <li><div><h3>Send the file to Yousif</h3><p class="hint">Same as on day 1.</p></div></li>
+      <li><div><h3>Wait until Yousif says he got it 👍</h3><p class="hint">Then, and only then, the last step below.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="stop" aria-label="Uninstall warning">
+    <div class="stop-head"><span class="stop-icon" aria-hidden="true">!</span><h2>Before you uninstall: read this</h2></div>
+    <p class="stop-big">Uninstalling <b>permanently deletes everything Analyst Lab recorded</b>. There is no undo, and nobody (not even Yousif) can get it back.</p>
+    <ul class="checklist">
+      <li><span class="tick" aria-hidden="true">☐</span><span>I clicked <b>Export my statistics</b> on day 7</span></li>
+      <li><span class="tick" aria-hidden="true">☐</span><span>I <b>sent</b> that file to Yousif</span></li>
+      <li><span class="tick" aria-hidden="true">☐</span><span>Yousif <b>confirmed</b> he received it</span></li>
+    </ul>
+    <p>All three ticked? Then open <b>Analyst Lab</b> → <span class="btn">Uninstall everything</span> → <b>Yes</b>. (Or Windows Settings → Apps → Analyst Lab → Uninstall.)</p>
+    <div class="stop-note"><b>Good to know:</b> your exported statistics files on the Desktop are <b>not</b> deleted; they're yours. Uninstall removes the recorder, its background task, all recordings, and Microsoft's Sysmon with its log (if Setup turned it on; Windows finishes switching Sysmon off at your next restart).</div>
+  </section>
+
+  <section>
+    <h2>What's in the file you send</h2>
+    <div class="two">
+      <div class="yes"><h3>✓ In it (numbers only)</h3><ul class="tight">
+        <li>How many days and hours it recorded</li>
+        <li>How many minutes you paused</li>
+        <li>How many programs started, connections, website-name lookups, new program files… in total and per hour</li>
+        <li>The same counts for each hour, <b>without the date or time</b></li>
+        <li>Health numbers (did it miss anything, did the self-test pass)</li>
+      </ul></div>
+      <div class="nope"><h3>✗ Never in it</h3><ul class="tight">
+        <li>Names of programs or apps</li>
+        <li>Websites, addresses, file names</li>
+        <li>When you used your laptop</li>
+        <li>What you typed, your passwords, your screen</li>
+        <li>Contents of any file or message</li>
+      </ul></div>
+    </div>
+    <p class="hint">A built-in check refuses to write the file if anything other than its own labels and numbers would get in. And you read it before sending anyway.</p>
+  </section>
+
+  <section>
+    <h2>Questions people ask</h2>
+    <details><summary>What exactly does it record on my laptop?</summary>
+      <p>Using Microsoft's own tool Sysmon: which programs start and close, which program connects where, which website names get looked up, and new or deleted program files (plus files in Downloads and Startup). It does <b>not</b> record what you type, your screen, or what's inside files, messages or web pages. It <b>does</b> note the exact command that started each program, which can include a file's name (for example a document you opened). All of it stays on your laptop; only the numbers file is ever sent, by you, and that file contains none of these details.</p></details>
+    <details><summary>Will it slow down my laptop?</summary>
+      <p>No. On Yousif's laptop the recorder uses well under 1% of the processor and around 12 MB of memory, less than a single browser tab.</p></details>
+    <details><summary>How much space does it use?</summary>
+      <p>Usually under 1 GB in total, including Windows' own Sysmon log. Finished days are compressed automatically, and uninstalling frees all of it.</p></details>
+    <details><summary>Does it need internet?</summary>
+      <p>No. Only on older versions of Windows, Setup downloads Sysmon once from Microsoft.</p></details>
+    <details><summary>The window shows a red message</summary>
+      <p>Restart your laptop and open Analyst Lab again. If it's still red, take a screenshot of the window (it shows nothing personal) and send it to Yousif.</p></details>
+    <details><summary>Setup showed an error</summary>
+      <p>Send Yousif the file <code>C:\ProgramData\AnalystLab\setup-log.txt</code>. It contains no personal information, only what Setup did.</p></details>
+    <details><summary>I want to stop early</summary>
+      <p>No problem at all. Export your statistics first (whatever days you have still help), send them, and only then uninstall: uninstalling deletes the recordings, so it can't be exported afterwards.</p></details>
+  </section>
+
+  <p class="thanks">Thank you! 🙏 You're helping a real project.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/* Both redesigned designs. The root size follows the window: 1rem = 16px at 1463 px wide (the demo
+   laptop: 2560x1600 at 175 %, Edge maximised), a little smaller or larger on other windows. Every
+   size in a.css, b.css and proof.css is in rem, so a screen never needs scrolling on the main path. */
+html.ui2 { font-size: clamp(12.5px, min(1.0937vw, 2.05vh), 21px); }
+html.ui2, html.ui2 body, html.ui2 #root { height: 100%; overflow: hidden; }
+/* before the server's first answers: one quiet line in the middle (shown after a moment, so a fast start never flashes it) */
+.ui2-boot { height: 100%; display: grid; place-items: center; font: 500 0.9375rem var(--font-display, system-ui); color: #949dae; background: #090b10;
+  animation: ui2-boot-in 300ms 500ms both; }
+.ui2-boot[data-state="failing"] { color: #e7eaf0; animation-delay: 0ms; }
+@keyframes ui2-boot-in { from { opacity: 0; } to { opacity: 1; } }
+.ui2-msg { padding: 2rem; color: #e7eaf0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.ui2 *, html.ui2 *::before, html.ui2 *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; transition-duration: 1ms !important; }
+}

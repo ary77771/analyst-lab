@@ -1,0 +1,19 @@
+/* What to do next lab (prefix nx-), design A tokens. */
+.nx-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr)); gap: 1.25rem; margin-top: 0.25rem; }
+.nx-col { display: grid; gap: 0.5rem; align-content: start; border-top: 1px solid var(--line); padding-top: 0.75rem; }
+.nx-steps { display: grid; gap: 0.5rem; }
+.nx-mit { display: grid; gap: 0.25rem; padding: 0.625rem 0.75rem; border-radius: 0.5rem; background: var(--panel-2); border: 1px solid var(--line); }
+.nx-mit b { font-size: 0.9375rem; color: var(--text); }
+.nx-how { font-size: 0.875rem; line-height: 1.55; color: var(--text); }
+.nx-group { border: 1px solid var(--line); border-radius: 0.5rem; background: var(--panel-2); }
+.nx-group > summary { cursor: pointer; padding: 0.5rem 0.75rem; font-size: 0.875rem; }
+.nx-group > summary b { color: var(--text); }
+.nx-group b[data-tactic="Evict"], .nx-group b[data-tactic="Isolate"], .nx-group b[data-tactic="Restore"] { color: var(--accent); }
+.nx-defs { display: grid; gap: 0.5rem; padding: 0 0.75rem 0.75rem; }
+.nx-defs li { display: grid; gap: 0.1875rem; padding-top: 0.5rem; border-top: 1px solid var(--line); }
+.nx-defs b { font-size: 0.875rem; color: var(--text); }
+.nx-link { font-family: var(--font-mono); font-size: var(--lab-small); }
+.nx-ext { color: var(--accent); }
+
+/* e2e review: MITRE's long texts folded so the steps stay on the first screen */
+.nx-more > summary { cursor: pointer; margin-top: 0.25rem; }

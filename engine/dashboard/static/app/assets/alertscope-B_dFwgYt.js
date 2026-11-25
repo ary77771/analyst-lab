@@ -1,0 +1,1 @@
+import{j as t}from"./index-BY9KdeSS.js";function l({alert:e,title:s,onClear:n,what:r}){return e?t.jsxs("p",{className:"ft-scope",children:[t.jsxs("span",{className:"ft-muted",children:[r," for the alert "]}),t.jsx("b",{children:s??e}),t.jsx("button",{type:"button",className:"ft-a ft-linkbtn",onClick:n,children:"show everything instead"})]}):null}export{l as A};

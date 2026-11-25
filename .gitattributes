@@ -1,0 +1,2 @@
+# third-party files stay byte-identical (their SHA256 is recorded)
+engine/dashboard/static/vendor/* -text

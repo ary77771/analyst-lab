@@ -1,0 +1,110 @@
+# Blind scenario B2: renamed Windows shell runs a dropped script that opens a hidden local
+# listener. The TRUE STORY, written BEFORE the scenario code.
+#
+# b2_sync.exe checks in with the lab test server once, writes a PowerShell script, copies
+# Windows' own cmd.exe into the work folder under a different name (wsyncsvc.exe) and starts
+# that renamed shell, which starts a hidden powershell.exe (-ExecutionPolicy Bypass) on the
+# script. The script opens a TCP listener on 127.0.0.1:48213 for about 40 s (nobody connects),
+# closes it and deletes itself. b2_sync.exe then deletes the renamed shell and ends.
+# Harmless: the listener only accepts on loopback and nothing ever connects or is sent; nothing
+# is changed outside C:\AnalystLab\scenarios\b2\work\. Refuses to run unless it sees the lab VM
+# (VirtualBox guest files AND C:\AnalystLab\scenarios). Patterns only, no GUIDs or times.
+
+scenario: B2
+title: Renamed shell starts a hidden listener script
+runs_in: vm
+test_server: "the lab test server: http://{test_server.ip}:{test_server.port}"   # 10.0.2.2:18765, by IP
+
+programs:
+  main: b2_sync.exe                     # started by the scenario runner (from the run CD, bin\)
+  renamed_shell: wsyncsvc.exe           # a copy of C:\Windows\System32\cmd.exe, written and started by main
+windows_programs:
+  script_host: powershell.exe           # Windows PowerShell 5.1, started by renamed_shell
+files:
+  shell_file: \AnalystLab\scenarios\b2\work\wsyncsvc.exe      # created by main, deleted by main
+  job_script: \AnalystLab\scenarios\b2\work\b2_job.ps1        # created by main, deleted by script_host
+listener: {ip: 127.0.0.1, port: 48213, owner: script_host, open_for_seconds: 40}
+
+steps:
+  - id: 1
+    what: b2_sync.exe starts
+    evidence: {sysmon_event: 1, Image_endswith: b2_sync.exe}
+  - id: 2
+    what: b2_sync.exe connects to the test server once (an HTTP GET "check-in")
+    evidence: {sysmon_event: 3, Image_endswith: b2_sync.exe, DestinationIp: "{test_server.ip}",
+               DestinationPort: "{test_server.port}"}
+  - id: 3
+    what: b2_sync.exe creates the PowerShell script b2_job.ps1 in the work folder
+    evidence: {sysmon_event: 11, Image_endswith: b2_sync.exe, TargetFilename_endswith: \b2\work\b2_job.ps1}
+  - id: 4
+    what: b2_sync.exe creates wsyncsvc.exe in the work folder, a byte-for-byte copy of Windows' cmd.exe
+    evidence: {sysmon_event: 11, Image_endswith: b2_sync.exe, TargetFilename_endswith: \b2\work\wsyncsvc.exe}
+  - id: 4b
+    what: the agent fingerprints wsyncsvc.exe; its SHA-256 equals C:\Windows\System32\cmd.exe's
+    evidence: {agent_type: FILE_HASH, TargetFilename_endswith: \b2\work\wsyncsvc.exe, hash_status: ok,
+               sha256_equals: "SHA256 of C:\\Windows\\System32\\cmd.exe (= event 1 Hashes of wsyncsvc.exe, step 5)"}
+  - id: 5
+    what: b2_sync.exe starts wsyncsvc.exe /c powershell.exe ... -File ...\b2_job.ps1; Sysmon shows the
+      renamed program's real identity (OriginalFileName Cmd.Exe, "Windows Command Processor")
+    evidence: {sysmon_event: 1, Image_endswith: \b2\work\wsyncsvc.exe, ParentImage_endswith: b2_sync.exe,
+               OriginalFileName: Cmd.Exe, CommandLine_contains: b2_job.ps1}
+  - id: 6
+    what: wsyncsvc.exe starts powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden
+      -File C:\AnalystLab\scenarios\b2\work\b2_job.ps1
+    evidence: {sysmon_event: 1, Image_endswith: \powershell.exe, ParentImage_endswith: \b2\work\wsyncsvc.exe,
+               CommandLine_contains: b2_job.ps1}
+  - id: 7
+    what: powershell.exe listens on TCP 127.0.0.1:48213 for about 40 s, then closes it (nobody connects)
+    evidence: [{agent_type: PORT_LISTEN_START, Image_endswith: \powershell.exe, LocalPort: "48213"},
+               {agent_type: PORT_LISTEN_STOP, Image_endswith: \powershell.exe, LocalPort: "48213"}]
+  - id: 8
+    what: powershell.exe deletes its own script b2_job.ps1, then ends; then wsyncsvc.exe ends
+    evidence: [{sysmon_event: 26, Image_endswith: \powershell.exe, TargetFilename_endswith: \b2\work\b2_job.ps1},
+               {sysmon_event: 5, Image_endswith: \powershell.exe},
+               {sysmon_event: 5, Image_endswith: \b2\work\wsyncsvc.exe}]
+  - id: 9
+    what: b2_sync.exe deletes wsyncsvc.exe, then ends
+    evidence: [{sysmon_event: 26, Image_endswith: b2_sync.exe, TargetFilename_endswith: \b2\work\wsyncsvc.exe},
+               {sysmon_event: 5, Image_endswith: b2_sync.exe}]
+
+not_expected:
+  - {sysmon_event: 22, why: "the test server is addressed by IP, so no name is looked up"}
+  - {sysmon_event: 3, DestinationPort: "48213", why: "nothing ever connects to the listener"}
+  - {sysmon_event: 3, Image_endswith: \b2\work\wsyncsvc.exe, why: "the renamed shell makes no connection"}
+  - {sysmon_event: 15, why: "nothing is downloaded from the internet, so no download marker"}
+
+expected_story: >-
+  After checking in with the test server, a program dropped a PowerShell script and a renamed
+  copy of Windows' cmd.exe (wsyncsvc.exe: same hash and OriginalFileName as cmd.exe), and used
+  that disguised shell to launch hidden PowerShell with the execution policy bypassed. The script
+  opened a listening port on 127.0.0.1:48213 for ~40 s, like a backdoor waiting for a connection,
+  then removed itself; the program then removed the renamed shell, leaving no files behind.
+tricky_part: >-
+  wsyncsvc.exe is really cmd.exe: only the hash / OriginalFileName reveal it, the name doesn't.
+  The listener belongs to powershell.exe (two levels below main, via the renamed shell), not to
+  the program that started the chain. Nobody connects to it, so there is no network event for the
+  port, only the listen record. The script deletes itself, and both dropped files are gone at the end.
+
+notes:
+  - Order steps by UtcTime, not record number.
+  - The listener is bound to 127.0.0.1 only (not reachable from outside the VM) and is open for
+    40 s (well above the agent's 10 s minimum). The field names in step 7 (Image_endswith,
+    LocalPort) are the writer's guess at the agent's port-record fields; the truth to check is
+    "powershell.exe owned a listening TCP port 127.0.0.1:48213 for ~40 s".
+  - Step 4b compares with the VM's own cmd.exe (whatever Windows build the VM has).
+  - If powershell.exe could not delete the script, b2_sync.exe deletes it as a fallback (then the
+    event 26 for b2_job.ps1 carries b2_sync.exe instead); in the normal run powershell.exe does it.
+  - The out folder C:\AnalystLab\scenarios\b2\work is emptied by the runner before the run. At the
+    end it is empty. The whole run takes about 45-50 s.
+  - Deletions are in the steps but not in expected_graph (the writer doesn't know the graph's edge
+    name for "deleted"); the truth is that script_host deleted job_script, main deleted shell_file.
+
+expected_graph:
+  facts:
+    - {from: main, edge: connected_to, to: test_server, says: main connected to test server}
+    - {from: main, edge: created, to: job_script, says: main created job script}
+    - {from: main, edge: created, to: shell_file, says: main created shell file}
+    - {from: shell_file, edge: ran_as, to: renamed_shell, says: renamed shell process runs the shell file}
+    - {from: main, edge: started, to: renamed_shell, says: main started renamed shell}
+    - {from: renamed_shell, edge: started, to: script_host, says: renamed shell started script host}
+  gaps: []                              # main's own start is recorded (started by the runner)

@@ -1,0 +1,103 @@
+# Blind scenario Bx: <title>. The TRUE STORY, written BEFORE the scenario code.
+#
+# What it does in plain words (2-4 lines). Why it is harmless. Runs ONLY inside the VM.
+# Written as patterns, never as GUIDs, process numbers or exact times.
+# This file shows EVERY feature the checkers read; delete what your scenario does not use.
+# Check the layout before handing in (it opens this file, so only you run it):
+#   python tools/run_blind.py <your folder> --dry-run --check-sheet
+
+scenario: Bx                            # B3, B4, ... (the same id as scenario.json)
+title: "<short title>"
+runs_in: vm
+
+# For people reading the result (not checked automatically):
+expected_story: "<2-3 sentences: what an analyst should conclude>"
+tricky_part: "<what you think the lab might get wrong>"
+
+# Every PROGRAM the story involves, by role (lower-case role names). The first one is started by
+# the runner; every later one must be started by an earlier one. Windows' own programs
+# (cmd.exe, powershell.exe, ...) are listed here too AND named in windows_programs, because
+# processes with those names also run elsewhere in the VM.
+programs:
+  main: bx_main.exe
+  shell: cmd.exe
+windows_programs: [shell]               # a LIST of roles from programs (not a mapping)
+
+# Optional: GROUPS of files your programs create, found by folder part + ending + exact count.
+# A single file is a group with count 1 (use the full name as suffix, e.g. suffix: '\run.cmd').
+file_groups:
+  notes: {path_contains: '\AnalystLab\scenarios\bx\work\', suffix: '.txt', count: 3}
+
+# Optional: a port your program LISTENS on (gives the graph role listen_port).
+# listen: {ip: 127.0.0.1, port: 47999}
+
+# What happens, in order, and which recorded evidence proves it. One evidence item, or a list.
+# Each item has exactly one of:
+#   sysmon_event: 1 program start, 3 network connection, 5 program end, 11 file created,
+#                 22 name lookup, 26 file deleted (15 "downloaded" marker, 23 file deleted+kept)
+#   agent_type:   PORT_LISTEN_START, PORT_LISTEN_STOP, FILE_HASH (a new file's fingerprint)
+# plus field patterns: <Field>_endswith (file name, case-insensitive), <Field>_contains,
+# <Field>_suffix, or <Field> for an exact value. Fields: Image, ParentImage, TargetFilename,
+# CommandLine, DestinationIp, DestinationPort, LocalIp, LocalPort, QueryName.
+# Extras: count (exactly N matches, default 1), within_seconds (all N within a burst),
+# interval_seconds {min, max} (gaps between the N; needs count >= 2), spread_seconds_min,
+# seconds_after {step, min, max} (timing against an EARLIER step), same_target_as_step (e.g. a
+# deleted file must be one an earlier step created).
+# "{test_server.ip}" and "{test_server.port}" are filled with the run's test server.
+steps:
+  - id: 1
+    what: bx_main.exe starts
+    evidence: {sysmon_event: 1, Image_endswith: bx_main.exe}
+  - id: 2
+    what: bx_main.exe writes three notes into its work folder within 5 s
+    evidence: {sysmon_event: 11, Image_endswith: bx_main.exe, TargetFilename_contains: '\scenarios\bx\work\',
+               TargetFilename_suffix: .txt, count: 3, within_seconds: 5}
+  - id: 3
+    what: bx_main.exe calls the test server 4 times, 5-15 s apart
+    evidence: {sysmon_event: 3, Image_endswith: bx_main.exe, DestinationIp: "{test_server.ip}",
+               DestinationPort: "{test_server.port}", count: 4, interval_seconds: {min: 5, max: 15}}
+  - id: 4
+    what: bx_main.exe starts cmd.exe
+    evidence: {sysmon_event: 1, Image_endswith: cmd.exe, ParentImage_endswith: bx_main.exe}
+  - id: 5
+    what: bx_main.exe deletes the notes it wrote
+    evidence: {sysmon_event: 26, Image_endswith: bx_main.exe, TargetFilename_suffix: .txt, count: 3,
+               same_target_as_step: 2}
+  - id: 6
+    what: cmd.exe ends, then bx_main.exe ends
+    evidence: [{sysmon_event: 5, Image_endswith: cmd.exe}, {sysmon_event: 5, Image_endswith: bx_main.exe}]
+
+# Expected NOT to appear for the scenario's programs (beyond what a step already explains).
+# Only sysmon_event (or agent_type) and why: other keys are NOT read, so you cannot narrow these.
+not_expected:
+  - {sysmon_event: 22, why: "the server is addressed by IP, so no name is looked up"}
+
+# How the evidence graph should show it.
+# facts (proven by one recorded event): {from: <role>, edge: <kind>, to: <role>, says, count?}
+#   edge kinds: started, connected_to, accepted_from, created, deleted, looked_up,
+#               listen_started, listen_stopped, ran_as (a file ran as a process)
+#   roles: a role from programs or file_groups; test_server; listen_port (needs listen above);
+#          <program role>_file = the file named like that program (needs payload_path_contains:
+#          a folder part under which the program wrote it)
+# hypotheses (timing guesses, never facts; optional): {claim, between: [role, role],
+#   kind: content_from | remote_command | fetched_then_ran, optional: true if it only appears
+#   when the steps happen close together}
+# gaps (what the evidence cannot show): {node: <role>, kind: origin_unknown | parent_unknown |
+#   actor_unknown | content_unknown | owner_unknown}. Usually [].
+expected_graph:
+  facts:
+    - {from: main, edge: created, to: notes, says: main created the three notes, count: 3}
+    - {from: main, edge: connected_to, to: test_server, says: main called the test server, count: 4}
+    - {from: main, edge: started, to: shell, says: main started cmd.exe}
+    - {from: main, edge: deleted, to: notes, says: main deleted the notes, count: 3}
+  gaps: []
+
+# Which steps an analyst SHOULD be alerted to, and why. You do not know the lab's rules, and
+# should not: name the steps, not a rule. An empty list means "nothing here should raise an
+# alert" (an innocent scenario: then any alert is a false alarm).
+alert_expected:
+  suspicious_steps: [3, 4]
+  why: "<one sentence>"
+
+notes:
+  - "<anything the checker or a reader needs to know>"
